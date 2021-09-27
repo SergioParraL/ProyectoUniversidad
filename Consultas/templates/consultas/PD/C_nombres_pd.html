@@ -1,0 +1,123 @@
+{% extends "Institucion/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<article>
+
+<section class="title">
+    <h1>Consulta del Personal Docente</h1>
+</section>
+<hr>
+
+<div class="conform">
+
+    <form action="" method="post">{% csrf_token %}
+        <div id="centrar">
+            <div class="flex form">
+                <label>Nombre</label>
+                <input  type="text" name="buscar_nombres" value="">
+            </div>
+        </div>
+        <div class="button">
+            <input  type="submit" value="Consultar">
+        </div>
+
+    </form>
+
+    {% if "Buscar" in request.POST%}
+
+        <h2 class="title">Resultados de la Busqueda</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Cedula</th>
+                    <th>Materia</th>
+                    <th>Opciones</th>
+                </tr>
+
+            </thead>   
+
+            <tbody>
+
+                {% for PD in PD %}
+
+                    <tr>
+                        <td>{{PD.nombres}}</td>
+                        <td>{{PD.apellidos}}</td>
+                        <td>{{PD.cedula}}</td>
+                        <td>{{PD.materia}}</td>
+                        <td><a href="{% url 'Actualizar_PD' PD.id %}"><bottun>Actualizar</bottun></a><a href="{% url 'Eliminar_PD' PD.id %}"><bottun>Eliminar</bottun></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>  
+        </table>
+    {% endif %}
+</div>
+<div class="wrapper">
+    <h2 class="title">Listado del Personal Docente</h2>
+    <div class="table">
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Cedula</th>
+                    <th>Materia</th>
+                    <th style="border-right: none;">Opciones</th>
+                </tr>
+
+            </thead>  
+            <tbody class="tbody">
+
+                {% for PD in PD %}
+
+                    <tr class="lol_2">
+                        <td class="lol">{{PD.nombres}}</td>
+                        <td class="lol">{{PD.apellidos}}</td>
+                        <td class="lol">{{PD.cedula}}</td>
+                        <td class="lol">{{PD.materia}}</td>
+                        <td class="lol olo">
+                            <a href="{% url 'Actualizar_PD' PD.id %}">
+                                <div class="icon_act">A</div>
+                            </a>
+                            <a href="{% url 'Eliminar_PD' PD.id %}">
+                                <div class="icon_elim">E</div>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>  
+        </table>
+    </div>
+<aside class="aside">
+
+  <blockquote>
+
+    <h3>Filtros de Busqueda</h3>
+
+    <ol class="filter">
+        <li><a href="{% url 'C_nombres_pd' %}" >Por Nombre</a></li>
+        <li><a href="{% url 'C_apellidos_pd' %}" >Por Apellido</a></li>
+        <li><a href="{% url 'C_cedula_pd' %}" >Por Cedula</a></li>
+        <li><a href="{% url 'C_materia_pd' %}" >Por Materia que imparte</a></li>
+    </ol>
+
+  </blockquote>
+
+</aside>
+
+</div>
+
+</article>
+
+
+
+{% endblock content %}

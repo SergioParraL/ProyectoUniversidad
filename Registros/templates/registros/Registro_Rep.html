@@ -1,0 +1,67 @@
+{% extends "Institucion/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<article>
+    <section class="title">
+        <h1 >Registro de Representante</h1>
+    </section>
+    <hr>
+<div class="conform">
+    {%  if  "valido" in request.GET %}
+        <p id="repre">Representante Registrado Correctamente, por favor ingresa<a href="../../login">aquí</a></p>
+    {% endif %}
+    <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+        <table>
+            <div class="form">
+                <label>Nombre</label>
+                {{ form.nombres }}
+            </div>
+            <div class="form">
+                <label for="apellido">Apellido</label>
+                {{ form.apellidos }}
+            </div>
+            <div class="form">
+                <label for="cedula">Cedula</label>
+                {{ form.cedula }}
+            </div class="form">
+            <div class="foto">
+                <label for="foto">Foto</label>
+                {{ form.foto }}
+            </div>
+            <div class="form">
+                <label for="edad">Edad</label>
+                {{ form.edad }}
+            </div> 
+            <div class="form">
+                <label for="direccion">Direccion</label>
+                {{ form.direccion }}
+            </div> 
+            <div class="form">
+                <label for="teln_casa">Telefono Casa</label>
+                {{ form.teln_Casa }}
+            </div>
+            <div class="form">
+                <label for="teln_movil">Telefono Movil</label>
+                {{ form.teln_movil }}
+            </div>
+            <div class="form">
+                <label for="email">Correo Electronico</label>
+                {{ form.email }}
+            </div>
+        </table>
+        <div id="id" class="button_form">
+            <input type="submit" value="Siguiente">
+            <br><br>
+            <hr>
+            <br><br>
+            <h2 style>Ya Registraste un Representante, Dale click para continuar</h2>
+            <br><br>
+            <a href="{% url 'Registro_Es' %}"><button class="button_button" type="button">Continuar</button></a>
+        </div>
+    </form>
+</div>
+</article>
+
+{% endblock content %}

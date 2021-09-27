@@ -1,0 +1,59 @@
+{% load static %}
+
+    <link href="{% static 'General/css/login.css' %}" rel="stylesheet">
+
+
+
+{% if messages %}
+  {% for message in messages %}
+      <div class="notification {{message.tags}}">
+          {{ message }}
+      </div>
+
+  {% endfor %}
+{% endif %}
+
+<div id="wrapper">
+    <article class="row_1">
+        <h1 id="lol">Registro de Personal Administrativo</h1>
+        <section class="form_wrapper">
+          <form action="" method="post">
+            {% csrf_token %}
+
+            <table style="color: white; margin: 20px auto;">
+              <div class="form_log">
+                <label>Nombre de usuario</label>
+                {{ form.username }}
+              </div>
+              <div class="form_log">
+                <label>Email</label>
+                {{ form.email }}
+              </div>
+              <div class="form_log"><label>Contraseña</label>
+                {{ form.password1 }}
+              </div>
+              <div class="form_log">
+                <label>Confirma Contraseña</label>
+                {{ form.password2 }}
+              </div>
+              <div class="form_log">
+                <label></label>
+                <input type="hidden" id="is_PA" name="is_PA" value="True"/>
+                <input type="hidden" id="is_PD" name="is_PD" value="False"/>
+              </div>
+            </table>
+
+             <button class="button_log" type="submit" id="submit">Registarse</button>
+            </form>
+            <div id="button_log">
+              <a href="{% url 'login' %}" ><button class="button_log" type="button">Volver a iniciar Sesión</button></a>
+            </div>
+    </section>
+  </article>
+<article class="row_2">
+    <img src="../../static/General/img/fondo.png" alt="fondo">
+    
+</article>
+</div></
+</div>
+

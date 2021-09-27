@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Deslogueado</title>
+	<link rel="stylesheet" href="{% static 'General/css/logout.css' %}">
+</head>
+<body>
+	<div id="container">
+		<img src="../../static/General/img/undraw_Graduation_ktn0.png">
+		<h1>TE HAS DES-LOGUEADO</h1>
+	</div>
+
+	<div id="button_log">
+		<a class="button_log" href="{% url 'login' %}" ><button type="button">CONTINUAR</button></a>
+	</div>
+</body>
+</html>
+
+

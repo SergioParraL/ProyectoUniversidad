@@ -1,0 +1,83 @@
+/* ----------- Loader  ---------- */
+	.loader{
+		position: fixed;
+	    left: 0px;
+	    top: 0px;
+	    width: 100%;
+	    height: 100%;
+	    z-index: 9999;
+		background: url('../img/loader_circle.gif') 50% 50% no-repeat rgb(255, 255, 255);
+	}
+
+	div.close_loader{
+		display: none;
+	}
+
+/* ----------- Switch  -------- */
+	.switch{
+		width: 4em;
+		height: 2.5em;
+		padding: 0;
+		border-radius: 3em;
+		border: 2px black solid;
+		background: rgb(255, 66, 78);
+	}
+
+	.switch div{
+		width: 50%;
+		height: 2em;
+		border-radius: 100%;
+		background: rgba(76, 183, 217);
+		margin: 0;
+	}
+
+	.switch .PA{
+		animation-name: switchPA; 
+		animation-duration: 1s;
+		float: right;
+	}
+
+	@keyframes switchPA{
+		from{
+			margin-right: 50%;
+		}
+		to{
+			margin-right: 0%;
+		}
+	}
+	.switch .PD{
+		animation-name: switchPD; 
+		animation-duration: 1s;
+		float: left;
+	}
+
+	@keyframes switchPD{
+		from{
+			margin-left: 50%;
+		}
+		to{
+			margin-left: 0%;
+		}
+	}
+
+/* ----------- Botones -------- */
+
+	.btnG{
+		color: #fff;
+		border-radius: .5em .5em;
+		width: 10em;
+		padding: .7em;
+		font-weight: bolder;
+		font-family: sans-serif;
+		border: 2px solid rgb(254, 84, 84);
+		margin: 0;
+	}
+
+	/* ---- Oscuro -----*/
+	.button_1{
+		background: rgb(254, 84, 84);
+	}
+	/* ----Claro ------ */
+	.button_2{
+		background: inherit;
+	}

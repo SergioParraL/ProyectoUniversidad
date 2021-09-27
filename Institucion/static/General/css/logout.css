@@ -1,0 +1,35 @@
+#container{
+	background: url('../img/undraw_Graduation_ktn0.png');
+	background: transparent;
+	/* border: 1px solid; */
+}
+
+#container > img {
+	margin-block-start:-14%;
+	width: 100%;
+	z-index: 1;
+	position: relative;
+}
+
+#container > h1{
+	font-family: sans-serif;
+	position: fixed;
+	z-index: 5;
+	position: fixed;
+	top:45%;
+	left: 28%;
+}
+
+#button_log{
+	font-family: sans-serif;
+	position: fixed;
+	z-index: 5;
+	position: fixed;
+	top:45%;
+	left: 28%;
+}
+
+#container2{
+	margin: 10px auto;
+	padding: 10px auto;
+}

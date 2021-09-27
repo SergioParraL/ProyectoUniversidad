@@ -1,0 +1,121 @@
+li{
+	    list-style-type:none;
+	    position:relative;
+	    width:100%;
+	    display: flex;
+		justify-content: space-around;
+		text-align: left;
+		}
+
+		ul.nav{
+			display: flex;
+			justify-content: space-around;
+			flex-direction: column;
+			height: 100%;
+		}
+
+		ul li a, li.prin, li.specia{
+		    text-decoration:none;
+		    padding:.3124em .625em;
+		    width:100%;
+		    height:3.5em;
+		    color:#2A363B;
+
+		}
+		            
+		li.active:hover, li.prin > ul li a:hover{
+		    color:#000;
+		    background-color:#fff;
+		    font-weight: bold;
+		    border-radius: 1.2em 0 0 1.2em;
+		}
+
+		ul li a.special{
+			padding: 0;
+			display: block;
+		}
+
+		nav li ul, nav li ul li ul.sub {
+			display:none;
+			position:absolute;
+			top:0;
+			left:101%;
+		}
+
+		nav li:hover ul, nav li ul:hover li ul{	
+			display:block;
+		}
+
+
+		.inic, .inic a{
+			border-radius: .8em .8em 0 0;	
+		}
+
+		.fin, .fin a{
+			border-radius: 0 0 .8em .8em;
+		}
+
+		.nav li.prin > .img{
+			width: 20px;
+			height: 20px;
+		}
+
+/* ------------------Home----------------------------------- */
+
+#container{
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+}
+
+#container > img{
+	width: inherit;
+	border-radius: .8em;
+	height: 29em;
+}
+
+/* -------------Icon Nav --------------- */
+
+.divNav{
+	height: 4em;
+}
+
+.divNav img{
+	width: 2em;
+	display: block;
+	margin-top: 15%;
+}
+.IconNav{
+	width: 30%;
+	padding-left:1em;
+	margin-right: -.6em;
+	}
+
+	/* .IconNavActive{
+		border-radius: 1.2em 0 0 1.2em ;
+		background-color: #fff;
+	}
+
+	.IconNavAfter{
+		border-radius: 0 0 1.2em 0;
+	}
+
+	.IconNavBefore{
+		border-radius: 0 1.2em 0 0;
+	}
+ */
+
+	/* .IconNav:hover{
+		border-radius: 1.2em 0 0 1.2em;
+		background-color:#fff;
+	}
+ */
+nav ul li.btn-desp{
+	margin-right: -;
+}
+
+.ContentNav{	
+	width: 80%;
+	line-height: 3em;
+	padding-left: 10%; 
+}

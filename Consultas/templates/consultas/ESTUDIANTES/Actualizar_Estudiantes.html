@@ -1,0 +1,94 @@
+{% extends "Institucion/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<article>
+  <section class="title">
+    <h1>Actualización de Registro de Estudiantes</h1>
+    
+  </section>
+
+<hr>
+
+<section class="conform">
+
+
+    {%  if  "valido" in request.GET %}
+        <h3 class="Reg_correcto">Estudiante Actualizado Correctamente, por favor dale click en continuar</h3>
+        <a href="{% url 'Consulta_Es' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+    {% endif %}
+
+    <div class="conform">
+
+        <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+
+            <table>
+
+                <div class="form">
+                    <label>Nombres</label>
+                    {{ form.nombres }}
+                </div>
+                <div class="form">
+                    <label for="apellido">Apellidos</label>
+                    {{ form.apellidos }}
+                </div>
+                <div class="form">
+                    <label for="cedula">Cedula</label>
+                    {{ form.cedula }}
+                </div>
+                <div class="foto">
+                    <label for="foto">Foto</label>
+                    {{ form.foto }}
+                </div>
+                <div class="form">
+                    <label for="edad">Edad</label>
+                    {{ form.edad }}
+                </div>
+                <div class="form">
+                    <label for="altura">Altura</label>
+                    {{ form.altura }}
+                </div> 
+                 <div class="form">
+                    <label for="peso">Peso</label>
+                    {{ form.peso }}
+                </div>
+                <div class="form">
+                    <label for="talla_zapato">Talla Zapato</label>
+                    {{ form.talla_zapato }}
+                </div>
+                <div class="form">
+                    <label for="talla_camisa">Talla Camisa</label>
+                    {{ form.talla_camisa }}
+                </div>
+                <div class="form">
+                    <label for="talla_pantalon">Talla Pantalón</label>
+                    {{ form.talla_pantalon }}
+                </div>
+                <div class="form">
+                    <label for="grado">Grado</label>
+                    {{ form.grado }}
+                </div>
+                <div class="form">
+                    <label for="seccion">Seccion</label>
+                    {{ form.seccion }}
+                </div>
+                <div class="form">
+                    <label for="fecha_nac">Fecha de Nac.</label>
+                    {{ form.fecha_nac }}
+                </div>
+                <div class="form">
+                    <label for="Rep">Representante</label>
+                    {{ form.Rep }}
+                </div>
+
+            </table>
+            <div class="button_form">
+                <input type="submit" value="Registrar">
+            </div>
+        </form>
+    </div>
+</section>
+</article>
+
+{% endblock content %}

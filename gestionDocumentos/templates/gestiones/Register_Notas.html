@@ -1,0 +1,71 @@
+{% extends "Institucion/base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if messages %}
+  {% for message in messages %}
+      <div class="notification {{message.tags}}">
+          {{ message }}
+      </div>
+
+  {% endfor %}
+{% endif %}
+
+<article>
+  <section class="title">
+    
+    <h1>Sube una Nueva Plantilla de Notas</h1>
+  </section>
+
+<hr>
+
+<div class="conform">
+
+
+  {%  if  "valido" in request.GET %}
+
+    <p class="Reg_correcto">Planilla de Notas Subida Correctamente</p>
+    <a href="{% url 'ConsultaN' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+
+  {% endif %}
+
+
+    <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+    <div id="centrar">
+
+    <table style="color: white; margin: 20px auto;">
+    <div class="form_doc">
+      <label>Grado</label>     
+      {{ form.Grado }}
+    </div>
+    <div class="form_doc">
+        <label>Seccion</label>
+      {{ form.Seccion }}
+    </div>
+    <div class="form_doc">
+        <label>Documento</label>
+      {{ form.Documento }}
+    </div>
+
+    </table>
+
+    <button class="button_button">Subir Planilla de Notas</button>
+
+  </form>
+    
+    
+    
+</div>
+<div class="text_gest">
+  <p>
+    Dale click  para Consultar las Planillas de Notas Registrados 
+    <br>
+    <br>
+    <a id="nino" href="{% url 'ConsultaN' %}">Aquí</a>
+  </p>
+</div>
+</article>
+
+{% endblock content %}
+

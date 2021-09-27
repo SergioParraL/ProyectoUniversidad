@@ -1,0 +1,120 @@
+{% extends "Institucion/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<article>
+
+<div> 
+
+  <section class="title">
+    {% if messages %}
+      {% for message in messages %}
+          <div class="notification {{message.tags}}">
+              {{ message }}
+          </div>
+
+      {% endfor %}
+    {% endif %}
+    <h1 >¿Quieres subir una Nueva Planilla?</h1>
+    <img src="">
+    <h2>Dale click <a href="{% url 'Notas' %}"><bottun>aquí</bottun><a> </h2>
+  <section class="title">
+
+ <br><br>
+
+  <hr>
+
+</div>
+
+<div>
+
+  <form action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+    <div id="centrar">
+      <div class="flex form">
+
+
+        <label style="padding-right: 1.7em;">Grado</label>
+        
+        <input  type="text" name="buscar_grado" value="">
+        
+
+        <label style="margin-left: 2.1em;">Seccion</label>
+        
+        <input  type="text" name="buscar_seccion" value="">
+
+      </div>
+    </div>
+
+    <div class="button">
+      <input  type="submit" value="Consultar" name="Buscar">
+    </div>
+
+
+
+  </form>
+
+<br><br>
+
+  <hr>
+
+<br><br>
+
+<div class="wrapper">
+
+    <h1 class="title">Notas Registrados</h1>
+    <div class="table">
+      <br><br>
+
+      <br><br>
+
+      <table class="table">
+
+      <thead>
+
+        <tr>
+          <th>Planilla de Notas</th>
+          <th>Grado</th>
+          <th>Seccion</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>   
+
+      <tbody class="tbody">
+
+        {% for notas in notas %}
+
+          <tr class="lol_2">
+            <td class="lol">{{notas.Documento}}</td>
+            <td class="lol">{{notas.Grado}}</td>
+            <td class="lol">{{notas.Seccion}}</td>
+            <td class="lol">{{notas.Momento}}</td>
+
+            <td class="lol olo">
+              {% if request.user.is_PD == True %}
+                <a href="{% url 'Actualizar_Notas' notas.id %}"><bottun>Actualizar</bottun>
+                  <div class="icon_act">A</div>
+                
+                </a>
+                
+                <a href="{% url 'Eliminar_Notas' notas.id %}"><bottun>Eliminar</bottun>
+                  <div class="icon_elim">E</div>
+                
+                </a>
+              {% endif %}
+            </td>
+
+          </tr>
+        {% endfor %}
+
+      </tbody>  
+    </table>
+
+
+</div>
+
+</article>
+
+
+
+{% endblock content %}

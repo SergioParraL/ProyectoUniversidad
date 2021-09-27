@@ -1,0 +1,101 @@
+{% extends "Institucion/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<article>
+
+<div> 
+
+  <section class="title">
+    {% if messages %}
+      {% for message in messages %}
+          <div class="notification {{message.tags}}">
+              {{ message }}
+          </div>
+
+      {% endfor %}
+    {% endif %}
+    <h1 >¿Quieres subir un Nuevo Documento?</h1>
+    <img src="">
+    <h2>Dale click <a href="{% url 'Docs' %}"><bottun>aquí</bottun><a> </h2>
+  <section class="title">
+
+ <br><br>
+
+  <hr>
+
+</div>
+<div>
+
+  <form action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+    <div id="centrar">
+      <div class="flex form">
+
+
+          <label style="padding-right: 1.7em;">Nombre del Documento</label>
+          <input  type="text" name="buscar_nombre" value="">
+
+
+      </div>
+      </div>
+
+      <div class="button">
+        <input  type="submit" value="Consultar" name="Buscar">
+
+      </div>
+
+  </form>
+</div>
+
+<br><br>
+
+  <hr>
+
+<br><br>
+
+<div class="wrapper">
+
+    <h1 class="title">Documento Registrados</h1>
+    <div class="table">
+    
+
+      <table class="table">
+
+        <thead>
+
+          <tr>
+            <th>Nombre del Documento</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>   
+
+        <tbody class="tbody">
+
+          {% for documento in documento %}
+
+            <tr class="lol_2">
+              <td class="lol">{{documento.Nombre_Documento}}</td>
+              <td class="lol olo">
+                {% if request.user.is_PA == True %}
+                  <a href="{% url 'Actualizar_Docs' documento.id %}"><bottun>Actualizar</bottun>
+                    <div class="icon_act">A</div>
+                  </a>
+                  
+                  <a href="{% url 'Eliminar_Docs' documento.id %}"><bottun>Eliminar</bottun>
+                    <div class="icon_elim">E</div>
+                  </a>  
+                {% endif %}          
+              </td>
+            </tr>
+          {% endfor %}
+
+        </tbody>  
+      </table>
+    </div>
+
+</div>
+</article>
+
+
+{% endblock content %}

@@ -1,0 +1,74 @@
+.title h1{
+	text-align: center;
+	font-size: 2em;
+}
+
+article div.conform h3, article div.conform p#repre, .Reg_correcto{
+	color: #000;
+	font-weight: bold;
+	font-size: 1em;
+	text-align: center;
+	margin-top: 1.5em;
+}
+
+
+/* -------------------------formularios------------------------ */
+	div.conform form{
+		margin-top: 1.5em;
+	}
+
+	.formulario div.form > input,.formulario div.form > select{
+		margin: .5em;
+		border:none;
+		padding: .3em .5em;
+		width: 50%;
+		border-radius: 0 .8em .8em 0;
+		margin-left: -0.2em;
+	}
+
+	form.formulario div.form > label,form.formulario div.foto > label{
+		border-radius: .8em 0 0 .8em;
+		background:#6C63FF;
+		margin-right: 0em;
+		padding: .187em .937em;
+		width: 11em;
+		text-align: center;
+		display: inline-block;
+		margin-left: 12%;
+		margin-right: 0;
+	}
+
+	form div.foto > label{
+		margin: .25em 0 .35em 6em;
+	}
+
+	form div.form > input:hover,.formulario div.form > select:hover{
+		box-shadow: 2px 2px 5px #999;
+	}
+
+/* ------------- BOTONES------------------- */
+
+
+.button_PA > a{
+	text-decoration: none;
+	color: #fff;
+}
+
+.button_form > input, .button_PA{
+	margin-left: 35%;
+	background: #6A2CD8;
+	color: #fff;
+	width: 25%;
+	padding: .7em;
+	font-weight: bolder;
+	border-radius: .8em .8em;
+	border: none;
+	margin-top: .9em;
+}
+
+div.text> p{
+	font-size: 1.2em;
+	text-align: center;
+	margin-top: 1em;
+	margin-left: -5%;
+}

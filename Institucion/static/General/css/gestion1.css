@@ -1,0 +1,89 @@
+
+/* ---------------Formularios-------------------- */
+
+form div#centrar{
+	/* display: flex; */
+	width: 100%;
+	/* border:1px solid; */
+}
+
+div.form_doc{
+	width: 50%;
+	margin:auto;
+	/* border:1px solid; */
+
+}
+
+div.form_doc > label,div.form_doc > input{
+	padding: .5em;
+	margin: .5em;
+}
+
+div.form_doc > input,div.form_doc > select{
+	border-radius: 0 .8em .8em 0;
+	border:none;
+	width: 50%;
+	margin-left: 0;
+	padding: .7em;
+}
+div#special_form_doc > label{
+	width: 40%;!important
+}
+div.form_doc > label{
+	border-radius: .8em 0 0 .8em;
+	/* border:1px solid; */
+	width: 30%;
+	display: inline-block;
+	text-align: center;
+	background: #6C63FF;
+	margin-right: -1%;
+}
+
+div.form_doc > input:hover{
+	box-shadow: 2px 2px 5px #999;
+}
+
+/* ----------------botones & texto----------------------- */
+	div.text_gest  p{
+		font-size: 1.2em;
+		text-align: center;
+		margin-top: 1em;
+		margin-left: -5%;
+		display: block;
+	}
+	div.text_gest p > a{
+		text-decoration: none;
+		color: #000;
+		/* margin: 5% 0% 0 0; */
+		background: linear-gradient(70deg,#D3A7C2,#F7CB8E);
+		border-radius: .8em;
+		padding: .5em;
+	}
+	.sub_arch{
+		width: 100%;
+		display: flex;
+		justify-content: space-around;
+		/* border:1px solid; */
+	}
+	.button_button{
+		color: #fff;
+		background: #6A2CD8;
+		width: 25%;
+		padding: .7em;
+		font-weight: bolder;
+		border-radius: .8em .8em;
+		border: none;
+		margin:0 35%;
+	}
+
+
+/* div.texto > p{
+	font-size: 1.2em;
+	text-align: center;
+	margin-top: 1em;
+	margin-left: -5%;
+}
+div.texto p > a{
+	text-decoration: none;
+	color: #000;
+} */

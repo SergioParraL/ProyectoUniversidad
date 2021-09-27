@@ -1,0 +1,67 @@
+{% extends "Institucion/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<article>
+  <section class="title">    
+    <h1>Actualiza un Nuevo Documento</h1>
+  </section>
+
+<hr>
+
+
+<div class="conform">
+
+
+  {%  if  "valido" in request.GET %}
+
+
+    <p style="margin: 5px 22%; color: white;">Documento Actualizado Correctamente</p>
+
+  {% endif %}
+
+  <div id="centrar">
+    <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+
+    <table style="color: white; margin: 20px auto;">
+      <div id="special_form_doc" class="form_doc  special_form_doc">
+      <label>Nombre Documento</label>     
+      {{ form.Nombre_Documento }}
+    </div>
+    <div id="special_form_doc" class="form_doc">
+      <label>Documento</label>     
+      {{ form.Documento }}
+    </div>
+    <div id="special_form_doc" class="form_doc special_form_doc">
+      <label>Tipo</label>     
+      {{ form.Tipo }}
+    </div>
+    <div id="special_form_doc" class="form_doc special_form_doc">
+      <label>Formato</label>     
+      {{ form.Formato }}
+    </div>
+
+    </table>
+
+    <button class="button_button" type="submit">Actualizar Registro</button>
+
+  </form>
+    
+    
+    
+</div>
+
+  <div class="text_gest">
+
+    <p>
+      Dale click  para Consultar los Documentos Registrados
+      <br>
+      <br>
+      <a href="{% url 'ConsultaD' %}">aquí</a>
+    </p>
+  </div>
+</article>
+
+
+{% endblock content %}

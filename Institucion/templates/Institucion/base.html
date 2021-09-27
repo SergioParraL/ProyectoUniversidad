@@ -1,0 +1,143 @@
+<html>
+
+<head>
+    {% load static %}
+    
+  <title>{% block title %} {% endblock%}</title>     
+
+    <link href="{% static 'General/css/home2.css' %}" rel="stylesheet">
+    <link href="{% static 'General/css/barra2.css' %}" rel="stylesheet">
+
+    <link href="{% static 'General/css/hamburgers1.css' %}" rel="stylesheet">
+
+    <script type="text/javascript" src="{% static 'General/js/base1.js' %}"></script>
+
+<body>
+        <!-- MENU DE NAVEGACIÓN -->
+    <div class="container_2">
+        <div id="col_1" class="col_1">
+            <nav id="wrapperNav">
+<ul class="nav" id="menu_prin">
+    <li class="prin btn-desp">
+        <div class="divNav ContentNav"></div> 
+        <div class='divNav IconNav iconMenu'>
+            <button id='menu-Arrow' class="hamburger hamburger--arrowturn" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+            </button>
+        </div>
+    </li><!-- -------------Boton de despliegue----- -->
+    <li id='Init' class=" prin">
+        <div class="divNav ContentNav">
+            <a class="special" href="{% url 'Home' %}">Inicio</a>
+        </div> 
+        <div class='divNav IconNav'>
+            <a class="special" href="{% url 'Home' %}">                
+                <img src="../../static/General/img/Nav/home-outline.svg" alt="">
+            </a>
+        </div>
+    </li><!-- -------------Inicio------------------ -->
+    <li class="prin" id='homeProvitional'>
+        <div class="divNav ContentNav">Registro</div> 
+        <div class='divNav IconNav '>
+            <img src="../../static/General/img/Nav/add-circle-outline.svg" alt="">
+        </div>
+
+        <ul class="sub">
+            {% if request.user.is_PA == True%}  
+                <li class="inic">
+                    <a href="{% url 'Registro_Rep' %}">Estudiantes</a>
+                </li>
+                <li class="fin">
+                    <a href="{% url 'Registro_PA' %}">Administrativo</a>
+                </li>
+            {% endif %}
+            {% if request.user.is_PD == True%}  
+                <li>
+                    <a href="{% url 'Registro_PD' %}">Docentes</a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </li><!-- -------------Registro---------------- -->
+    <li class="prin">
+        <div class="divNav ContentNav">Consultas</div> 
+        <div class='divNav IconNav '>
+            <img src="../../static/General/img/Nav/book-outline.svg" alt="">
+        </div>
+        <ul class="sub">
+            <li class="inic">
+                <a href="{% url 'Consulta_Es' %}">Estudiante</a>
+            </li>
+        {% if request.user.is_PA == True%}
+            <li class="fin">
+                <a href="{% url 'Consulta_PA' %}">Administrativo</a>
+            </li>
+            <li>
+                <a href="{% url 'Consulta_PD' %}">Docentes</a>
+            </li>
+        {% endif %}
+        </ul>
+    </li><!-- -------------Consultas--------------- -->
+    <li class="prin">
+        <div class="divNav ContentNav">Gestion-Registro</div> 
+        <div class='divNav IconNav'>
+            <img src="../../static/General/img/Nav/pencil-outline.svg" alt="">
+            
+        </div>
+        <ul class="sub">
+            {% if request.user.is_PA == True%}
+                <li class="inic"><a href="{% url 'Docs' %}">Documentos</a></li>
+            {% endif %}             
+            {% if request.user.is_PD == True%} 
+                <li class="fin" ><a href="{% url 'Notas' %}"> Notas</a></li>
+            {% endif %}             
+        </ul>
+    </li><!-- -------------Gestion-Registro-------- -->
+    <li class="prin">
+        <div class="divNav ContentNav">Gestion-Consulta</div> 
+        <div class='divNav IconNav'>
+            <img src="../../static/General/img/Nav/pricetag-outline.svg" alt="">
+            
+        </div>
+        <ul class="sub">
+        {% if request.user.is_PA == True%}
+            <li class="inic"><a href="{% url 'ConsultaD' %}">Documentos</a></li>
+        {% endif %}
+            <li class="fin" ><a href="{% url 'ConsultaN' %}"> Notas</a></li>
+        </ul>
+    </li><!-- -------------Gestion-Consulta-------- -->
+    <li class="prin">
+        <div class="divNav ContentNav">
+            <a class="special" href="{% url 'logout' %}">Salir</a>
+        </div> 
+        <div class='divNav IconNav'>
+            <a class="special" href="{% url 'logout' %}">                
+                <img src="../../static/General/img/Nav/exit-outline.svg" alt="">
+            </a>
+        </div>
+    </li><!-- -------------Salir------------------- -->
+</ul>
+            </nav>
+        </div>
+        <div class="col_2">
+            <div>
+                {% block content %} {% endblock %}
+            </div>
+        </div>
+    </div>
+    <script>
+        let route = window.location
+        let NodeSelec = document.getElementsByClassName('IconNav')
+
+        // if (route == 'http://127.0.0.1:8000/Home/'){
+        //     document.getElementById('Init').style.display='none'
+        // }
+        let menu = document.getElementById('menu-Arrow')
+
+        
+        menu.addEventListener('click',tMenu)
+    </script>
+</body>
+</html>
