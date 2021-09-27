@@ -43,8 +43,35 @@ def C_nombres(request):
     
     else:        
         estudiantes=Estudiantes.objects.all()
+        #estudiantes2=list(Estudiantes.objects.all())
+
+        Grados_list = [
+            
+            ('1ero'),
+            ('2do'),
+            ('3ro'),
+            ('4to'),
+            ('5to'),
+            ('6to'),
+        ]
+
+        query_li = estudiantes[0]
+
+        prueba = query_li.grado - 1
+
+        trans = Grados_list[prueba]
+
+        # result = {}
+        # for grado in trans:
+        #     result.append({'grado'})
+
+
+        #---Comprobador______
+        #prueba2 = query_li.Estudiantes
+
         ctx= { 
-            'estudiantes':estudiantes
+
+            'estudiantes':estudiantes,'tupla_g': query_li
         }
         return render(request, "consultas/ESTUDIANTES/C_nombres.html", ctx)
 
@@ -432,8 +459,37 @@ def Ver_Es(request, id):
     
     if request.method == 'GET':
         Ver = Estudiantes.objects.get(id = id)
+        Grados_list = [
+            
+            ('1ero'),
+            ('2do'),
+            ('3ro'),
+            ('4to'),
+            ('5to'),
+            ('6to'),
+        ]
+
+        Grado = Ver.grado - 1
+        select_grado = Grados_list[Grado]
+
+
+        Secciones_list = [
+            
+            ('A'),
+            ('B'),
+            ('C'),
+            ('D'),
+            ('E'),
+            ('F'),
+            ('G'),
+            ('H'),
+        ]
+
+        Seccion = Ver.seccion - 1
+        select_sec = Secciones_list[Seccion]
+
         contx={
-            'Ver':Ver
+            'Ver':Ver, 'Grado':select_grado, 'Seccion':select_sec
         }
 
     return render(request, "consultas/ESTUDIANTES/Ver_Estudiantes.html", contx)
