@@ -1,0 +1,82 @@
+h1{
+	margin-bottom: 1em;
+	font-size: 2em;
+}
+div#wrapper{
+	background: #807be0;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.row_1{
+	width: 30%;
+	/*border: 1px solid orange;*/
+	padding: 2em;
+}
+
+.form_regist{
+	margin: 1em auto;
+}
+section.form_wrapper{
+	background: rgba(42, 38, 91,.5);
+	justify-content: center;
+	padding: 1.5em;
+	/*opacity: .7;*/
+}
+
+input{
+	display: block;
+	width: 100%;
+	justify-content: center;
+	padding: .5em;
+	margin-top: .5em;
+	margin-bottom: .5em;
+	border: none;
+	border-radius: .3em .3em 0 0;
+	border-bottom: 2px solid #2A265B;
+}
+
+input:focus{
+	border:none;
+	outline: none;
+	background: #E8F0FE;
+}
+
+.row_2{
+	/*border: 1px solid blue;*/
+	width: 70%;
+}
+
+.row_2 img{
+	width: 100%;
+}
+
+#button_regist{
+	width: 100%;
+	/*border: 1px solid red;*/
+	display: flex;
+}
+.button_regist{
+	width: 45%;
+	justify-content: center;
+	margin: 0 auto;
+	padding: .7em;
+	color: white;
+	background: rgb(254, 84, 84);
+	border: 3px solid rgb(254, 84, 84);
+	border-radius: .5em;
+	margin: 0 auto;
+}
+.button_regist:last-child{
+background: transparent;
+}
+
+.button_regist:hover{
+	cursor:pointer;
+}
+
+.button_regist a{
+	text-decoration: none;
+	color: white;
+}
