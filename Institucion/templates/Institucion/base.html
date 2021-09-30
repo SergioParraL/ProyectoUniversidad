@@ -5,12 +5,13 @@
     
   <title>{% block title %} {% endblock%}</title>     
 
-    <link href="{% static 'General/css/home2.css' %}" rel="stylesheet">
-    <link href="{% static 'General/css/barra2.css' %}" rel="stylesheet">
+    <link href="{% static 'General/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'General/css/barra.css' %}" rel="stylesheet">
 
-    <link href="{% static 'General/css/hamburgers1.css' %}" rel="stylesheet">
+    <link href="{% static 'General/css/hamburgers.css' %}" rel="stylesheet">
+    <link href="{% static 'General/css/base.css' %}" rel="stylesheet">
 
-    <script type="text/javascript" src="{% static 'General/js/base1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'General/js/barra.js' %}"></script>
 
 <body>
         <!-- MENU DE NAVEGACIÓN -->
@@ -49,12 +50,12 @@
                 <li class="inic">
                     <a href="{% url 'Registro_Rep' %}">Estudiantes</a>
                 </li>
-                <li class="fin">
+                <li>
                     <a href="{% url 'Registro_PA' %}">Administrativo</a>
                 </li>
             {% endif %}
             {% if request.user.is_PD == True%}  
-                <li>
+                <li class="fin">
                     <a href="{% url 'Registro_PD' %}">Docentes</a>
                 </li>
             {% endif %}
@@ -71,11 +72,11 @@
                 <a href="{% url 'Consulta_Es' %}">Estudiante</a>
             </li>
         {% if request.user.is_PA == True%}
-            <li class="fin">
-                <a href="{% url 'Consulta_PA' %}">Administrativo</a>
-            </li>
             <li>
                 <a href="{% url 'Consulta_PD' %}">Docentes</a>
+            </li>
+            <li class="fin">
+                <a href="{% url 'Consulta_PA' %}">Administrativo</a>
             </li>
         {% endif %}
         </ul>
