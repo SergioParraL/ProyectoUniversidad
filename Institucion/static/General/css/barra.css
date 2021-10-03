@@ -22,16 +22,22 @@ li{
 		    color:#2A363B;
 
 		}
-		            
-		li.active:hover, li.prin > ul li a:hover{
+
+		li.prin:hover {
 		    color:#000;
 		    background-color:#fff;
 		    font-weight: bold;
 			background: linear-gradient(to right, rgb(249, 115, 144), rgb(194, 65, 99));
-
-		    border-radius:0 1.2em 1.2em 0;
+		    border-radius: 1.2em 0 0 1.2em ;
+		    box-shadow:  0px 13px 25px 0px black;
 		}
-
+		li.prin > ul li a:hover{
+			background: linear-gradient(to right, rgb(194, 65, 99), rgb(249, 115, 144));
+		    border-radius:0 1.2em 1.2em 0;
+		    font-weight: bold;
+		    color:#000;
+		
+		}
 		ul li a.special{
 			padding: 0;
 			display: block;
@@ -66,8 +72,10 @@ li{
 		}
 
 		.sub{
-			background: linear-gradient(to right, rgb(249, 115, 144), rgb(194, 65, 99));
+			background: linear-gradient(to right, rgb(194, 65, 99), rgb(249, 115, 144));
+			/*background: linear-gradient(to right, rgb(249, 115, 144), rgb(194, 65, 99));*/
 		    border-radius: 0 1.2em  1.2em 0;
+			box-shadow: 6px 13px 45px 6px black;
 			
 		}
 /* ------------------Home----------------------------------- */
@@ -75,13 +83,14 @@ li{
 #container{
 	display: flex;
 	justify-content: space-around;
-	width: 100%;
+	width: 95%;
 }
 
 #container > img{
 	width: inherit;
 	height: 94vh;
 	border-radius: .8em;
+	box-shadow: 10px 10px  25px 5px black;
 }
 
 /* -------------Icon Nav --------------- */

@@ -1,0 +1,95 @@
+.conform{
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 3vh;
+	background: #FFC4B2;
+	/*background: rgb(253, 226, 148);*/
+	padding: 1em; 
+	border-radius: .7em;
+	box-shadow: 20px 25px 45px 8px black;
+}
+.title{
+	text-align: center;
+}
+.wrapper{
+	display: flex;
+	width: 90%;
+	margin: 0 auto;
+	justify-content: space-evenly;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #0D1011;
+	padding-top: 1em;
+}
+.wrapper article{
+	width: 100%;
+}
+
+.wrapper article div{
+	margin-top: 3.5vh;
+	display: flex;
+	justify-content: space-between;
+}
+
+.left{
+	margin-right: 2em;
+}
+
+.wrapper input, textarea, select{
+	width: 70%;
+	padding: .6em;
+	background: rgb(231 231 231);
+	/*border-radius: .5em;*/
+	border: none;
+}
+.fieldFoto input,.fieldFoto input:hover{
+	background: transparent;
+	border: none;
+	
+}
+textarea{
+	height: 10vh;
+}
+
+.tallasEst{
+	display: flex;
+	width: 100%;
+	justify-content: space-evenly;
+}
+.tallasEst div label {
+	text-align: center;
+}
+.medida input{
+	margin: 0 .5em;
+}
+.medida label{
+	text-align: center;
+	width: 100%;
+	/*border: 1px solid green;*/
+}
+.wrapper h3{
+	text-align: center;
+}
+
+input:focus,textarea:focus, select:focus{
+	outline: none;
+	border-bottom: 2px solid #F97390;
+	background: rgb(198,208,217);
+
+}
+
+input:hover,textarea:hover, select:hover{
+	background: rgb(198,208,217);
+	border-bottom: 2px solid #F97390;
+}
+
+.button_form{
+	border: none;
+
+}
+
+/*seccion 'Ya se registro representante'*/
+
+aside.wrapper{
+	border: none;
+
+}
