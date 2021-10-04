@@ -16,7 +16,7 @@
         <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
             <article class="wrapper">
                 <article class="left">
-                    <div class="foto">
+                    <div class="foto fieldFoto">
                         <label for="foto">Foto</label>
                         {{ form.foto }}
                     </div>
@@ -79,7 +79,7 @@
                 </article>
             </article>
             <article class="wrapper button_form">
-              <input type="submit" value="Registrarse">
+              <input type="submit" value="Registrar">
             </article>
             
         </form>

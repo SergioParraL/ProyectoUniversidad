@@ -18,18 +18,41 @@
 	justify-content: space-evenly;
 	padding-bottom: 1em;
 	border-bottom: 1px solid #0D1011;
-	padding-top: 1em;
+	/*padding-top: 1em;*/
+	padding: 1em 2em;
+}
+.wrapper:hover{
+	transition: all;
+	transition-duration: 500ms;
+	background: #542BBA;
+	border-radius: .5em;
+	box-shadow: 6px 13px 45px 6px black;
 }
 .wrapper article{
 	width: 100%;
 }
 
 .wrapper article div{
-	margin-top: 3.5vh;
+	padding: 1em;
 	display: flex;
 	justify-content: space-between;
+
 }
 
+.wrapper article div:hover, .DatosAcad:hover{
+	transition: all;
+	transition-duration: 300ms;
+	color: #fff;
+	background: #FA5454;
+	box-shadow: 6px 13px 45px 6px black;
+
+}
+.wrapper article div:hover label{
+	transition: all;
+	transition-duration: 300ms;
+	font-weight: bold;
+	color: #fff;
+}
 .left{
 	margin-right: 2em;
 }
@@ -38,13 +61,13 @@
 	width: 70%;
 	padding: .6em;
 	background: rgb(231 231 231);
-	/*border-radius: .5em;*/
+	border-radius: .5em;
 	border: none;
 }
 .fieldFoto input,.fieldFoto input:hover{
 	background: transparent;
 	border: none;
-	
+
 }
 textarea{
 	height: 10vh;
@@ -80,6 +103,9 @@ input:focus,textarea:focus, select:focus{
 input:hover,textarea:hover, select:hover{
 	background: rgb(198,208,217);
 	border-bottom: 2px solid #F97390;
+	transition: all;
+	transition-duration: 300ms;
+	box-shadow: 4px 3px 44px -7px black;
 }
 
 .button_form{
