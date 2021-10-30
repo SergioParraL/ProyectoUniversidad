@@ -2,136 +2,153 @@
 {% load static %}
 
 {% block content %}
+<section class="title">
+    <h1>Consulta de Estudiantes</h1>
+</section>
+<section class="container">
+    <section class="row_1">
+        <div class="_princ_ conform">
+            <form class="form" action="" method="post" >{% csrf_token %}
+                <input  type="text" name="buscar_nombres" value="" placeholder="Nombre">
+                <input  type="text" name="buscar_apellidos" value="" placeholder="Apellido">
+                <input type="text" name="buscar_grado" value="" placeholder="Grado">
+                <input  type="text" name="buscar_seccion" value="" placeholder="Sección">
+                <input  type="submit" value="Consultar">
+            </form>
+            <div class="data">
+                <h2 class="title">Listado de Estudiantes</h2>
+                    {% for estudiantes in estudiantes %}        
+               <section class='prueba'>
+                        <article class="photo">
+                            <img src="{{ estudiantes.foto.url }}">
+                        </article>
+                        <article>
+                            <div class="name">
+                                <span>
+                                    {{estudiantes.nombres}}
+                                    {{estudiantes.apellidos}}
+                                </span>
+                            </div>
+                            <div class="DataSecond fontSecond">
+                                <span>Cédula: {{estudiantes.cedula}}</span>
+                                <span>Grado: {{estudiantes.grado}}</span>
+                                <span>Sección: {{estudiantes.seccion}}</span>
+                            </div>
+                        </article>
+                        <article class="fontSecond">
+                            <div class="options">
+                                <span>
+                                    <a href="{% url 'Actualizar_Es' estudiantes.id %}">
+                                        <div class="imgOptions update" title="Actualizar"></div>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a href="{% url 'Ver_Es' estudiantes.id %}">
+                                        <div class="imgOptions look" title="Ver"></div>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a href="{% url 'Eliminar_Es' estudiantes.id %}">
+                                        <div class="imgOptions delete" title="Eliminar"></div>
+                                    </a>
+                                </span>
+                            </div>
+                            <div>
+                                <div>Nacimiento:</div>
+                                <span>{{estudiantes.fecha_nac}}</span>
+                            </div>
+                        </article>
+                </section>
+                    {% endfor %}
 
-<article>
-
-    <section class="title">
-        <h1>Consulta de Estudiantes</h1>
+                
+            </div>
+        </div>
     </section>
-    <hr>
-    <div class="conform">
-
-
-    <form action="" method="post" >{% csrf_token %}
-        <div id="centrar">
-            <div class="flex form">
-                <label>Nombre</label>
-                <input  type="text" name="buscar_nombres" value="">
-                <label>Apellido</label>
-                <input  type="text" name="buscar_apellidos" value="">
-            </div>
-            <div class="flex form">
-                <label style="padding-right: 1.7em;">Grado</label>
-                <input type="text" name="buscar_grado" value="">
-                <label style="margin-left: 2.1em;">Seccion</label>
-                <input  type="text" name="buscar_seccion" value="">
-            </div>
-        </div>
-
-        <div class="button">
-            <input  type="submit" value="Consultar">
-        </div>
-
-    </form>
-
-
-    {% if "Buscar" in request.POST%}
-
-        <h1>Resultados de la Busqueda</h1>
-
-        <table>
-            <thead>
-                <tr>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
-                  <th>Grado</th>
-                  <th>Seccion</th>
-                  <th style="border-right: none;">Opciones</th>
-                </tr>
-            </thead>   
-
-            <tbody>
-
-                {% for estudiantes in estudiantes %}
-
-                    <tr>
-                        <td>{{estudiantes.nombres}}</td>
-                        <td>{{estudiantes.apellidos}}</td>
-                        <td>{{estudiantes.grado}}</td>
-                        <td>{{estudiantes.seccion}}</td>
-                        <td><a href="{% url 'Actualizar_Es' estudiantes.id %}"><bottun>Actualizar</bottun></a><a href="{% url 'Eliminar_Es' estudiantes.id %}"><bottun>Eliminar</bottun></a></td>
-                    </tr>
-                {% endfor %}
-            </tbody>  
-        </table>
-    {% endif %}
- 
-</div>
-<div class="wrapper">
-
-    <h2 class="title">Listado de Estudiantes</h2>
-    <div class="table">
-        <table class="table">
-
-            <thead>
-
-                <tr>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Grado</th>
-                    <th>Seccion</th>
-                    <th style="border-right: none;">Opciones</th>
-                </tr>
-
-            </thead>   
-
-            <tbody class="tbody">
-
-                {% for estudiantes in estudiantes %}
-
-                    <tr class="lol_2">
-                    <!-- Parar llamar a la foto usar: {{estudiantes.foto}} -->
-
-                      <td class="lol">{{estudiantes.nombres}}</td>
-                      <td class="lol">{{estudiantes.apellidos}}</td>
-                      <td class="lol">{{estudiantes.grado}}</td>
-                      <td class="lol">{{estudiantes.seccion}}</td>
-                      <td class="lol olo">
-                        <a href="{% url 'Actualizar_Es' estudiantes.id %}">
-                            <div class="icon_act">A</div>
-                        </a>
-                        <a href="{% url 'Eliminar_Es' estudiantes.id %}">
-                            <div class="icon_elim">E</div>
-                        </a>
-                            <a href="{% url 'Ver_Es' estudiantes.id %}">
-                            <div class="icon_elim">V</div>
-                        </a>
-                      </td>
-                    </tr>
-                {% endfor %}
-            </tbody>  
-        </table>
-    </div>
-    <aside class="aside">
-
-      <blockquote>
-
-        <h3>Filtros de Busqueda</h3>
-
-        <ol class="filter">
-          <li><a href="{% url 'C_nombres' %}" >Por Nombre</a></li>
-          <li><a href="{% url 'C_apellidos' %}" >Por Apellido</a></li>
-          <li><a href="{% url 'C_grados' %}" >Por Grado</a></li>
-          <li><a href="{% url 'C_secciones' %}" >Por Seccion</a></li>
-
-
-        </ol>
-
-      </blockquote>
-
+    <aside class="row_2">
+        <h3 class="title">Filtros de Búsqueda</h3>
+        <ul class="filter">
+            <li><a href="{% url 'C_nombres' %}" >Nombre</a></li>
+            <li><a href="{% url 'C_apellidos' %}" >Apellido</a></li>
+            <li><a href="{% url 'C_grados' %}" >Grado</a></li>
+            <li><a href="{% url 'C_secciones' %}" >Sección</a></li>
+        </ul>
     </aside>
-</div>
-
-
-
+</section>
 {% endblock content %}
+            
+
+<!-- {% if "Buscar" in request.POST%}
+
+            <h1>Resultados de la Busqueda</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                      <th>Nombres</th>
+                      <th>Apellidos</th>
+                      <th>Grado</th>
+                      <th>Seccion</th>
+                      <th style="border-right: none;">Opciones</th>
+                    </tr>
+                </thead>   
+
+                <tbody>
+
+                    {% for estudiantes in estudiantes %}
+
+                        <tr>
+                            <td>{{estudiantes.nombres}}</td>
+                            <td>{{estudiantes.apellidos}}</td>
+                            <td>{{estudiantes.grado}}</td>
+                            <td>{{estudiantes.seccion}}</td>
+                            <td><a href="{% url 'Actualizar_Es' estudiantes.id %}"><buttun>Actualizar</buttun></a><a href="{% url 'Eliminar_Es' estudiantes.id %}"><buttun>Eliminar</buttun></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>  
+            </table>
+        {% endif %} -->
+
+
+            <!-- <div class="table">
+                <table class="table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Grado</th>
+                            <th>Seccion</th>
+                            <th style="border-right: none;">Opciones</th>
+                        </tr>
+
+                    </thead>   
+
+                    <tbody class="tbody">
+
+                        {% for estudiantes in estudiantes %}
+
+                            <tr class="lol_2">
+                            Parar llamar a la foto usar: {{estudiantes.foto}}
+
+                              <td class="lol">{{estudiantes.nombres}}</td>
+                              <td class="lol">{{estudiantes.apellidos}}</td>
+                              <td class="lol">{{estudiantes.grado}}</td>
+                              <td class="lol">{{estudiantes.seccion}}</td>
+                              <td class="lol olo">
+                                <a href="{% url 'Actualizar_Es' estudiantes.id %}">
+                                    <div class="icon_act">A</div>
+                                </a>
+                                <a href="{% url 'Eliminar_Es' estudiantes.id %}">
+                                    <div class="icon_elim">E</div>
+                                </a>
+                                    <a href="{% url 'Ver_Es' estudiantes.id %}">
+                                    <div class="icon_elim">V</div>
+                                </a>
+                              </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>  
+                </table>
+            </div> -->

@@ -76,6 +76,8 @@
 	/* ---- Oscuro -----*/
 	.button_1{
 		background: rgb(254, 84, 84);
+		text-align: center;
+		cursor: pointer;
 	}
 	/* ----Claro ------ */
 	.button_2{

@@ -1,0 +1,160 @@
+/*Estructura*/
+.container{
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 3vh;
+}
+._princ_{
+	width: 98%;
+	margin-top: 0;
+	min-height: 86vh;
+}
+
+.row_1{
+	width: 80%;
+}
+
+.row_2{
+	width: 15%;
+	height: 86vh;
+	background: rgb(249, 115, 144);
+	padding: 1.3em 0.5em;
+	border-radius: .5em;
+	box-shadow: 10px 10px 25px 5px black;
+}
+
+section.prueba{
+	display: flex;
+	justify-content: space-between;
+	margin: .7em 0;
+	/*height: 25vh;*/
+}
+section.prueba article:nth-child(2){
+	/*max-width: 80%;*/
+	flex-grow: 2;
+	padding: 1em ;
+}
+section.prueba article:nth-child(3){
+	min-width: 15em;
+}
+
+/*--------------------*/
+
+.form{
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+.form > input{
+	width: 20%;
+	min-width: 15em;
+	height: 2.5em;	
+	margin: .5em .5em;
+	padding:  0 .5em; 
+	border: none;
+	border-bottom: 1px solid rgb(249, 115, 144);
+}
+
+.data{
+	margin-top: 2vh;
+}
+
+.photo{
+	margin-left: 1.5em;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.photo img{
+	width: 7em;
+	height: 6em;
+}
+
+div.name{
+	font-size: 1.5em;
+	font-weight: bolder;
+}
+div.DataSecond{
+	/*font-size: 1.2em;*/
+	/*font-weight: bold; */
+	display: flex;
+	justify-content: space-between;
+	/*align-items: flex-end;*/
+	padding-top: .7em;
+}
+
+.fontSecond{
+	font-size: 1.2em;
+}
+
+a span{
+	font-size: 1.2em;
+}
+.prueba article:nth-child(3){
+	padding: 1em;
+}
+.fontSecond .options{
+	display: flex;
+	justify-content: space-evenly;
+	padding-bottom: .5em;
+}
+div.imgOptions{
+	width: 2em;
+	height: 2em;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border-radius: .5em;
+}
+
+section.prueba:hover, div.imgOptions:hover, .photo img:hover{
+	transition: all;
+	transition-duration: 500ms;
+	transform: scale(1.1);
+	border-radius: .5em;
+	box-shadow: 4px 2px 25px -2px black;
+}
+section.prueba:hover{
+	transform: scale(1);
+}
+
+div.update{
+	background-image: url('../img/icons/clipboard-outline.svg');
+}
+div.look{
+	background-image: url('../img/icons/glasses.svg');
+}
+div.delete{
+	background-image: url('../img/icons/trash-outline.svg');
+}
+
+
+aside ul > li a{
+	width: 80%;
+	height: 7vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-weight: normal;
+	/*color: black;*/
+	/*background: rgb(249, 115, 144);*/
+}
+
+aside ul > li a:hover{
+	transition: all;
+	transition-duration: 500ms;
+	background: rgb(1, 30, 62);
+	color: white;
+	font-size: 1.3em;
+	border-radius: .5em;
+	box-shadow: 4px 2px 25px -2px black;
+	
+}
+aside ul{
+	height: 75vh;
+	margin-top: 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}

@@ -14,6 +14,7 @@
 
         <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
             <section>
+                <!-- nombres -->
                 <article class="wrapper">
                     <article class="left">
                         <div class="foto fieldFoto">
@@ -32,8 +33,25 @@
                         </div>
                     </article>
                 </article>
+                <!-- Datos Academicos -->
+                <section class="wrapper DatosAcad">
+                    <h3>Datos Academicos</h3>
+                    <div class="form">
+                        <label for="grado">Grado</label>
+                        {{ form.grado }}
+                    </div>
+                    <div class="form">
+                        <label for="seccion">Seccion</label>
+                        {{ form.seccion }}
+                    </div>
+                    <div class="form">
+                        <label for="Representantes">Cedula del Representante</label>
+                        {{ form.Rep }}
+                    </div>
+                </section>
+                <!-- Datos Personales & Medidas de ropa -->
                 <section class="wrapper">
-                    <article class="left">
+                    <article class="Wleft">
                         <h3>Datos Personales</h3>
                         <div class="form">
                             <label for="fecha_nac">Fecha de Nac.</label>
@@ -48,7 +66,7 @@
                             {{ form.edad }}
                         </div>
                     </article>
-                    <!-- <article class="right">
+                    <article class="Wright hidden">
                         <h3>medidas</h3>
                         <div class="form medida">
                             <label for="altura">Altura</label>
@@ -73,27 +91,12 @@
                                 {{ form.talla_zapato }}
                             </div>
                         </article>
-                    </article> -->
-                </section>
-                <section class="wrapper DatosAcad">
-                    <h3>Datos Academicos</h3>
-                    <div class="form">
-                        <label for="grado">Grado</label>
-                        {{ form.grado }}
-                    </div>
-                    <div class="form">
-                        <label for="seccion">Seccion</label>
-                        {{ form.seccion }}
-                    </div>
-                    <div class="form">
-                        <label for="Representantes">Cedula del Representante</label>
-                        {{ form.Rep }}
-                    </div>
+                    </article>
                 </section>
             </section>
-
-            <section class="button_form wrapper">
-                <input type="submit" value="Registrar">
+            <section class="button_form wrapper ">
+                <div class="btnG button_1">Siguiente</div>
+                <input class='SigButton hidden' type="submit" value="Registrar">
             </section>
         </form>
     </section>

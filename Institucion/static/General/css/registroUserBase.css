@@ -38,7 +38,13 @@
 	justify-content: space-between;
 
 }
-
+.button_form .SigButton, .button_Registro{
+	width: 30%;
+	height: 3em;
+	background: linear-gradient(to right, rgb(255, 93, 137), rgb(253, 182, 97));
+	border: none;
+	border-radius: .5em;
+}
 .wrapper article div:hover, .DatosAcad:hover{
 	transition: all;
 	transition-duration: 300ms;
@@ -106,11 +112,11 @@ input:hover,textarea:hover, select:hover{
 	transition: all;
 	transition-duration: 300ms;
 	box-shadow: 4px 3px 44px -7px black;
+	transform: scale(1.05);
 }
 
 .button_form{
 	border: none;
-
 }
 
 /*seccion 'Ya se registro representante'*/
@@ -118,4 +124,42 @@ input:hover,textarea:hover, select:hover{
 aside.wrapper{
 	border: none;
 
+}
+
+/*
+.button_Registro{
+	width: 30%;
+	height: 5vh;
+	background: linear-gradient(to right, rgb(255, 93, 137), rgb(253, 182, 97));
+	border: none;
+	border-radius: .5em;
+}*/
+
+.button_Registro:hover,.button_button:hover{
+	/*transform: scale(1.05);
+	transition: all;
+	transition-duration: 300ms;
+	box-shadow: 4px 3px 44px -7px black;*/
+
+}
+
+.button_button{
+	background: transparent;
+	border: 2px solid black;
+	/*color: white;*/
+	font-size: 1.5em;
+	padding: .2em 1em;
+	width: 8em;
+}
+
+.button_button:hover{
+	color:rgb(249, 115, 144);
+	border: 2px solid rgb(249, 115, 144);
+}
+
+
+/*---------------caja Datos de Estudiante = Medidas & Datos Personales----------*/
+
+.wrapper .hidden{
+	display: none;
 }
