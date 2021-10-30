@@ -3,8 +3,13 @@
 	padding: 0;
 }
 
-p,h1,label,button,a{
+p,label,button,a{
 	color: black;
 	font-size: 16px;
 	font-family: 'Poppins', sans-serif;
+}
+
+h1{
+	font-size: 32px;
+	font-family: 'arial', sans-serif;
 }

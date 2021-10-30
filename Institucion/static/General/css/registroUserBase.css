@@ -1,0 +1,165 @@
+.conform{
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 3vh;
+	background: #FFC4B2;
+	/*background: rgb(253, 226, 148);*/
+	padding: 1em; 
+	border-radius: .7em;
+	box-shadow: 20px 25px 45px 8px black;
+}
+.title{
+	text-align: center;
+}
+.wrapper{
+	display: flex;
+	width: 90%;
+	margin: 0 auto;
+	justify-content: space-evenly;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #0D1011;
+	/*padding-top: 1em;*/
+	padding: 1em 2em;
+}
+.wrapper:hover{
+	transition: all;
+	transition-duration: 500ms;
+	background: #542BBA;
+	border-radius: .5em;
+	box-shadow: 6px 13px 45px 6px black;
+}
+.wrapper article{
+	width: 100%;
+}
+
+.wrapper article div{
+	padding: 1em;
+	display: flex;
+	justify-content: space-between;
+
+}
+.button_form .SigButton, .button_Registro{
+	width: 30%;
+	height: 3em;
+	background: linear-gradient(to right, rgb(255, 93, 137), rgb(253, 182, 97));
+	border: none;
+	border-radius: .5em;
+}
+.wrapper article div:hover, .DatosAcad:hover{
+	transition: all;
+	transition-duration: 300ms;
+	color: #fff;
+	background: #FA5454;
+	box-shadow: 6px 13px 45px 6px black;
+
+}
+.wrapper article div:hover label{
+	transition: all;
+	transition-duration: 300ms;
+	font-weight: bold;
+	color: #fff;
+}
+.left{
+	margin-right: 2em;
+}
+
+.wrapper input, textarea, select{
+	width: 70%;
+	padding: .6em;
+	background: rgb(231 231 231);
+	border-radius: .5em;
+	border: none;
+}
+.fieldFoto input,.fieldFoto input:hover{
+	background: transparent;
+	border: none;
+
+}
+textarea{
+	height: 10vh;
+}
+
+.tallasEst{
+	display: flex;
+	width: 100%;
+	justify-content: space-evenly;
+}
+.tallasEst div label {
+	text-align: center;
+}
+.medida input{
+	margin: 0 .5em;
+}
+.medida label{
+	text-align: center;
+	width: 100%;
+	/*border: 1px solid green;*/
+}
+.wrapper h3{
+	text-align: center;
+}
+
+input:focus,textarea:focus, select:focus{
+	outline: none;
+	border-bottom: 2px solid #F97390;
+	background: rgb(198,208,217);
+
+}
+
+input:hover,textarea:hover, select:hover{
+	background: rgb(198,208,217);
+	border-bottom: 2px solid #F97390;
+	transition: all;
+	transition-duration: 300ms;
+	box-shadow: 4px 3px 44px -7px black;
+	transform: scale(1.05);
+}
+
+.button_form{
+	border: none;
+}
+
+/*seccion 'Ya se registro representante'*/
+
+aside.wrapper{
+	border: none;
+
+}
+
+/*
+.button_Registro{
+	width: 30%;
+	height: 5vh;
+	background: linear-gradient(to right, rgb(255, 93, 137), rgb(253, 182, 97));
+	border: none;
+	border-radius: .5em;
+}*/
+
+.button_Registro:hover,.button_button:hover{
+	/*transform: scale(1.05);
+	transition: all;
+	transition-duration: 300ms;
+	box-shadow: 4px 3px 44px -7px black;*/
+
+}
+
+.button_button{
+	background: transparent;
+	border: 2px solid black;
+	/*color: white;*/
+	font-size: 1.5em;
+	padding: .2em 1em;
+	width: 8em;
+}
+
+.button_button:hover{
+	color:rgb(249, 115, 144);
+	border: 2px solid rgb(249, 115, 144);
+}
+
+
+/*---------------caja Datos de Estudiante = Medidas & Datos Personales----------*/
+
+.wrapper .hidden{
+	display: none;
+}

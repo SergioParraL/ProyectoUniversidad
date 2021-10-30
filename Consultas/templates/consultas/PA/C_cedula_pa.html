@@ -2,73 +2,23 @@
 {% load static %}
 
 {% block content %}
-
-<article>
-
-    <section class="title">
-        <h1>Consulta de Personal Administrativo</h1>
-    </section>
-    <hr>
-
-    <div class="conform">
-
-        <form action="" method="post">{% csrf_token %}
-            <div id="centrar">
-            
-                <div class="flex form">
-                    <label>Cedula</label>
-                    <input  type="text" name="buscar_cedula" value="">
-                </div>
-
-            <div class="button">
-                <input type="submit" value="Consultar">
-            </div>
-
-        </form>
-
-
-        {% if "Buscar" in request.POST%}
-
-            <h1 class="title_2">Resultados de la Busqueda</h1>
-
-            <table class="table">
-
-                <thead>
-
-                <tr>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Cedula</th>
-                    <th>Cargo</th>
-                    <th style="border-right: none;">Opciones</th>
-                </tr>
-
-                </thead>   
-
-                <tbody>
-
-                    {% for PA in PA %}
-
-                        <tr>
-                            <td>{{PA.nombres}}</td>
-                            <td>{{PA.apellidos}}</td>
-                            <td>{{PA.cedula}}</td>
-                            <td>{{PA.cargo}}</td>
-                            <td><a href="{% url 'Actualizar_PA' PA.id %}"><bottun>Actualizar</bottun></a><a href="{% url 'Eliminar_PA' PA.id %}"><bottun>Eliminar</bottun></a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>  
-            </table>
-
-        {% endif %}
-    </div>
-    <div class="wrapper">
-        <h2 class="title">Listado del Personal Administrativo</h2>
-        <div class="table">
-            <table>
-
-                <thead>
-
+    
+<section class="title">
+    <h1>Consulta de Personal Administrativo</h1>
+</section>
+<section class="container">
+    <section class="row_1">
+        <section class="_princ_ conform">
+            <article>
+                <form class="form" action="" method="post">{% csrf_token %}
+                   <input  type="text" name="buscar_cedula" value="" placeholder="Cédula">
+                   <input type="submit" value="Consultar">
+                </form>
+            </article>
+            <!-- {% if "Buscar" in request.POST%}
+                <h1 class="title_2">Resultados de la Busqueda</h1>
+                <table class="table">
+                    <thead>
                     <tr>
                         <th>Nombres</th>
                         <th>Apellidos</th>
@@ -76,52 +26,142 @@
                         <th>Cargo</th>
                         <th style="border-right: none;">Opciones</th>
                     </tr>
-
-                </thead>   
-
-                <tbody class="tbody">
-
-                    {% for PA in PA %}
-
-                        <tr class="lol_2">
-                            <td class="lol">{{PA.nombres}}</td>
-                            <td class="lol">{{PA.apellidos}}</td>
-                            <td class="lol">{{PA.cedula}}</td>
-                            <td class="lol">{{PA.cargo}}</td>
-                            <td class="lol olo">
-                                <a href="{% url 'Actualizar_PA' PA.id %}">
-                                <div class="icon_act">A</div>
-                                </a>
-                                <a href="{% url 'Eliminar_PA' PA.id %}">
-                                <div class="icon_elim">E</div>
-                                </a>
-                            </td>
-                        </tr>
+                    </thead>   
+                    <tbody>
+                        {% for PA in PA %}
+                            <tr>
+                                <td>{{PA.nombres}}</td>
+                                <td>{{PA.apellidos}}</td>
+                                <td>{{PA.cedula}}</td>
+                                <td>{{PA.cargo}}</td>
+                                <td><a href="{% url 'Actualizar_PA' PA.id %}"><bottun>Actualizar</bottun></a><a href="{% url 'Eliminar_PA' PA.id %}"><bottun>Eliminar</bottun></a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>  
+                </table>
+            {% endif %} -->
+            <article class="data">
+                <h2 class="title">Listado del Personal Administrativo</h2>
+                    {% for PA in PA %}        
+                <section class="prueba">
+                        <article class="photo">
+                            <img src="{{ PA.foto.url }}">
+                        </article>
+                        <article>
+                            <div class="name">
+                                <span>
+                                    {{PA.nombres}}
+                                    {{PA.apellidos}}
+                                </span>
+                            </div>
+                            <div class="DataSecond fontSecond">
+                                <span>Cédula: {{PA.cedula}}</span>
+                                <span>cargo: {{PA.cargo}}</span>
+                            </div>
+                        </article>
+                        <article class="fontSecond">
+                            <div class="options">
+                                <span>
+                                    <a href="{% url 'Actualizar_PA' PA.id %}">
+                                        <div class="imgOptions update"></div>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a href="{% url 'Ver_PA' PA.id %}">
+                                        <div class="imgOptions look"></div>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a href="{% url 'Eliminar_PA' PA.id %}">
+                                        <div class="imgOptions delete"></div>
+                                    </a>
+                                </span>
+                            </div>
+                            <div>
+                                <div>
+                                    <span>Teléfonos:</span>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>{{ PA.teln_Casa }}</li>
+                                        <li>{{ PA.teln_movil }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                </section>
                     {% endfor %}
+            </article>
+        </section>
 
-                </tbody>  
-            </table>
+        <!-- <div class="wrapper">
+            <h2 class="title">Listado del Personal Administrativo</h2>
+            <div class="table">
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Cedula</th>
+                            <th>Cargo</th>
+                            <th style="border-right: none;">Opciones</th>
+                        </tr>
+
+                    </thead>   
+
+                    <tbody class="tbody">
+
+                        {% for PA in PA %}
+
+                            <tr class="lol_2">
+                                <td class="lol">{{PA.nombres}}</td>
+                                <td class="lol">{{PA.apellidos}}</td>
+                                <td class="lol">{{PA.cedula}}</td>
+                                <td class="lol">{{PA.cargo}}</td>
+                                <td class="lol olo">
+                                    <a href="{% url 'Actualizar_PA' PA.id %}">
+                                    <div class="icon_act">A</div>
+                                    </a>
+                                    <a href="{% url 'Eliminar_PA' PA.id %}">
+                                    <div class="icon_elim">E</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>  
+                </table>
+            </div>
         </div>
-    </div>
-    <aside class="aside">
+        <aside class="aside">
 
-      <blockquote>
+          <blockquote>
 
-        <h3>Filtros de Busqueda</h3>
+            <h3>Filtros de Busqueda</h3>
 
-        <ol class="filter">
-          <li><a href="{% url 'C_nombres_pa' %}" >Por Nombre</a></li>
-          <li><a href="{% url 'C_apellidos_pa' %}" >Por Apellido</a></li>
-          <li><a href="{% url 'C_cedula_pa' %}" >Por Cedula</a></li>
-          <li><a href="{% url 'C_cargo_pa' %}" >Por Cargo</a></li>
-        </ol>
+            <ol class="filter">
+              <li><a href="{% url 'C_nombres_pa' %}" >Por Nombre</a></li>
+              <li><a href="{% url 'C_apellidos_pa' %}" >Por Apellido</a></li>
+              <li><a href="{% url 'C_cedula_pa' %}" >Por Cedula</a></li>
+              <li><a href="{% url 'C_cargo_pa' %}" >Por Cargo</a></li>
+            </ol>
 
-      </blockquote>
+          </blockquote>
 
+        </aside> -->
+    </section>
+    <aside class="row_2">
+        <h3 class="title">Filtros de Búsqueda</h3>
+        <ul class="filter">
+          <li><a href="{% url 'C_nombres_pa' %}"    >Nombre</a></li>
+          <li><a href="{% url 'C_apellidos_pa' %}"  >Apellido</a></li>
+          <li><a href="{% url 'C_cedula_pa' %}"     >Cédula</a></li>
+          <li><a href="{% url 'C_cargo_pa' %}"      >Cargo</a></li>
+        </ul>
     </aside>
-    </div>
-</article>
-
+</section>
 
 
 {% endblock content %}
