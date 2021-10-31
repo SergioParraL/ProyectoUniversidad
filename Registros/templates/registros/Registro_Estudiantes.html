@@ -68,15 +68,16 @@
                     </article>
                     <article class="Wright hidden">
                         <h3>medidas</h3>
-                        <div class="form medida">
-                            <label for="altura">Altura</label>
-                            <label for="peso">Peso</label>
-                        </div>
-                        <div class="form medida">
-                            {{ form.altura }}
-                       
-                            {{ form.peso }}
-                        </div>
+                        <article class="tallasEst">
+                            <div class="form">
+                                <label for="altura">Altura</label>
+                                {{ form.altura }}
+                            </div>
+                            <div class="form">
+                                <label for="peso">Peso</label>
+                                {{ form.peso }}
+                            </div>
+                        </article>
                         <article class="tallasEst">
                             <div class="form">
                                 <label for="talla_camisa">Talla Camisa</label>
