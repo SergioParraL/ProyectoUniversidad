@@ -156,5 +156,71 @@ aside ul{
 	margin-top: 1em;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-around;
+}
+
+
+
+
+/*---------Actualizacion de Estudiantes---------------------------*/
+
+.row{
+	width: 100%;
+	/*border: 1px solid white;*/
+	/*background: yellow;*/
+	display: flex;
+	justify-content: center;
+	/*flex-wrap: wrap;*/
+}
+
+.row .cont{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.row .cont article{
+	width: 90%;
+	display: flex;
+	justify-content: space-evenly;
+	flex-direction: column;
+}
+
+.row .cont article div a{
+	background: rgb(232, 221, 116);
+}
+
+.row .cont article div label{
+	margin-top: .7em;
+	/*border: 2px solid red;*/
+
+	width: 30%;
+	height: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.row .cont article div input{
+	width: 60%
+}
+
+.row .cont article div{
+	/*border: 2px solid blue;*/
+	margin: .5em; 
+}
+
+.row .measuresData{
+	/*border: 1px solid red;*/
+}
+
+.lineUp{
+	border-top: 1px solid black;
+}
+
+
+
+/*-----------------------Pendiente por borar*/
+.wrapper .button_Regis_PA{
+	width: 80%;
 }

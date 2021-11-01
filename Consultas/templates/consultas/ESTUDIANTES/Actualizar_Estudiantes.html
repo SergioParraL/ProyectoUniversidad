@@ -2,12 +2,101 @@
 {% load static %}
 
 {% block content %}
-
-<article>
-  <section class="title">
+<section class="title">
     <h1>Actualización de Registro de Estudiantes</h1>
-    
-  </section>
+</section>
+<!-- <section class="container">
+    <section class="row_1">
+        <section class="_princ_ conform">
+                
+        </section>
+    </section>
+</section> -->
+
+<section class="container">
+    <section class="_princ_ conform">
+        <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+            <section class="row">
+                <article class="cont">
+                    <article>
+                        <div class="foto">
+                            <label for="foto">Foto</label>
+                            {{ form.foto }}
+                        </div>
+                        <div class="form">
+                            <label for="grado">Grado</label>
+                            {{ form.grado }}
+                        </div>
+                        <div class="form">
+                            <label for="seccion">Seccion</label>
+                            {{ form.seccion }}
+                        </div>
+                        <div class="form">
+                            <label for="Rep">Representante</label>
+                            {{ form.Rep }}
+                        </div> 
+                    </article> 
+                </article>
+                <article class="cont personalData">
+                    <article>
+                        <div class="form">
+                            <label>Nombres</label>
+                            {{ form.nombres }}
+                        </div>
+                        <div class="form">
+                            <label for="apellido">Apellidos</label>
+                            {{ form.apellidos }}
+                        </div>
+                        <div class="form">
+                            <label for="edad">Edad</label>
+                            {{ form.edad }}
+                        </div>
+                        <div class="form">
+                            <label for="fecha_nac">Fecha de Nac.</label>
+                            {{ form.fecha_nac }}
+                        </div>
+                        <div class="form">
+                            <label for="cedula">Cedula</label>
+                            {{ form.cedula }}
+                        </div>
+                    </article>
+                </article>
+            </section>
+            <article class="row lineUp">
+                <article class="cont">
+                    <article>
+                        <div class="form">
+                            <label for="altura">Altura</label>
+                            {{ form.altura }}
+                        </div> 
+                         <div class="form">
+                            <label for="peso">Peso</label>
+                            {{ form.peso }}
+                        </div>
+                    </article>
+                    <article >
+                        <div class="form">
+                            <label for="talla_zapato">Talla Zapato</label>
+                            {{ form.talla_zapato }}
+                        </div>
+                        <div class="form">
+                            <label for="talla_camisa">Talla Camisa</label>
+                            {{ form.talla_camisa }}
+                        </div>
+                        <div class="form">
+                            <label for="talla_pantalon">Talla Pantalón</label>
+                            {{ form.talla_pantalon }}
+                        </div>
+                    </article>
+                </article>
+            </article>
+            <div class=" wrapper">
+                <input type="submit" value="Actualizar">
+            </div>
+        </form>
+    </section>
+</section>
+<!-- <article>
 
 <hr>
 
@@ -89,6 +178,6 @@
         </form>
     </div>
 </section>
-</article>
+</article> -->
 
 {% endblock content %}
