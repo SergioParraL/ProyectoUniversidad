@@ -45,8 +45,12 @@ li{
 		    color:#fff;
 		}
 		ul li a.special{
+			width: 2em;
+			height: 2em;
 			padding: 0;
-			display: block;
+			display: flex;
+		    justify-content: center;
+		    align-items: center;
 		}
 
 		nav li ul, nav li ul li ul.sub {
@@ -101,7 +105,10 @@ li{
 /* -------------Icon Nav --------------- */
 
 .divNav{
-	height: 4em;
+	/*border: 1px solid red;*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .divNav img{
@@ -110,9 +117,48 @@ li{
 	margin-top: 15%;
 }
 .IconNav{
-	width: 30%;
+	width: 40%;
 	padding-left:3em;
 	margin-right: -.6em;
+	}
+
+	.iconMenuFondo{
+		width: 2em;
+		height: 2em;
+	}
+
+	.homeIcon{
+		background: url(../img/Nav/home-outline.svg);
+		background-size: 100%;
+		background-repeat: no-repeat;
+	}
+
+	.addIcon{
+		background: url(../img/Nav/add-circle-outline.svg);
+		background-size: 100%;
+		background-repeat: no-repeat;	
+	}
+
+	.consultaIcon{
+		background: url(../img/Nav/book-outline.svg);
+		background-size: 100%;
+		background-repeat: no-repeat;
+	}
+
+	.RegiICon{
+		background: url(../img/Nav/pencil-outline.svg);
+		background-size: 100%;
+		background-repeat: no-repeat;
+	}
+	.DocuIcon{
+		background: url(../img/Nav/pricetag-outline.svg);
+		background-size: 100%;
+		background-repeat: no-repeat;
+	}
+	.salirIcon{
+		background: url(../img/Nav/exit-outline.svg);
+		background-size: 100%;
+		background-repeat: no-repeat;
 	}
 
 	/* .IconNavActive{
@@ -134,9 +180,9 @@ li{
 		background-color:#fff;
 	}
  */
-nav ul li.btn-desp{
+/*nav ul li.btn-desp{
 	margin-right: -;
-}
+}*/
 
 .ContentNav{	
 	width: 80%;

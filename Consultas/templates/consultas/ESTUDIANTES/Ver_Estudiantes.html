@@ -3,148 +3,207 @@
 
 {% block content %}
 
-<article>
-  <section class="title">
+<section class="title">
     <h1>Planilla Informativa del Estudiante: {{ Ver.nombres }} / ID: {{ Ver.id }}</h1>
-    
-  </section>
-
-<hr>
-
-<section class="conform">
-
+</section>
 
     {%  if  "valido" in request.GET %}
         <a href="{% url 'Consulta_Es' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
     {% endif %}
 
-    <div class="conform">
 
+<section class="container">
+    <section class="_princ_ conform">
         <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-            <table>
 
-                <div class="form">
-                    <label>Nombres</label>
-                    {{ Ver.nombres }}
-                </div>
-                <div class="form">
-                    <label for="apellido">Apellidos</label>
-                    {{ Ver.apellidos }}
-                </div>
-                <div class="form">
-                    <label for="cedula">Cedula</label>
-                    {{ Ver.cedula }}
-                </div>
-                <div class="foto">
-                    <label for="foto">Foto</label>
-                    <img src="{{ Ver.foto.url }}">
-                </div>
-                <div class="form">
-                    <label for="edad">Edad</label>
-                    {{ Ver.edad }}&nbsp; años
-                </div>
-                <div class="form">
-                    <label for="altura">Altura</label>
-                    {{ Ver.altura }}&nbsp; m
-                </div> 
-                 <div class="form">
-                    <label for="peso">Peso</label>
-                    {{ Ver.peso }}&nbsp; Kg
-                </div>
-                <div class="form">
-                    <label for="talla_zapato">Talla Zapato</label>
-                    {{ Ver.talla_zapato }}
-                </div>
-                <div class="form">
-                    <label for="talla_camisa">Talla Camisa</label>
-                    {{ Ver.talla_camisa }}
-                </div>
-                <div class="form">
-                    <label for="talla_pantalon">Talla Pantalón</label>
-                    {{ Ver.talla_pantalon }}
-                </div>
-                <div class="form">
-                    <label for="grado">Grado</label>
-                    {{ Grado }}
-                </div>
-                <div class="form">
-                    <label for="seccion">Seccion</label>
-                    {{ Seccion }}
-                </div>
-                <div class="form">
-                    <label for="fecha_nac">Fecha de Nac.</label>
-                    {{ Ver.fecha_nac }}
-                </div>
-                <div class="form">
-                    <label for="Rep">Representante</label>
-                    {{ Ver.Rep.nombres }}&nbsp;{{ Ver.Rep.apellidos }}&nbsp;{{ Ver.Rep.cedula }}
-                </div>
-
-            </table>
-
-            <br><br>
-
-            <hr>
-
-            <br> <br>
-
-            <section class="title">
+            <section class="Wleft">
+                <section class="row">
+                    <section class="cont">
+                        <section class="cont_02">
+                            <div class="photo">
+                                <label for="foto">Foto</label>
+                                <img src="{{ Ver.foto.url }}">
+                            </div>
+                        </section>
+                    </section>
+                    <section class="cont">
+                        <section class="cont_02">
+                            <div class="plAct">
+                                <label>Nombres</label>
+                                <div>
+                                    {{ Ver.nombres }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="apellido">Apellidos</label>
+                                <div>
+                                    {{ Ver.apellidos }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="fecha_nac">Fecha de Nac.</label>
+                                <div>
+                                    {{ Ver.fecha_nac }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="edad">Edad</label>
+                                <div>
+                                    {{ Ver.edad }}&nbsp; años
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="cedula">Cedula</label>
+                                <div>
+                                    {{ Ver.cedula }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="Rep">Representante</label>
+                                <div>
+                                    {{ Ver.Rep.nombres }}&nbsp;{{ Ver.Rep.apellidos }}&nbsp;{{ Ver.Rep.cedula }}
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+                <section class="row">
+                    <section class="cont">
+                        <section class="cont_02">
+                            <div class="plAct">
+                                <label for="grado">Grado</label>
+                                <div>
+                                    {{ Grado }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="seccion">Seccion</label>
+                                <div>
+                                    {{ Seccion }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="altura">Altura</label>
+                                <div>
+                                    {{ Ver.altura }}&nbsp; m
+                                </div>
+                            </div> 
+                             <div class="plAct">
+                                <label for="peso">Peso</label>
+                                <div>
+                                    {{ Ver.peso }}&nbsp; Kg
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="cont">
+                        <section class="cont_02">
+                            <div class="plAct">
+                                <label for="talla_zapato">Talla Zapato</label>
+                                <div>
+                                    {{ Ver.talla_zapato }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="talla_camisa">Talla Camisa</label>
+                                <div>
+                                    {{ Ver.talla_camisa }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="talla_pantalon">Talla Pantalón</label>
+                                <div>
+                                    {{ Ver.talla_pantalon }}
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="Wright hidden">
+                <section class="title">
 
                 <h1>Informacion del Representante</h1>
     
+                </section>
+                <section class="row">
+                    <section class="cont">
+                        <section class="cont_02">
+                            <div class="photo">
+                                <img src="{{ Ver.Rep.foto.url }}">
+                            </div>
+                        </section>
+                    </section>
+                    <section class="cont">
+                        <section class="cont_02">
+                            <div class="plAct">
+                                <label>Nombre</label>
+                                <div>
+                                    {{ Ver.Rep.nombres }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="apellido">Apellido</label>
+                                <div>
+                                    {{ Ver.Rep.apellidos }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="edad">Edad</label>
+                                <div>
+                                    {{ Ver.Rep.edad }}&nbsp; años
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="cedula">Cedula</label>
+                                <div>
+                                    {{ Ver.Rep.cedula }}
+                                </div>
+                            </div class="plAct">
+                        </section>
+                    </section>
+                </section>
+                <section class="row">
+                    <section class="cont">
+                        <section class="cont_02">
+                            <div class="plAct">
+                                <label for="direccion">Direccion</label>
+                                <div>
+                                    {{ Ver.Rep.direccion }}
+                                </div>
+                            </div> 
+                            <div class="plAct">
+                                <label for="teln_casa">Telefono Casa</label>
+                                <div>
+                                    {{ Ver.Rep.teln_Casa }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="teln_movil">Telefono Movil</label>
+                                <div>
+                                    {{ Ver.Rep.teln_movil }}
+                                </div>
+                            </div>
+                            <div class="plAct">
+                                <label for="email">Correo Electronico</label>
+                                <div>
+                                    {{ Ver.Rep.email }}
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </section>
             </section>
-
-            <table>
-                <div class="form">
-                    <label>Nombre</label>
-                    {{ Ver.Rep.nombres }}
+            <section class="row">
+                <div class="specialButtom">
+                    <input class="print b" type="button" value="Imprimir">
                 </div>
-                <div class="form">
-                    <label for="apellido">Apellido</label>
-                    {{ Ver.Rep.apellidos }}
+                <div class="specialButtom">
+                    <div id="Ant_Sig" class=" b btnG button_1">Ver: Representante</div>
                 </div>
-                <div class="form">
-                    <label for="cedula">Cedula</label>
-                    {{ Ver.Rep.cedula }}
-                </div class="form">
-                <div class="foto">
-                    <label for="foto">Foto</label>
-                    <img src="{{ Ver.Rep.foto.url }}">
-                </div>
-                <div class="form">
-                    <label for="edad">Edad</label>
-                    {{ Ver.Rep.edad }}&nbsp; años
-                </div> 
-                <div class="form">
-                    <label for="direccion">Direccion</label>
-                    {{ Ver.Rep.direccion }}
-                </div> 
-                <div class="form">
-                    <label for="teln_casa">Telefono Casa</label>
-                    {{ Ver.Rep.teln_Casa }}
-                </div>
-                <div class="form">
-                    <label for="teln_movil">Telefono Movil</label>
-                    {{ Ver.Rep.teln_movil }}
-                </div>
-                <div class="form">
-                    <label for="email">Correo Electronico</label>
-                    {{ Ver.Rep.email }}
-                </div>
-            </table>
-
-            <br><br>
-
-            <hr>
-
-            <br> <br>
-
-            <div class="button_form">
-                <input type="button" value="Imprimir">
-            </div>
+            </section>
         </form>
-    </div>
+    </section>
 </section>
-</article>
 
 {% endblock content %}
