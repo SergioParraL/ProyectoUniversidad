@@ -3,67 +3,98 @@
 
 {% block content %}
 
-<article>
-  <section class="title">
-    
+<section class="title">
     <h1>Planilla Informativa del Personal Docente {{ Ver.nombres }} / ID: {{ Ver.id }}</h1>
-  </section>
-<hr>
+</section>
 
-<div class="conform">
+<section class="container">
+    <section class="_princ_ conform">
+        <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+            <section class="row">
+                <section class="cont">
+                    <section class="cont_02">
+                        <div class="photo">
+                            <!-- <label for="foto">Foto</label> -->
+                            <img src="{{ Ver.foto.url }}">
+                        </div>
+                    </section>
+                </section>
+                <section class="cont">
+                    <section class="cont_02">
+                        <div class="plAct">
+                            <label for="nombre">Nombre</label>
+                            <div>
+                                {{ Ver.nombres }}
+                            </div>
+                        </div>
+                        <div class="plAct">
+                            <label for="apellido">Apellido</label>
+                            <div>
+                                {{ Ver.apellidos }}
+                            </div>
+                        </div>
+                        <div class="plAct">
+                            <label for="cedula">Cedula</label>
+                            <div>
+                                {{ Ver.cedula }}
+                            </div>
+                        </div>
+                        <div class="plAct">
+                            <label for="edad">Edad</label>
+                            <div>
+                                {{ Ver.edad }}&nbsp; años
+                            </div>
+                        </div>
+                        <div class="plAct">
+                            <label for="cargo">Materia</label>
+                            <div>
+                                {{ Ver.materia }}
+                            </div>
+                        </div>
+                    </section>
+                </section>
+                
+            </section>
+            <section class="row">
+                <section class="cont">
+                    <section class="cont_02">
+                        <div class="plAct">
+                            <label for="direccion">Direccion</label>
+                            <div>
+                                {{ Ver.direccion }}
+                            </div>
+                        </div> 
+                        <div class="plAct">
+                            <label for="teln_casa">Telefono Casa</label>
+                            <div>
+                                {{ Ver.teln_Casa }}
+                            </div>
+                        </div>
+                        <div class="plAct">
+                            <label for="teln_movil">Telefono Movil</label>
+                            <div>
+                                {{ Ver.teln_movil }}
+                            </div>
+                        </div>
+                        <div class="plAct">
+                            <label for="email">Correo Electronico</label>
+                            <div>
+                                {{ Ver.email }}
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </section>
+                <div class="specialButtom">
+                    <input id="Ant_Sig" class="print" type="button" value="Imprimir">
+                </div>
+            </article>
+        </form>
+    </section>
+</section>
     {%  if  "valido" in request.GET %}
         <h3>Personal Administrativo Registrado Correctamente, por favor dale click en continuar</h3>
         <a href="{% url 'Home' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
     {% endif %}
-
-    <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-        <table>
-          <div class="form">
-                <label for="nombre">Nombre</label>
-                {{ Ver.nombres }}
-            </div>
-            <div class="form">
-                <label for="apellido">Apellido</label>
-                {{ Ver.apellidos }}
-            </div>
-            <div class="form">
-                <label for="cedula">Cedula</label>
-                {{ Ver.cedula }}
-            </div class="form">
-            <div class="foto">
-                <label for="foto">Foto</label>
-                <img src="{{ Ver.foto.url }}">
-            </div>
-            <div class="form">
-                <label for="cargo">Materia</label>
-                {{ Ver.materia }}
-            </div>
-            <div class="form">
-                <label for="edad">Edad</label>
-                {{ Ver.edad }}&nbsp; años
-            </div>
-            <div class="form">
-                <label for="direccion">Direccion</label>
-                {{ Ver.direccion }}
-            </div> 
-            <div class="form">
-                <label for="teln_casa">Telefono Casa</label>
-                {{ Ver.teln_Casa }}
-            </div>
-            <div class="form">
-                <label for="teln_movil">Telefono Movil</label>
-                {{ Ver.teln_movil }}
-            </div>
-            <div class="form">
-                <label for="email">Correo Electronico</label>
-                {{ Ver.email }}
-            </div>
-        </table>
-        <div class="button_form">
-            <input type="button" value="Imprimir">
-        </div>
-    </form>
-</div>
-</article>
 
 {% endblock content %}

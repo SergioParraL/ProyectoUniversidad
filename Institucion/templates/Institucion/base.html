@@ -15,7 +15,7 @@
         <link href="{% static 'General/css/consultaUsuarioBase.css' %}" rel="stylesheet">
 
         <script type="text/javascript" src="{% static 'General/js/barra.js' %}"></script>
-        <script type="text/javascript" src="{% static 'General/js/registroPersonal.js' %}">
+        <script type="text/javascript" src="{% static 'General/js/Usuarios.js' %}">
     </script>
 
 <body>
@@ -40,14 +40,16 @@
         </div> 
         <div class='divNav IconNav'>
             <a class="special" href="{% url 'Home' %}">                
-                <img src="../../static/General/img/Nav/home-outline.svg" alt="">
+                <!-- <img src="../../static/General/img/Nav/home-outline.svg" alt=""> -->
+                <div class="iconMenuFondo homeIcon"></div>
             </a>
         </div>
     </li><!-- -------------Inicio------------------ -->
     <li class="prin" id='homeProvitional'>
         <div class="divNav ContentNav">Registro</div> 
         <div class='divNav IconNav '>
-            <img src="../../static/General/img/Nav/add-circle-outline.svg" alt="">
+                <div class="iconMenuFondo addIcon"></div>
+            <!-- <img src="../../static/General/img/Nav/add-circle-outline.svg" alt=""> -->
         </div>
 
         <ul class="sub">
@@ -70,7 +72,8 @@
     <li class="prin">
         <div class="divNav ContentNav">Consultas</div> 
         <div class='divNav IconNav '>
-            <img src="../../static/General/img/Nav/book-outline.svg" alt="">
+                <div class="iconMenuFondo consultaIcon"></div>
+            <!-- <img src="../../static/General/img/Nav/book-outline.svg" alt=""> -->
         </div>
         <ul class="sub">
             <li class="inic">
@@ -89,7 +92,8 @@
     <li class="prin">
         <div class="divNav ContentNav">Gestion-Registro</div> 
         <div class='divNav IconNav'>
-            <img src="../../static/General/img/Nav/pencil-outline.svg" alt="">
+                <div class="iconMenuFondo RegiIcon"></div>
+            <!-- <img src="../../static/General/img/Nav/pencil-outline.svg" alt=""> -->
             
         </div>
         <ul class="sub">
@@ -104,7 +108,8 @@
     <li class="prin">
         <div class="divNav ContentNav">Gestion-Consulta</div> 
         <div class='divNav IconNav'>
-            <img src="../../static/General/img/Nav/pricetag-outline.svg" alt="">
+                <div class="iconMenuFondo DocuIcon"></div>
+            <!-- <img src="../../static/General/img/Nav/pricetag-outline.svg" alt=""> -->
             
         </div>
         <ul class="sub">
@@ -120,7 +125,8 @@
         </div> 
         <div class='divNav IconNav'>
             <a class="special" href="{% url 'logout' %}">                
-                <img src="../../static/General/img/Nav/exit-outline.svg" alt="">
+                <div class="iconMenuFondo salirIcon"></div>
+                <!-- <img src="../../static/General/img/Nav/exit-outline.svg" alt=""> -->
             </a>
         </div>
     </li><!-- -------------Salir------------------- -->
