@@ -1,10 +1,13 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render,redirect
 
 #BBDD----------------
 from Registros.models import Estudiantes, PersonalAdm, PersonalDocente, Representantes
+from Institucion.models import SystemUser, PA_profile, PD_profile
 
 #FormsModels----------------
-from Registros.forms import RegistroPA, RegistroPD, RegistroRep, RegistroEst
+from Registros.forms import RegistroPA, RegistroPD, RegistroRep, RegistroEst, registerProfilePA, registerProfilePD
+from Institucion.forms import UserRegisterForm_PA,UserRegisterForm_PD
 
 #Auth----------------
 from django.contrib.auth.decorators import login_required
@@ -134,11 +137,11 @@ def Consulta_PA(request):
                 apellidos = request.POST.get("buscar_apellidos")
                 cedula = request.POST.get("buscar_cedula")
                 cargo = request.POST.get("buscar_cargo")
-                PA=PersonalAdm.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, cedula__icontains=cedula, cargo__icontains=cargo)
+                PA=PA_profile.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, cedula__icontains=cedula, cargo__icontains=cargo)
                 return render(request, "consultas/PA/Consulta_PA.html", {"PA": PA})
             
             else:        
-                PA=PersonalAdm.objects.all()
+                PA=PA_profile.objects.all()
                 ctx= { 
                     'PA':PA
                 }
@@ -154,11 +157,11 @@ def C_nombres_pa(request):
         if request.user.is_active == True:
             if request.method == 'POST':
                 nombres = request.POST.get("buscar_nombres")
-                PA=PersonalAdm.objects.filter(nombres__icontains=nombres)
+                PA=PA_profile.objects.filter(nombres__icontains=nombres)
                 return render(request, "consultas/PA/C_nombres_pa.html", {"PA": PA})
             
             else:        
-                PA=PersonalAdm.objects.all()
+                PA=PA_profile.objects.all()
                 ctx= { 
                     'PA':PA
                 }
@@ -174,11 +177,11 @@ def C_apellidos_pa(request):
         if request.user.is_active == True:
             if request.method == 'POST':
                 apellidos = request.POST.get("buscar_apellidos")
-                PA=PersonalAdm.objects.filter(apellidos__icontains=apellidos)
+                PA=PA_profile.objects.filter(apellidos__icontains=apellidos)
                 return render(request, "consultas/PA/C_apellidos_pa.html", {"PA": PA})
             
             else:         
-                PA=PersonalAdm.objects.all()
+                PA=PA_profile.objects.all()
                 ctx= {
                     
                     'PA':PA
@@ -195,11 +198,11 @@ def C_cedula_pa(request):
         if request.user.is_active == True:
             if request.method == 'POST':
                 cedula = request.POST.get("buscar_cedula")
-                PA=PersonalAdm.objects.filter(cedula__icontains=cedula)
+                PA=PA_profile.objects.filter(cedula__icontains=cedula)
                 return render(request, "consultas/PA/C_cedula_pa.html", {"PA": PA})
             
             else:        
-                PA=PersonalAdm.objects.all()
+                PA=PA_profile.objects.all()
                 ctx= {   
                     'PA':PA
                 }
@@ -214,11 +217,11 @@ def C_cargo_pa(request):
         if request.user.is_active == True:
             if request.method == 'POST':
                 cargo = request.POST.get("buscar_cargo")
-                PA=PersonalAdm.objects.filter(cargo__icontains=cargo)
+                PA=PA_profile.objects.filter(cargo__icontains=cargo)
                 return render(request, "consultas/PA/C_cargo_pa.html", {"PA": PA})
             
             else:       
-                PA=PersonalAdm.objects.all()
+                PA=PA_profile.objects.all()
                 ctx= { 
                     'PA':PA
                 }
@@ -239,11 +242,11 @@ def Consulta_PD(request):
                 apellidos = request.POST.get("buscar_apellidos")
                 cedula = request.POST.get("buscar_cedula")
                 materia = request.POST.get("buscar_materia")       
-                PD=PersonalDocente.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, cedula__icontains=cedula, materia__icontains=materia)               
+                PD=PD_profile.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, cedula__icontains=cedula, materia__icontains=materia)               
                 return render(request, "consultas/PD/Consulta_PD.html", {"PD": PD})
 
             else:              
-                PD=PersonalDocente.objects.all()         
+                PD=PD_profile.objects.all()         
                 ctx= {       
                     'PD':PD
                 } 
@@ -259,11 +262,11 @@ def C_nombres_pd(request):
         if request.user.is_active == True:
             if request.method == 'POST':                
                 nombres = request.POST.get("buscar_nombres")       
-                PD=PersonalDocente.objects.filter(nombres__icontains=nombres)               
+                PD=PD_profile.objects.filter(nombres__icontains=nombres)               
                 return render(request, "consultas/PD/C_nombres_pd.html", {"PD": PD})
                            
             else:                       
-                PD=PersonalDocente.objects.all()               
+                PD=PD_profile.objects.all()               
                 ctx= {                   
                     'PD':PD
                 }                
@@ -279,11 +282,11 @@ def C_apellidos_pd(request):
         if request.user.is_active == True:
             if request.method == 'POST':                            
                 apellidos = request.POST.get("buscar_apellidos")
-                PD=PersonalDocente.objects.filter(apellidos__icontains=apellidos)                
+                PD=PD_profile.objects.filter(apellidos__icontains=apellidos)                
                 return render(request, "consultas/PD/C_apellidos_pd.html", {"PD": PD})
 
             else:                        
-                PD=PersonalDocente.objects.all()                
+                PD=PD_profile.objects.all()                
                 ctx= {                    
                     'PD':PD
                 }                
@@ -299,11 +302,11 @@ def C_cedula_pd(request):
         if request.user.is_active == True:
             if request.method == 'POST':            
                 cedula = request.POST.get("buscar_cedula")                        
-                PD=PersonalDocente.objects.filter(cedula__icontains=cedula)                
+                PD=PD_profile.objects.filter(cedula__icontains=cedula)                
                 return render(request, "consultas/PD/C_cedula_pd.html", {"PD": PD})
 
             else:                        
-                PD=PersonalDocente.objects.all()                
+                PD=PD_profile.objects.all()                
                 ctx= {                    
                     'PD':PD
                 }                
@@ -320,11 +323,11 @@ def C_materia_pd(request):
         if request.user.is_active == True:    
             if request.method == 'POST':                            
                 materia = request.POST.get("buscar_materia")        
-                PD=PersonalDocente.objects.filter(materia__icontains=materia)                
+                PD=PD_profile.objects.filter(materia__icontains=materia)                
                 return render(request, "consultas/PD/C_materia_pd.html", {"PD": PD})
 
             else:                        
-                PD=PersonalDocente.objects.all()                
+                PD=PD_profile.objects.all()                
                 ctx= {                    
                     'PD':PD
                 }                
@@ -342,9 +345,9 @@ def Actualizar_Es(request, id):
         if request.user.is_active == True: 
             estudiante = Estudiantes.objects.get(id = id)            
             if request.method == 'GET':            
-                form = RegistroEst(instance= estudiante)                
+                form = RegistroEst(instance= estudiante)
                 contx={
-                    'form':form
+                    'form':form, 'estudiante':estudiante
                 }
 
             else:                
@@ -365,18 +368,33 @@ def Actualizar_PA(request, id):
 
     if request.user.is_PA == True:
         if request.user.is_active == True:    
-            pa = PersonalAdm.objects.get(id = id)            
+            paUser = SystemUser.objects.get(id = id)
             if request.method == 'GET':
-                form = RegistroPA(instance= pa)                
+                if PA_profile.objects.filter(usuario_id=id):
+
+                    paProfile=PA_profile.objects.get(usuario_id=id)
+                    form = registerProfilePA(instance= paProfile)
+
+                else:
+                    form = registerProfilePA()
+                    paProfile=None
+
+                form2 =UserRegisterForm_PA(instance= paUser)               
                 contx={
-                    'form':form
+                    'form':form, 'form2':form2, 'pa':paProfile
                 }
 
-            else:                
-                form = RegistroPA(request.POST, request.FILES, instance=pa)
+            else:
+                if PA_profile.objects.filter(usuario_id=id):
+                    paProfile=PA_profile.objects.get(usuario_id=id)
+                    form = registerProfilePA(request.POST, request.FILES,instance=paProfile)
+                else:
+                    form = registerProfilePA(request.POST, request.FILES)
+                    
+                form2 = UserRegisterForm_PA(request.POST, request.FILES, instance=paUser)
                 if form.is_valid():
                     form.save()
-                    return redirect("Consulta_PA")
+                    return redirect(f"../{request.user.id}/?valido")
 
             return render(request, "consultas/PA/Actualizar_PA.html", contx)
 
@@ -391,18 +409,33 @@ def Actualizar_PD(request, id):
 
     if request.user.is_PD == True:
         if request.user.is_active == True:   
-            pd = PersonalDocente.objects.get(id = id)           
-            if request.method == 'GET':                
-                form = RegistroPD(instance= pd)                
+            pdUser = SystemUser.objects.get(id = id)
+            if request.method == 'GET':
+                if PD_profile.objects.filter(usuario_id=id):
+
+                    pdProfile=PD_profile.objects.get(usuario_id=id)
+                    form = registerProfilePD(instance= pdProfile)
+
+                else:
+                    form = registerProfilePD()
+                    pdProfile=None
+
+                form2 =UserRegisterForm_PD(instance= pdUser)               
                 contx={
-                    'form':form
+                    'form':form, 'form2':form2, 'pd':pdProfile
                 }
 
             else:
-                form = RegistroPD(request.POST, request.FILES, instance=pd)
+                if PD_profile.objects.filter(usuario_id=id):
+                    pdProfile=PD_profile.objects.get(usuario_id=id)
+                    form = registerProfilePD(request.POST, request.FILES,instance=pdProfile)
+                else:
+                    form = registerProfilePD(request.POST, request.FILES)
+                    
+                form2 = UserRegisterForm_PD(request.POST, request.FILES, instance=pdUser)
                 if form.is_valid():
                     form.save()
-                    return redirect("Consulta_PD")
+                    return redirect(f"../{request.user.id}/?valido")
 
             return render(request, "consultas/PD/Actualizar_PD.html", contx)
 
@@ -502,7 +535,7 @@ def Ver_PA(request, id):
     if request.user.is_PA == True:
         if request.user.is_active == True:
             if request.method == 'GET':
-                Ver = PersonalAdm.objects.get(id = id)
+                Ver = PA_profile.objects.get(id = id)
                 contx={
                     'Ver':Ver
                 }
@@ -517,7 +550,7 @@ def Ver_PA(request, id):
 def Ver_PD(request, id):
     
     if request.method == 'GET':
-        Ver = PersonalDocente.objects.get(id = id)
+        Ver = PD_profile.objects.get(id = id)
         contx={
             'Ver':Ver
         }

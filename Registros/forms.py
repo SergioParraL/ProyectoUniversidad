@@ -1,5 +1,5 @@
 from django import forms
-
+from Institucion.models import PA_profile, PD_profile
 from .models import PersonalAdm, PersonalDocente, Representantes, Estudiantes
 
 class RegistroPA(forms.ModelForm):
@@ -27,4 +27,19 @@ class RegistroEst(forms.ModelForm):
 
     class Meta:
         model = Estudiantes
+        fields = '__all__'
+
+
+#-------- Profiles ----------
+
+class registerProfilePA(forms.ModelForm):
+    class Meta:
+        model = PA_profile
+        fields = '__all__'
+
+
+class registerProfilePD(forms.ModelForm):
+
+    class Meta:
+        model = PD_profile
         fields = '__all__'

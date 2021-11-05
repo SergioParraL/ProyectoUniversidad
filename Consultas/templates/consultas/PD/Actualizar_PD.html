@@ -4,26 +4,39 @@
 {% block content %}
 
 <section class="title">
-    <h1>Actualizar Registro del Personal Docente</h1>
+    <h1>Actualizar Datos de Perfil (Usuario: {{ request.user.username }})</h1>
 </section>
 
+<!-- button_PA -->
+{%  if  "valido" in request.GET %}
+<h3>Datos Actualizados Correctamente, por favor dale click en continuar</h3>
+<a href="{% url 'Home' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+{% endif %}
+
 <section class="container">
-    {%  if  "valido" in request.GET %}
-        <h3>Personal Docente Actualizado Correctamente, por favor dale click en continuar</h3>
-        <a href="{% url 'Home' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
-    {% endif %}
     <section class="_princ_ conform">
         <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
             <section class="row">
                 <article class="cont">
                     <article>
-                        <div class="foto">
-                            <label for="foto">Foto</label>
-                            {{ form.foto }}
+                        <div class="photo">
+                            <label for="foto">Foto Actual:</label>
+                            <img src="{{ pd.foto.url }}">
                         </div>
+                        <div>
+                            <label for="{{ form.foto.id_for_label }}">Modificar Foto: </label><input id="{{ form.foto.id_for_label }}" type="file" name="{{ form.foto.name }}" accept="image/*" >
+                        </div>
+                        <label for="usuario" style="visibility:hidden">Usuario</label>
+                        <select name="usuario" required id="id_usuario" style="visibility:hidden">
+                            <option value="{{request.user.id}}">El usuario es {{request.user.username}} y su correo {{request.user.email}}</option>
+                        </select>
                         <div class="form">
                             <label for="materia">Materia</label>
                             {{ form.materia }}
+                        </div>
+                        <div class="form">
+                            <label for="materia">Especialidades</label>
+                            {{ form.especialidades }}
                         </div>
                     </article>
                 </article>
@@ -49,7 +62,7 @@
                     </article>
                 </article>
             </section>
-            <section class="row lineUp">
+            <article class="row lineUp">
                 <article class="cont">
                     <article>
                         <div class="form">
@@ -66,19 +79,19 @@
                         </div>
                         <div class="form">
                             <label for="email">Correo Electronico</label>
-                            {{ form.email }}
+                            {{ form2.email }}
                         </div>
                     </article>
                 </article>
-            </section>
-            <div class="button_form">
-              <input type="submit" value="Registrarse">
-            </div>
+            </article>
+            <article class="wrapper">
+                <button class="button_Regis_PA" type="submit" value="">Actualizar</button>
+            </article>
         </form>
-
     </section>
-    
 </section>
+
+
 
 <!--     {%  if  "valido" in request.GET %}
         <h3>Personal Docente Actualizado Correctamente, por favor dale click en continuar</h3>
