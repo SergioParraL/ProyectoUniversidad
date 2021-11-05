@@ -52,7 +52,6 @@ urlpatterns = [
     path('Actualizar_PD/<int:id>/', views.Actualizar_PD, name="Actualizar_PD"),
 
 
-
     #---Estos Permiten Eliminar la informacion 
     
     path('Eliminar_Es/<int:id>/', views.Eliminar_Es, name="Eliminar_Es"),   

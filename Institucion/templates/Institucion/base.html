@@ -58,12 +58,12 @@
                     <a href="{% url 'Registro_Rep' %}">Estudiantes</a>
                 </li>
                 <li>
-                    <a href="{% url 'Registro_PA' %}">Administrativo</a>
+                    <a href="{% url 'Actualizar_PA' request.user.id %}">Perfil Administrativo Actualizar</a>
                 </li>
             {% endif %}
             {% if request.user.is_PD == True%}  
                 <li class="fin">
-                    <a href="{% url 'Registro_PD' %}">Docentes</a>
+                    <a href="{% url 'Actualizar_PD' request.user.id %}">Perfil Docente Actualizar</a>
                 </li>
             {% endif %}
 

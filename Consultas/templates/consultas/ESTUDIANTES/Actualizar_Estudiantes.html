@@ -19,9 +19,12 @@
             <section class="row">
                 <article class="cont">
                     <article>
-                        <div class="foto">
-                            <label for="foto">Foto</label>
-                            {{ form.foto }}
+                        <div class="photo">
+                            <label for="foto">Foto Actual:</label>
+                            <img src="{{ estudiante.foto.url }}">
+                        </div>
+                        <div>
+                            <label for="{{ form.foto.id_for_label }}">Modificar Foto: </label><input id="{{ form.foto.id_for_label }}" type="file" name="{{ form.foto.name }}" accept="image/*" >
                         </div>
                         <div class="form">
                             <label for="grado">Grado</label>

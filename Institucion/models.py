@@ -88,7 +88,7 @@ class PD_profile(models.Model):
     usuario = models.OneToOneField(SystemUser, on_delete=models.CASCADE)
     nombres = models.CharField(max_length=30)
     apellidos = models.CharField(max_length=30)
-    cedula = models.CharField(max_length=12)
+    cedula = models.CharField(unique=True,max_length=12)
     foto = models.ImageField(upload_to='PerAD/%Y/%m/%d/', null=True)  
     materia=models.IntegerField(
         null=False, blank=False,
