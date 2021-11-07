@@ -1,5 +1,7 @@
 from django.db.models.query import QuerySet
 from django.shortcuts import render,redirect
+from django.core import serializers
+import json
 
 #BBDD----------------
 from Registros.models import Estudiantes, PersonalAdm, PersonalDocente, Representantes
@@ -18,36 +20,10 @@ from django.contrib import messages
 
 #---Estas son las vistas de las Consultas a la BBDD de los Estudiantes  
 
-@login_required
-def Consulta_Es(request):
-    
-    if request.method == 'POST':
-        nombres = request.POST.get("buscar_nombres")
-        apellidos = request.POST.get("buscar_apellidos")
-        grado = request.POST.get("buscar_grado")
-        seccion = request.POST.get("buscar_seccion")
-        estudiantes=Estudiantes.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, grado__icontains=grado, seccion__icontains=seccion)
-        return render(request, "consultas/ESTUDIANTES/Consulta_Estudiantes.html", {"estudiantes": estudiantes})
-    
-    else:       
-        estudiantes=Estudiantes.objects.all()
-        ctx= { 
-            'estudiantes':estudiantes
-        }
-        return render(request, "consultas/ESTUDIANTES/Consulta_Estudiantes.html", ctx)
-
-@login_required
-def C_nombres(request):
-    
-    if request.method == 'POST':
-        nombres = request.POST.get("buscar_nombres") 
-        estudiantes=Estudiantes.objects.filter(nombres__icontains=nombres)
-        return render(request, "consultas/ESTUDIANTES/C_nombres.html", {"estudiantes": estudiantes})
-    
-    else:        
-        estudiantes=Estudiantes.objects.all()
-        #estudiantes2=list(Estudiantes.objects.all())
-
+#---- Funciones Globales -------
+#
+""" def Filter( estid = []):
+    for m in filterGradoSeccion():
         Grados_list = [
             
             ('1ero'),
@@ -57,25 +33,186 @@ def C_nombres(request):
             ('5to'),
             ('6to'),
         ]
+        Ver = m
+        Grado = m[1] - 1
+        select_grado = Grados_list[Grado]
 
-        query_li = estudiantes[0]
+        Secciones_list = [
+            
+            ('A'),
+            ('B'),
+            ('C'),
+            ('D'),
+            ('E'),
+            ('F'),
+            ('G'),
+            ('H'),
+        ]
 
-        prueba = query_li.grado - 1
+        Seccion = m[2] - 1
+        select_sec = Secciones_list[Seccion]
+        estid.append([m[0],select_grado,select_sec ])
+        #Filters = [select_grado,select_sec]
+    return estid
 
-        trans = Grados_list[prueba]
+def filterGradoSeccion( estid = []):
 
-        # result = {}
-        # for grado in trans:
-        #     result.append({'grado'})
+    for n in Estudiantes.objects.all():
+        #filter = filterGradoSeccion(n)
+        estid.append([n.id,n.grado,n.seccion ])
+
+    return estid """
+def filterGradoSeccion(estudiantes):
+        estid = []
+        if estudiantes:
+            for n in estudiantes:
+                Grados_list = [
+                    
+                    ('1ero'),
+                    ('2do'),
+                    ('3ro'),
+                    ('4to'),
+                    ('5to'),
+                    ('6to'),
+                ]
+
+                Grado = n.grado - 1
+                select_grado = Grados_list[Grado]
 
 
-        #---Comprobador______
-        #prueba2 = query_li.Estudiantes
+                Secciones_list = [
+                    
+                    ('A'),
+                    ('B'),
+                    ('C'),
+                    ('D'),
+                    ('E'),
+                    ('F'),
+                    ('G'),
+                    ('H'),
+                ]
 
+                Seccion = n.seccion - 1
+                select_sec = Secciones_list[Seccion]
+                estid.append([n.id,select_grado,select_sec ])
+                estid_ordenado = sorted(estid)
+
+
+            select_grado = estid_ordenado
+            select_sec = estid_ordenado
+            return estid_ordenado
+        else:
+            result = None
+        return result
+
+
+def filterMateriasEsp(PD_ME):
+        pdid = []
+        if PD_ME:
+            for n in PD_ME:
+                Materias_list = [
+                    
+                    ('Lenguaje'),
+                    ('Comunicación y Cultura'),
+                    ('Ciencias Naturales y Sociedad'),
+                    ('Ciencias Sociales'),
+                    ('Ciudadanía e Identidad'),
+                    ('Educación Física, deporte y Recreación'),
+                    ('Matemática'),
+                ] 
+
+                Materia = n.materia - 1
+                select_materia = Materias_list[Materia]
+
+
+                Especialidades_list = [
+                    
+                    ('Desarrollo Endogeno'),
+                    ('Educación Física'),
+                    ('Música'),
+                    ('Teatro'),
+                    ('Danza'),
+                    ('Manualidades'),
+                    ('Aula Integrada'),
+                    ('Producción'),
+                    ('CRA (Centro de Recursos para el Aprendizaje)'),
+                ] 
+
+                Esp = n.especialidades - 1
+                select_esp = Especialidades_list[Esp]
+                pdid.append([n.id,select_materia,select_esp ])
+                pdid_ordenado = sorted(pdid)
+
+            return pdid_ordenado
+        else:
+            result = None
+        return result
+
+
+
+@login_required
+def Consulta_Es(request):
+    
+    if request.method == 'POST':
+        nombres = request.POST.get("buscar_nombres")
+        apellidos = request.POST.get("buscar_apellidos")
+        grado = request.POST.get("buscar_grado")
+        seccion = request.POST.get("buscar_seccion")
+        estudiantes=Estudiantes.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, grado__icontains=grado, seccion__icontains=seccion)
+        filterValues = filterGradoSeccion(Estudiantes.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, grado__icontains=grado, seccion__icontains=seccion))
+        if filterValues:
+            filterValues = filterValues
+        else:
+            filterValues = 'noMatch'
         ctx= { 
 
-            'estudiantes':estudiantes,'tupla_g': query_li
+            'estudiantes':estudiantes, 'Filtro':filterValues, 
         }
+        return render(request, "consultas/ESTUDIANTES/Consulta_Estudiantes.html", ctx)
+    
+    else:       
+        estudiantes=Estudiantes.objects.all()
+        filterValues = filterGradoSeccion(Estudiantes.objects.all())
+        if filterValues:
+            filterValues = filterValues
+        else:
+            filterValues = 'noMatch'
+        ctx= { 
+
+            'estudiantes':estudiantes, 'Filtro':filterValues, 
+        }
+        return render(request, "consultas/ESTUDIANTES/Consulta_Estudiantes.html", ctx)
+
+@login_required
+def C_nombres(request):
+    
+    if request.method == 'POST':
+        nombres = request.POST.get("buscar_nombres") 
+        estudiantes=Estudiantes.objects.filter(nombres__icontains=nombres)
+        filterValues = filterGradoSeccion(Estudiantes.objects.filter(nombres__icontains=nombres))
+        if filterValues:
+            filterValues = filterValues
+        else:
+            filterValues = 'noMatch'
+        ctx= { 
+
+            'estudiantes':estudiantes, 'Filtro':filterValues, 
+        }
+        return render(request, "consultas/ESTUDIANTES/C_nombres.html", ctx)
+    
+    else:        
+        estudiantes=Estudiantes.objects.all()
+        filterValues = filterGradoSeccion(Estudiantes.objects.all())
+        if filterValues:
+            filterValues = filterValues
+        else:
+            filterValues = 'noMatch'
+        ctx= { 
+
+            'estudiantes':estudiantes, 'Filtro':filterValues, 
+        }
+
+        filterValues=filterValues.clear
         return render(request, "consultas/ESTUDIANTES/C_nombres.html", ctx)
 
 
@@ -85,12 +222,27 @@ def C_apellidos(request):
     if request.method == 'POST':   
         apellidos = request.POST.get("buscar_apellidos")
         estudiantes=Estudiantes.objects.filter(apellidos__icontains=apellidos)
-        return render(request, "consultas/ESTUDIANTES/C_apellidos.html", {"estudiantes": estudiantes})
+        filterValues = filterGradoSeccion(Estudiantes.objects.filter(apellidos__icontains=apellidos))
+        if filterValues:
+            filterValues = filterValues
+        else:
+            filterValues = 'noMatch'
+        ctx= { 
+
+            'estudiantes':estudiantes, 'Filtro':filterValues, 
+        }
+        return render(request, "consultas/ESTUDIANTES/C_apellidos.html",ctx)
 
     else:         
         estudiantes=Estudiantes.objects.all()
-        ctx= {   
-            'estudiantes':estudiantes
+        filterValues = filterGradoSeccion(Estudiantes.objects.all())
+        if filterValues:
+            filterValues = filterValues
+        else:
+            filterValues = 'noMatch'
+        ctx= { 
+
+            'estudiantes':estudiantes, 'Filtro':filterValues, 
         }
         return render(request, "consultas/ESTUDIANTES/C_apellidos.html", ctx)
     
@@ -100,12 +252,27 @@ def C_grados(request):
     if request.method == 'POST':
         grado = request.POST.get("buscar_grado")
         estudiantes=Estudiantes.objects.filter(grado__icontains=grado)
-        return render(request, "consultas/ESTUDIANTES/C_grados.html", {"estudiantes": estudiantes})
+        filterValues = filterGradoSeccion(Estudiantes.objects.filter(grado__icontains=grado))
+        if filterValues:
+            filterValues = filterValues
+        else:
+            filterValues = 'noMatch'
+        ctx= { 
+
+            'estudiantes':estudiantes, 'Filtro':filterValues, 
+        }
+        return render(request, "consultas/ESTUDIANTES/C_grados.html", ctx)
     
     else:       
         estudiantes=Estudiantes.objects.all()
+        filterValues = filterGradoSeccion(Estudiantes.objects.all())
+        if filterValues:
+            filterValues = filterValues
+        else:
+            filterValues = 'noMatch'
         ctx= { 
-            'estudiantes':estudiantes
+
+            'estudiantes':estudiantes, 'Filtro':filterValues, 
         }
         return render(request, "consultas/ESTUDIANTES/C_grados.html", ctx)
     
@@ -116,12 +283,27 @@ def C_secciones(request):
     if request.method == 'POST':
         seccion = request.POST.get("buscar_seccion")
         estudiantes=Estudiantes.objects.filter(seccion__icontains=seccion)
-        return render(request, "consultas/ESTUDIANTES/C_secciones.html", {"estudiantes": estudiantes})
+        filterValues = filterGradoSeccion(Estudiantes.objects.filter(seccion__icontains=seccion))
+        if filterValues:
+            filterValues = filterValues
+        else:
+            filterValues = 'noMatch'
+        ctx= { 
+
+            'estudiantes':estudiantes, 'Filtro':filterValues, 
+        }
+        return render(request, "consultas/ESTUDIANTES/C_secciones.html", ctx)
     
     else:        
         estudiantes=Estudiantes.objects.all()
-        ctx= {
-            'estudiantes':estudiantes
+        filterValues = filterGradoSeccion(Estudiantes.objects.all())
+        if filterValues:
+            filterValues = filterValues
+        else:
+            filterValues = 'noMatch'
+        ctx= { 
+
+            'estudiantes':estudiantes, 'Filtro':filterValues, 
         }
         return render(request, "consultas/ESTUDIANTES/C_secciones.html", ctx)
     
@@ -138,12 +320,13 @@ def Consulta_PA(request):
                 cedula = request.POST.get("buscar_cedula")
                 cargo = request.POST.get("buscar_cargo")
                 PA=PA_profile.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, cedula__icontains=cedula, cargo__icontains=cargo)
-                return render(request, "consultas/PA/Consulta_PA.html", {"PA": PA})
+                return render(request, "consultas/PA/Consulta_PA.html", {'PA':PA})
             
             else:        
                 PA=PA_profile.objects.all()
                 ctx= { 
-                    'PA':PA
+                    
+                    "PA": PA
                 }
                 return render(request, "consultas/PA/Consulta_PA.html", ctx)
 
@@ -241,15 +424,36 @@ def Consulta_PD(request):
                 nombres = request.POST.get("buscar_nombres")
                 apellidos = request.POST.get("buscar_apellidos")
                 cedula = request.POST.get("buscar_cedula")
-                materia = request.POST.get("buscar_materia")       
-                PD=PD_profile.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, cedula__icontains=cedula, materia__icontains=materia)               
-                return render(request, "consultas/PD/Consulta_PD.html", {"PD": PD})
+                materia = request.POST.get("buscar_materia")   
+                especialidades = request.POST.get("buscar_especialidades")      
+                PD=PD_profile.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, cedula__icontains=cedula, materia__icontains=materia, especialidades__icontains=especialidades)               
+                
+                #-----Filter de Campos Especiales ----------
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+
+                    "PD": PD, 'Filtro':filterValues, 
+                }
+                
+                return render(request, "consultas/PD/Consulta_PD.html", ctx)
 
             else:              
-                PD=PD_profile.objects.all()         
-                ctx= {       
-                    'PD':PD
-                } 
+                PD=PD_profile.objects.all() 
+
+                #-----Filter de Campos Especiales ----------       
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+                    
+                    "PD": PD, 'Filtro':filterValues, 
+                }
                 return render(request, "consultas/PD/Consulta_PD.html", ctx)
 
     messages.error(request, f'El Usuario {request.user.username} No tiene Permiso para Consultar') 
@@ -263,13 +467,31 @@ def C_nombres_pd(request):
             if request.method == 'POST':                
                 nombres = request.POST.get("buscar_nombres")       
                 PD=PD_profile.objects.filter(nombres__icontains=nombres)               
-                return render(request, "consultas/PD/C_nombres_pd.html", {"PD": PD})
+                
+                #-----Filter de Campos Especiales ----------       
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+                    
+                    "PD": PD, 'Filtro':filterValues, 
+                }
+                return render(request, "consultas/PD/C_nombres_pd.html", ctx)
                            
             else:                       
                 PD=PD_profile.objects.all()               
-                ctx= {                   
-                    'PD':PD
-                }                
+                #-----Filter de Campos Especiales ----------       
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+                    
+                    "PD": PD, 'Filtro':filterValues, 
+                }             
                 return render(request, "consultas/PD/C_nombres_pd.html", ctx)
 
     messages.error(request, f'El Usuario {request.user.username} No tiene Permiso para Consultar') 
@@ -283,13 +505,31 @@ def C_apellidos_pd(request):
             if request.method == 'POST':                            
                 apellidos = request.POST.get("buscar_apellidos")
                 PD=PD_profile.objects.filter(apellidos__icontains=apellidos)                
-                return render(request, "consultas/PD/C_apellidos_pd.html", {"PD": PD})
+                
+                #-----Filter de Campos Especiales ----------       
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+                    
+                    "PD": PD, 'Filtro':filterValues, 
+                }
+                return render(request, "consultas/PD/C_apellidos_pd.html", ctx)
 
             else:                        
                 PD=PD_profile.objects.all()                
-                ctx= {                    
-                    'PD':PD
-                }                
+                #-----Filter de Campos Especiales ----------       
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+                    
+                    "PD": PD, 'Filtro':filterValues, 
+                }          
                 return render(request, "consultas/PD/C_apellidos_pd.html", ctx)
 
     messages.error(request, f'El Usuario {request.user.username} No tiene Permiso para Consultar') 
@@ -303,13 +543,31 @@ def C_cedula_pd(request):
             if request.method == 'POST':            
                 cedula = request.POST.get("buscar_cedula")                        
                 PD=PD_profile.objects.filter(cedula__icontains=cedula)                
-                return render(request, "consultas/PD/C_cedula_pd.html", {"PD": PD})
+                
+                #-----Filter de Campos Especiales ----------       
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+                    
+                    "PD": PD, 'Filtro':filterValues, 
+                }
+                return render(request, "consultas/PD/C_cedula_pd.html", ctx)
 
             else:                        
                 PD=PD_profile.objects.all()                
-                ctx= {                    
-                    'PD':PD
-                }                
+                #-----Filter de Campos Especiales ----------       
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+                    
+                    "PD": PD, 'Filtro':filterValues, 
+                }              
                 return render(request, "consultas/PD/C_cedula_pd.html", ctx)
 
     messages.error(request, f'El Usuario {request.user.username} No tiene Permiso para Consultar') 
@@ -324,17 +582,77 @@ def C_materia_pd(request):
             if request.method == 'POST':                            
                 materia = request.POST.get("buscar_materia")        
                 PD=PD_profile.objects.filter(materia__icontains=materia)                
-                return render(request, "consultas/PD/C_materia_pd.html", {"PD": PD})
+                
+                #-----Filter de Campos Especiales ----------       
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+                    
+                    "PD": PD, 'Filtro':filterValues, 
+                }
+                return render(request, "consultas/PD/C_materia_pd.html", ctx)
 
             else:                        
                 PD=PD_profile.objects.all()                
-                ctx= {                    
-                    'PD':PD
-                }                
+                #-----Filter de Campos Especiales ----------       
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+                    
+                    "PD": PD, 'Filtro':filterValues, 
+                }             
                 return render(request, "consultas/PD/C_materia_pd.html", ctx)
 
     messages.error(request, f'El Usuario {request.user.username} No tiene Permiso para Consultar') 
     return redirect('Home')  
+
+
+
+@login_required
+def C_especialidades_pd(request):
+
+    if request.user.is_PA == True:
+        if request.user.is_active == True:    
+            if request.method == 'POST':       
+                especialidades = request.POST.get("buscar_especialidades")        
+                PD=PD_profile.objects.filter(especialidades__icontains=especialidades)                            
+                
+                #-----Filter de Campos Especiales ----------       
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+                    
+                    "PD": PD, 'Filtro':filterValues, 
+                }
+                return render(request, "consultas/PD/C_especialidades_pd.html", ctx)
+
+            else:                        
+                PD=PD_profile.objects.all()                
+                #-----Filter de Campos Especiales ----------       
+                filterValues = filterMateriasEsp(PD)
+                if filterValues:
+                    filterValues = filterValues
+                else:
+                    filterValues = 'noMatch'
+                ctx= { 
+                    
+                    "PD": PD, 'Filtro':filterValues, 
+                }             
+                return render(request, "consultas/PD/C_especialidades_pd.html", ctx)
+
+    messages.error(request, f'El Usuario {request.user.username} No tiene Permiso para Consultar') 
+    return redirect('Home')
+
+
 
 #---Esta Vista Permite la Edicion del Registro de los Estudiantes   
 

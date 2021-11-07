@@ -1,6 +1,8 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
-
+{% load mathfilters %}
+{% load concat_Grado %}
+{% load concat_Seccion %}
 {% block content %}
 
 <section class="title">
@@ -17,6 +19,13 @@
         </article>
        <article class="data">
                 <h2 class="title">Listado de Estudiantes</h2>
+
+        {%if Filtro == 'noMatch'%}
+			<p>NO HAY RESULTADOS</p>
+		{% endif %}
+
+
+		{%if Filtro != 'noMatch'%}
                 {% for estudiantes in estudiantes %}        
                   <section class='prueba'>
                           <article class="photo">
@@ -30,9 +39,32 @@
                                   </span>
                               </div>
                               <div class="DataSecond fontSecond">
-                                  <span>Cédula: {{estudiantes.cedula}}</span>
-                                  <span>Grado: {{estudiantes.grado}}</span>
-                                  <span>Sección: {{estudiantes.seccion}}</span>
+                                <span>Cédula: {{estudiantes.cedula}}</span>
+                                <span>Grado:
+                                    {%if request.method == 'GET' %}
+                                        {% with Grado=Filtro id=estudiantes.id %} 
+                                            {{ Grado|concat_Grado:id }} 
+                                        {% endwith %}
+                                    {% endif %}
+                                    {%if request.method == 'POST' %}
+                                        {% with Grado=Filtro id2=forloop.revcounter %} 
+                                            {{ Grado|concat_Grado:id2 }} 
+                                        {% endwith %}
+                                    {% endif %}
+                                </span>
+
+                                <span>Sección: 
+                                    {%if request.method == 'GET' %}
+                                        {% with Seccion=Filtro id=estudiantes.id %} 
+                                            {{ Seccion|concat_Seccion:id }} 
+                                        {% endwith %}
+                                    {% endif %}
+                                    {%if request.method == 'POST' %}
+                                        {% with Seccion=Filtro id2=forloop.revcounter %} 
+                                            {{ Seccion|concat_Seccion:id2 }} 
+                                        {% endwith %}
+                                    {% endif %}
+                                </span>
                               </div>
                           </article>
                           <article class="fontSecond">
@@ -61,6 +93,7 @@
                   </section>
                 {% endfor %}
             </article>
+        {% endif %}
     <!--    {% if "Buscar" in request.POST%}
 
           <h1>Resultados de la Busqueda</h1>
