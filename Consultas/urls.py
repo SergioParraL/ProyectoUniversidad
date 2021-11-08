@@ -42,7 +42,7 @@ urlpatterns = [
     path('C_apellidos_pd/', views.C_apellidos_pd, name="C_apellidos_pd"),   
     path('C_cedula_pd/', views.C_cedula_pd, name="C_cedula_pd"),
     path('C_materia_pd/', views.C_materia_pd, name="C_materia_pd"), 
-    
+    path('C_especialidades_pd/', views.C_especialidades_pd, name="C_especialidades_pd"),
     
     
     #---Estos Permiten Actualizar la informacion

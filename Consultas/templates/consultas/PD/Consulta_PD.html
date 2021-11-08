@@ -1,6 +1,8 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
-
+{% load mathfilters %}
+{% load concat_Grado %}
+{% load concat_Seccion %}
 {% block content %}
  <article class="title">
     <h1>Consulta del Personal Docente</h1>
@@ -14,53 +16,86 @@
                     <input  type="text" name="buscar_apellidos" value="" placeholder="Apellido">
                     <input  type="text" name="buscar_cedula" value="" placeholder="Cédula">
                     <input  type="text" name="buscar_materia" value="" placeholder="Materia">
+                    <input  type="text" name="buscar_especialidades" value="" placeholder="Especialidad">               
                     <input  type="submit" value="Consultar">
                 </form>
             </article>
             
             <article class="data">
                 <h2 class="title">Listado del Personal Docente</h2>
+            {%if Filtro == 'noMatch'%}
+				<p>NO HAY RESULTADOS</p>
+			{% endif %}
+
+
+			{%if Filtro != 'noMatch'%}
                     {% for PD in PD %}        
-                <section class="prueba">
-                        <article class="photo">
-                            <img src="{{ PD.foto.url }}">
-                        </article>
-                        <article>
-                            <div class="name">
-                                <span>
-                                    {{PD.nombres}}
-                                    {{PD.apellidos}}
-                                </span>
-                            </div>
-                            <div class="DataSecond fontSecond">
-                                <span>Cédula: {{PD.cedula}}</span>
-                                <span>Materia: {{PD.materia}}</span>
-                                <span>Especialidad: {{PD.especialidades}}</span>
-                            </div>
-                        </article>
-                        <article class="fontSecond">
-                            <div class="options">
-                                <span>
-                                    <a href="{% url 'Ver_PD' PD.id %}">
-                                        <div class="imgOptions look"></div>
-                                    </a>
-                                </span>
-                            </div>
-                            <div>
-                                <div>
-                                    <span>Teléfono:</span>
+                    <section class="prueba">
+                            <article class="photo">
+                                <img src="{{ PD.foto.url }}">
+                            </article>
+                            <article>
+                                <div class="name">
+                                    <span>
+                                        {{PD.nombres}}
+                                        {{PD.apellidos}}
+                                    </span>
+                                </div>
+                                <div class="DataSecond fontSecond">
+                                    <span>Cédula: {{PD.cedula}}</span>
+                                    <span>Materia: 
+                                        {%if request.method == 'GET' %}
+                                            {% with Materia=Filtro id=forloop.revcounter %} 
+                                                {{ Materia|concat_Grado:id }} 
+                                            {% endwith %}
+                                        {% endif %}
+                                        {%if request.method == 'POST' %}
+                                            {% with Materia=Filtro id2=forloop.revcounter %} 
+                                                {{ Materia|concat_Grado:id2 }} 
+                                            {% endwith %}
+                                        {% endif %}
+
+                                    </span>
+                                    <span>Especialidad: 
+
+                                        {%if request.method == 'GET' %}
+                                            {% with Esp=Filtro id=forloop.revcounter %} 
+                                                {{ Esp|concat_Seccion:id }} 
+                                            {% endwith %}
+                                        {% endif %}
+                                        {%if request.method == 'POST' %}
+                                            {% with Esp=Filtro id2=forloop.revcounter %} 
+                                                {{ Esp|concat_Seccion:id2 }} 
+                                            {% endwith %}
+                                        {% endif %}
+
+                                    </span>
+                                </div>
+                            </article>
+                            <article class="fontSecond">
+                                <div class="options">
+                                    <span>
+                                        <a href="{% url 'Ver_PD' PD.id %}">
+                                            <div class="imgOptions look"></div>
+                                        </a>
+                                    </span>
                                 </div>
                                 <div>
-                                    <ul>
-                                        <li>{{ PD.teln_Casa }}</li>
-                                        <li>{{ PD.teln_movil }}</li>
-                                    </ul>
+                                    <div>
+                                        <span>Teléfono:</span>
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li>{{ PD.teln_Casa }}</li>
+                                            <li>{{ PD.teln_movil }}</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                </section>
+                            </article>
+                    </section>
                     {% endfor %}
-            </article>
+                </article>
+            {% endif %}  
         </section>
     </section>
     <aside class="aside row_2">
@@ -70,6 +105,7 @@
             <li><a href="{% url 'C_apellidos_pd' %}">Apellido</a></li>
             <li><a href="{% url 'C_cedula_pd' %}"   >Cédula</a></li>
             <li><a href="{% url 'C_materia_pd' %}"  >Materia</a></li>
+            <li><a href="{% url 'C_especialidades_pd' %}"  >Especialidad</a></li>
         </ul>
     </aside>
 </section>
