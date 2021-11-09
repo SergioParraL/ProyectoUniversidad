@@ -4,55 +4,55 @@
 {% block content %}
 
 {% if messages %}
-  {% for message in messages %}
-      <div class="notification {{message.tags}}">
-          {{ message }}
-      </div>
-
-  {% endfor %}
+    {% for message in messages %}
+        <div class="notification {{message.tags}}">
+            {{ message }}
+        </div>
+    {% endfor %}
 {% endif %}
 
-<article>
-  <section class="title">
-    
-    <h1>Sube una Nueva Plantilla de Notas</h1>
-  </section>
-
-<hr>
-
-<div class="conform">
-
-
-  {%  if  "valido" in request.GET %}
-
+{%  if  "valido" in request.GET %}
     <p class="Reg_correcto">Planilla de Notas Subida Correctamente</p>
-    <a href="{% url 'ConsultaN' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+    <a href="{% url 'ConsultaN' %}">
+        <button class="button_PA" type="button" value="">CONTINUAR</button>
+    </a>
+{% endif %}
 
-  {% endif %}
+<section class="title">
+    <h1>Sube una Nueva Plantilla de Notas</h1>
+</section>
 
+<section class="container">
+    <section class="row_1">
+        <section class="_princ_ sectionPrincDocuments">
+            <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+                <section>
+                    <div class="wrapper">
+                        <label>Grado</label>     
+                        {{ form.Grado }}
+                    </div>
+                    <div class="wrapper">
+                        <label>Seccion</label>
+                        {{ form.Seccion }}
+                    </div>
+                    <div class="wrapper">
+                        <label>Documento</label>
+                        {{ form.Documento }}
+                    </div>
+                </section>
+                <section class="containerAside">
+                    <aside class="wrapper">
+                        <button class="button_button button_Docs" type="submit">Subir Archivo</button>
+                            <a class="button_button button_Docs" href="{% url 'ConsultaD' %}">Consultar Archivos</a>
+                    <!-- <button class="button_button">Subir Planilla de Notas</button> -->
+                    </aside>
+                </section>
+            </form>
+            
+        </section>
+    </section>
+</section>
 
-    <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-    <div id="centrar">
-
-    <table style="color: white; margin: 20px auto;">
-    <div class="form_doc">
-      <label>Grado</label>     
-      {{ form.Grado }}
-    </div>
-    <div class="form_doc">
-        <label>Seccion</label>
-      {{ form.Seccion }}
-    </div>
-    <div class="form_doc">
-        <label>Documento</label>
-      {{ form.Documento }}
-    </div>
-
-    </table>
-
-    <button class="button_button">Subir Planilla de Notas</button>
-
-  </form>
     
     
     
