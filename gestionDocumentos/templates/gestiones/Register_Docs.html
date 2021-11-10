@@ -12,17 +12,6 @@
   {% endfor %}
 {% endif %}
 
-<article>
-  <section class="title">    
-    <h1>Sube un Nuevo Documento</h1>
-  </section>
-
-<hr>
-
-
-<div class="conform">
-
-
   {%  if  "valido" in request.GET %}
 
 
@@ -30,47 +19,43 @@
     <a href="{% url 'ConsultaD' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
 
   {% endif %}
+<section class="title">    
+    <h1>Sube un Nuevo Documento</h1>
+</section>
+<article>
 
-  <div id="centrar">
-    <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-
-    <table style="color: white; margin: 20px auto;">
-      <div id="special_form_doc" class="form_doc  special_form_doc">
-      <label>Nombre Documento</label>     
-      {{ form.Nombre_Documento }}
-    </div>
-    <div id="special_form_doc" class="form_doc">
-      <label>Documento</label>     
-      {{ form.Documento }}
-    </div>
-    <div id="special_form_doc" class="form_doc special_form_doc">
-      <label>Tipo</label>     
-      {{ form.Tipo }}
-    </div>
-    <div id="special_form_doc" class="form_doc special_form_doc">
-      <label>Formato</label>     
-      {{ form.Formato }}
-    </div>
-
-    </table>
-
-    <button class="button_button" type="submit">Subir Archivo</button>
-
-  </form>
-    
-    
-    
-</div>
-
-  <div class="text_gest">
-
-    <p>
-      Dale click  para Consultar los Documentos Registrados
-      <br>
-      <br>
-      <a href="{% url 'ConsultaD' %}">aquí</a>
-    </p>
-  </div>
-</article>
+<section class="container">
+    <section class="row_1">
+        <section class="_princ_ sectionPrincDocuments">
+            <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+                <section>
+                    <div id="" class="wrapper  ">
+                        <label>Nombre del Documento</label>     
+                        {{ form.Nombre_Documento }}
+                    </div>
+                    <div id="" class="wrapper">
+                        <label>Seleccionar</label>     
+                        {{ form.Documento }}
+                    </div>
+                    <div id="" class="wrapper ">
+                        <label>Tipo</label>     
+                        {{ form.Tipo }}
+                    </div>
+                    <div id="" class="wrapper ">
+                        <label>Formato</label>     
+                        {{ form.Formato }}
+                    </div>
+                </section>
+                <section class="containerAside">
+                    <aside class="wrapper">
+                            <!-- <h2>Dale click  para Consultar los Documentos Registrados</h2> -->
+                            <button class="button_button button_Docs" type="submit">Subir Archivo</button>
+                            <a class="button_button button_Docs" href="{% url 'ConsultaD' %}">Consultar Archivos</a>
+                    </aside>
+                </section>
+            </form>
+        </section>
+    </section>
+</section>
 
 {% endblock content %}

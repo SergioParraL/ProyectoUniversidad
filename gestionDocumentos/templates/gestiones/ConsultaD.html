@@ -3,99 +3,70 @@
 
 {% block content %}
 
-<article>
-
-<div> 
-
-  <section class="title">
-    {% if messages %}
-      {% for message in messages %}
-          <div class="notification {{message.tags}}">
-              {{ message }}
-          </div>
-
-      {% endfor %}
-    {% endif %}
-    <h1 >¿Quieres subir un Nuevo Documento?</h1>
-    <img src="">
-    <h2>Dale click <a href="{% url 'Docs' %}"><bottun>aquí</bottun><a> </h2>
-  <section class="title">
-
- <br><br>
-
-  <hr>
-
-</div>
-<div>
-
-  <form action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-    <div id="centrar">
-      <div class="flex form">
-
-
-          <label style="padding-right: 1.7em;">Nombre del Documento</label>
-          <input  type="text" name="buscar_nombre" value="">
-
-
-      </div>
+<section class="title">
+    <h1 class="title">Documentos Registrados</h1>
+</section>
+{% if messages %}
+  {% for message in messages %}
+      <div class="notification {{message.tags}}">
+          {{ message }}
       </div>
 
-      <div class="button">
-        <input  type="submit" value="Consultar" name="Buscar">
+  {% endfor %}
+{% endif %}
 
-      </div>
-
-  </form>
-</div>
-
-<br><br>
-
-  <hr>
-
-<br><br>
-
-<div class="wrapper">
-
-    <h1 class="title">Documento Registrados</h1>
-    <div class="table">
-    
-
-      <table class="table">
-
-        <thead>
-
-          <tr>
-            <th>Nombre del Documento</th>
-            <th>Opciones</th>
-          </tr>
-        </thead>   
-
-        <tbody class="tbody">
-
-          {% for documento in documento %}
-
-            <tr class="lol_2">
-              <td class="lol">{{documento.Nombre_Documento}}</td>
-              <td class="lol olo">
-                {% if request.user.is_PA == True %}
-                  <a href="{% url 'Actualizar_Docs' documento.id %}"><bottun>Actualizar</bottun>
-                    <div class="icon_act">A</div>
-                  </a>
-                  
-                  <a href="{% url 'Eliminar_Docs' documento.id %}"><bottun>Eliminar</bottun>
-                    <div class="icon_elim">E</div>
-                  </a>  
-                {% endif %}          
-              </td>
-            </tr>
-          {% endfor %}
-
-        </tbody>  
-      </table>
-    </div>
-
-</div>
-</article>
-
-
+<section class="container">
+    <section class="row_1">
+        <section class="_princ_ sectionPrincDocuments">
+            <section>
+                <form class="form" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+                    <input  type="text" name="buscar_nombre" value="" placeholder="Filtrar">
+                    <input  type="submit" value="Consultar" name="Buscar">
+                </form>
+                <section class="data">
+                    {% for documento in documento %}
+                    <section class="prueba ContainerData">
+                        <article class="fontSecond">
+                            <div class="DataSecond">
+                                <span>
+                                    Nombre del Documento:
+                                </span>
+                                
+                            </div>
+                            <div class="name">
+                                <span>
+                                    {{documento.Nombre_Documento}}
+                                </span>
+                            </div>
+                        </article>
+                        <article class="fontSecond">
+                            {% if request.user.is_PA == True %}
+                            <div class="options">
+                                <span>
+                                    <a href="{% url 'Actualizar_Docs' documento.id %}">
+                                        <div class="imgOptions update" title="Actualizar"></div>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a href="{% url 'Eliminar_Docs' documento.id %}">
+                                        <div class="imgOptions delete" title="Eliminar"></div>
+                                    </a>  
+                                </span>
+                            </div>
+                            {% endif %}          
+                        </article>
+                    </section>
+                    {% endfor %}
+                </section>
+            </section>
+            <section class="containerAside">
+                <aside class="wrapper wrapperSpecial">
+                    <a class="button_button button_Docs" href="{% url 'Docs' %}">Subir Documentos<a>
+                </aside>
+            </section>
+        </section>
+    </section>
+</section>
 {% endblock content %}
+
+
