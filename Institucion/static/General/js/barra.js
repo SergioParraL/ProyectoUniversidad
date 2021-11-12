@@ -24,4 +24,28 @@ function tMenu () {
 	}
 }
 
+function tCardData () {
+	// alert('entrando')
+	const d = document
+	const act = 'is-active'
+	let icon = d.querySelector('#menuArrowCard')
+	let mActive = icon.classList.contains(act)
+	let card = d.querySelector('#card')
+
+	let first = d.querySelector('.cardUserAct')
+	let second = d.querySelector('.cardButtonDesp')
+
+	if (mActive == true) {
+		card.style.top = '-32%'
+		first.classList.remove('cardShadow')
+		second.classList.remove('cardShadow')
+		icon.classList.remove(act)
+	}else {
+		card.style.top = '0%'
+		icon.classList.add(act)
+		first.classList.add('cardShadow')
+		second.classList.add('cardShadow')
+	}
+}
+
 
