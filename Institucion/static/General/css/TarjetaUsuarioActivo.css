@@ -1,9 +1,10 @@
 .card{
 	transition: all;
 	transition-duration: 1s;
-	position: absolute;
+	position: fixed;
 	top: -32%;
 	right: 2%;
+	z-index: 1;
 }
 
 .cardShadow{
