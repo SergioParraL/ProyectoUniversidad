@@ -1,0 +1,40 @@
+.sectionPrincDocuments{
+	/*background: white;*/
+}
+.containerAside{
+	/*border: 1px solid blue;*/
+	height: 35vh;
+	display: flex;
+	align-items: flex-end;
+}
+.wrapper{
+	border: none;
+}
+
+.ContainerData{
+	padding: .5em 1.4em;
+}
+.wrapper input, .wrapper select{
+	width: 90%;
+	/*border: 1px solid orange;*/
+}
+
+.wrapper label{
+	width: 10em;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+
+.button_Docs{
+	width: 40%;
+	height: 10vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/*border: 1px solid white;*/
+}
+
+.wrapperSpecial{
+	justify-content: center;
+}

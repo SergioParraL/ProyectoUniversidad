@@ -264,7 +264,8 @@
    * Collapse
    */
 .hamburger--collapse .hamburger-inner {
-  top: auto;
+  /*top: auto;*/
+  /*sadasd*/
   bottom: 0;
   transition-duration: 0.13s;
   transition-delay: 0.13s;

@@ -43,7 +43,7 @@
                                 <span>Cédula: {{estudiantes.cedula}}</span>
                                 <span>Grado:
                                     {%if request.method == 'GET' %}
-                                        {% with Grado=Filtro id=estudiantes.id %} 
+                                        {% with Grado=Filtro id=forloop.revcounter %} 
                                             {{ Grado|concat_Grado:id }} 
                                         {% endwith %}
                                     {% endif %}
@@ -56,7 +56,7 @@
 
                                 <span>Sección: 
                                     {%if request.method == 'GET' %}
-                                        {% with Seccion=Filtro id=estudiantes.id %} 
+                                        {% with Seccion=Filtro id=forloop.revcounter %} 
                                             {{ Seccion|concat_Seccion:id }} 
                                         {% endwith %}
                                     {% endif %}
@@ -93,7 +93,6 @@
                         </article>
                 </section>
                     {% endfor %}
-
             {% endif %}   
             </div>
         </div>
