@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'Consultas.templatetags.concat_Grado',
     'Consultas.templatetags.concat_Seccion',
+    'Institucion.templatetags.profileUsers_Data',
 ]
 
 MIDDLEWARE = [

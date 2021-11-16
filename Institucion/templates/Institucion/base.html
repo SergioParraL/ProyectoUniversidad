@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    {% load profileUsers_Data %}
     {% load static %}
         <title>{% block title %} {% endblock%}</title>     
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
@@ -28,29 +29,42 @@
         <section class="cardUserAct">
             <form>
                 <section class="cardSlot_1">
-                    <article class="photo cardPhoto">
-                        <!-- <img src="{{ Ver.foto.url }}"> -->
-                        <img src="../../static/General/img/wallpaper.png">
-                    </article>
-                    <article class="cardPersonalData">
-                        <article class="PersonalDataSlot">
-                            Maria Juana de la Concepcion
+
+                        <article class="photo cardPhoto">
+                            <!-- <img src="{{ Ver.foto.url }}"> -->
+                            <img src={% with User=request.user cnd='4' %}{{User|profileUsers_Data:cnd}}{% endwith  %}>
                         </article>
-                        <section>
-                            <div class="PersonalDataSlot">
-                                CI:
-                                30.002.992
-                            </div>
-                            <div class="PersonalDataSlot">
-                                Cargo:
-                                Docente
-                            </div>
-                        </section>
-                    </article>
+                        <article class="cardPersonalData">
+                            <article class="PersonalDataSlot">
+                            {% with User=request.user cnd="0" %}{{User|profileUsers_Data:cnd}}{% endwith  %}
+                            {% with User=request.user cnd="1" %}{{User|profileUsers_Data:cnd}}{% endwith  %}
+                            </article>
+                            <section>
+                                <div class="PersonalDataSlot">
+                                    CI:
+                                    {% with User=request.user cnd="2" %}
+                                        {{User|profileUsers_Data:cnd}}
+                                    {% endwith  %}
+                                </div>
+                                <div class="PersonalDataSlot">
+                                    Cargo:
+
+                                    {% with User=request.user cnd="3" %}
+                                        {{User|profileUsers_Data:cnd}}
+                                    {% endwith  %}
+                                </div>
+                            </section>
+                        </article>
+
                 </section>
                 <section class="cardSlot_2">
                     <article class="PersonalDataSlot">
-                        <a href="{% url 'Actualizar_PA' request.user.id %}">Actualizar Perfil</a>
+                        {% if request.user.is_PA == True %}
+                            <a href="{% url 'Actualizar_PA' request.user.id %}">Actualizar Perfil</a>
+                        {% endif %}
+                        {% if request.user.is_PD == True %}
+                            <a href="{% url 'Actualizar_PD' request.user.id %}">Actualizar Perfil</a>
+                        {% endif %}
                     </article>
                     <article class="PersonalDataSlot">
                         <a href="{% url 'logout' %}">Salir</a>
@@ -109,12 +123,13 @@
                                     <a href="{% url 'Actualizar_PA' request.user.id %}">Perfil Administrativo Actualizar</a>
                                 </li> -->
                             {% endif %}
+                            <!-- <li>  ESTE BOTON YA SE CAMBIO AL PERFIL DESPLEGABLE
                             {% if request.user.is_PD == True%}  
                                 <li class="fin">
                                     <a href="{% url 'Actualizar_PD' request.user.id %}">Perfil Docente Actualizar</a>
                                 </li>
                             {% endif %}
-
+                            </li> -->
                         </ul>
                     </li><!-- -------------Registro---------------- -->
                     <li class="prin">
