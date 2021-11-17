@@ -12,7 +12,15 @@
 <hr>
 
 <div class="conform">
+  {%if result == 'noMatch'%}
+  <p>RECUERDA, SOLO PUEDES ACTUALIZAR LAS PLANILLAS DE NOTAS QUE TU SUBISTES</p>
+  <P>Dale click <a href="{% url 'ConsultaN' %}"><bottun>aquí</bottun><a> para volver a intentarlo</P>
+  {% endif %}
 
+  {%if result == 'noMatchPD'%}
+  <p>RECUERDA, QUE DEBES ACTUALIZAR TUS DATOS ANTES DE ACTUALIZAR UNA PLANILLA DE NOTAS</p>
+  <P>Dale click <a href="{% url 'Actualizar_PD' request.user.id %}"><bottun>aquí</bottun><a> para Actualizar tus Datos de Perfil</P>
+  {% endif %}
 
   {%  if  "valido" in request.GET %}
 
@@ -21,41 +29,51 @@
 
   {% endif %}
 
+  {% if result != 'noMatch' %}
+    {% if result != 'noMatchPD' %}
+      <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+        <div id="centrar">
+        <table style="color: white; margin: 20px auto;">
+          <label for="PD_Notes" style="visibility:hidden">Usuario</label>
+          <select name="PD_Notes" required id="id_PD_Notes" style="visibility:hidden">
+            <option value="{{pdProfile.id}}"></option>
+          </select>
+          <label for="Nombre_Notas" style="visibility:hidden">Nombre</label>     
+          <input type="text" name="Nombre_Notas" maxlength="30" required id="id_Nombre_Notas" value="Planilla de Notas", style="visibility:hidden">
 
-    <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-    <div id="centrar">
+        <div class="wrapper">
+          <label>Grado:</label>     
+          {{ form.Grado }}
+        </div>
+        <div class="wrapper">
+            <label>Seccion:</label>
+          {{ form.Seccion }}
+        </div>
+        <div class="wrapper">
+          <label>Momento:</label>
+          {{ form.Momento }}
+        </div>
+        <div class="wrapper">
+          <label for="{{ form.Documento.id_for_label }}">Documento: </label>
+          <input id="{{ form.Documento.id_for_label }}" type="file" name="{{ form.Documento.name }}" value="{{ form.Documento|urlencode}}">
+        </div>
 
-    <table style="color: white; margin: 20px auto;">
-    <div class="form_doc">
-      <label>Grado</label>     
-      {{ form.Grado }}
-    </div>
-    <div class="form_doc">
-        <label>Seccion</label>
-      {{ form.Seccion }}
-    </div>
-    <div class="form_doc">
-        <label>Documento</label>
-      {{ form.Documento }}
-    </div>
+        
+        </table>
 
-    </table>
+        <section class="containerAside">
+          <aside class="wrapper">
+            <button class="button_button button_Docs" type="submit">Actualizar Notas</button>
+                <a class="button_button button_Docs" href="{% url 'ConsultaN' %}">Consultar Planillas de Notas Registradas</a>
+        <!-- <button class="button_button">Subir Planilla de Notas</button> -->
+          </aside>
+        </section>
+      </form>
+    {% endif %}
+  {% endif %}
 
-    <button class="button_button">Actualizar Planilla de Notas</button>
-
-  </form>
-    
-    
-    
 </div>
-<div class="text_gest">
-  <p>
-    Dale click  para Consultar las Planillas de Notas Registrados 
-    <br>
-    <br>
-    <a id="nino" href="{% url 'ConsultaN' %}">Aquí</a>
-  </p>
-</div>
+
 </article>
 
 {% endblock content %}

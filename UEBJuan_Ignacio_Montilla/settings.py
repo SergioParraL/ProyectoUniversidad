@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'Consultas.templatetags.concat_Grado',
     'Consultas.templatetags.concat_Seccion',
+    'gestionDocumentos.templatetags.concat_Momento',
     'Institucion.templatetags.profileUsers_Data',
 ]
 

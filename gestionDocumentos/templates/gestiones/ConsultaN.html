@@ -1,6 +1,9 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
-
+{% load mathfilters %}
+{% load concat_Grado %}
+{% load concat_Seccion %}
+{% load concat_Momento %}
 {% block content %}
 
 
@@ -23,46 +26,74 @@
         <section class="_princ_ sectionPrincDocuments">
             <section>
                 <form class="form" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+                    <input  type="text" name="buscar_nombre_notas" value="" placeholder="Nombre de la Planilla">
                     <input type="text" name="buscar_grado" value="" placeholder="Grado">
                     <input type="text" name="buscar_seccion" value="" placeholder="Sección">
+                    <input  type="text" name="buscar_momento" value="" placeholder="Momento">
                     <input  type="submit" value="Consultar" name="Buscar">
                 </form>
                 <section class="data">
+
+                {%if Filtro == 'noMatch'%}
+                    <p>NO HAY RESULTADOS</p>
+                {% endif %}
+
+                {%if Filtro != 'noMatch'%}
                     {% for notas in notas %}
                         <section class="prueba ContainerData">
                             <article class="fontSecond">
                                 <div class="DataSecond">
-                                    <span>Nombre:
-                                        {{notas.Documento}}
+                                    <div class="name">
+                                        <span>Nombre:
+                                            {{notas.Nombre_Notas}}
+                                        </span>
+                                        <span>Subido por:
+                                            {{notas.PD_Notes}}
+                                        </span>
+                                    </div>
+                                    <span>ID(comprobar):
+                                        {{notas.id}}
                                     </span>
                                 </div>
                                 <div class="DataSecond">
                                     <span>Grado:
-                                        {{notas.Grado}}
+                                        {% with Grado=Filtro id=forloop.revcounter %} 
+                                            {{ Grado|concat_Grado:id }} 
+                                        {% endwith %}
                                     </span>
-                                    <span>Sección:        
-                                        {{notas.Seccion}}    
-                                    </span> 
+                                    <span>Sección: 
+                                        {% with Seccion=Filtro id2=forloop.revcounter %} 
+                                            {{ Seccion|concat_Seccion:id2 }} 
+                                        {% endwith %}
+                                    </span>
+                                    <span>Momento: 
+                                        {% with Momento=Filtro id=forloop.revcounter %} 
+                                            {{ Momento|concat_Momento:id }} 
+                                        {% endwith %}
+                                    </span>
                                 </div>
                             </article>
                             <article class="fontSecond">
                                 <!-- {% if request.user.is_PD == True %} -->
                                     <article class="options">
-                                        <span>
-                                            <a href="{% url 'Actualizar_Notas' notas.id %}" >
-                                                <div class="imgOptions update" title="Actualizar"></div>
-                                            </a>
-                                        </span>
-                                        <span>
-                                            <a href="{% url 'Eliminar_Notas' notas.id %}">
-                                            <div class="imgOptions delete" title="eliminar"></div>
-                                            </a>
-                                        </span>
+                                        {% if request.user.is_PD == True %}
+                                            <span>
+                                                <a href="{% url 'Actualizar_Notas' notas.id %}" >
+                                                    <div class="imgOptions update" title="Actualizar"></div>
+                                                </a>
+                                            </span>
+                                            <span>
+                                                <a href="{% url 'Eliminar_Notas' notas.id %}">
+                                                <div class="imgOptions delete" title="eliminar"></div>
+                                                </a>
+                                            </span>
+                                        {% endif %}
                                     </article>
                                 <!-- {% endif %} -->
                             </article>
                         </section>
                     {% endfor %}
+                {% endif %}
                 </section>
             </section>
             <section class="containerAside">
