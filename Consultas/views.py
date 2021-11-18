@@ -1,7 +1,4 @@
-from django.db.models.query import QuerySet
 from django.shortcuts import render,redirect
-from django.core import serializers
-import json
 
 #BBDD----------------
 from Registros.models import Estudiantes, PersonalAdm, PersonalDocente, Representantes
@@ -19,136 +16,6 @@ from django.contrib import messages
 
 
 #---Estas son las vistas de las Consultas a la BBDD de los Estudiantes  
-
-#---- Funciones Globales -------
-#
-""" def Filter( estid = []):
-    for m in filterGradoSeccion():
-        Grados_list = [
-            
-            ('1ero'),
-            ('2do'),
-            ('3ro'),
-            ('4to'),
-            ('5to'),
-            ('6to'),
-        ]
-        Ver = m
-        Grado = m[1] - 1
-        select_grado = Grados_list[Grado]
-
-        Secciones_list = [
-            
-            ('A'),
-            ('B'),
-            ('C'),
-            ('D'),
-            ('E'),
-            ('F'),
-            ('G'),
-            ('H'),
-        ]
-
-        Seccion = m[2] - 1
-        select_sec = Secciones_list[Seccion]
-        estid.append([m[0],select_grado,select_sec ])
-        #Filters = [select_grado,select_sec]
-    return estid
-
-def filterGradoSeccion( estid = []):
-
-    for n in Estudiantes.objects.all():
-        #filter = filterGradoSeccion(n)
-        estid.append([n.id,n.grado,n.seccion ])
-
-    return estid """
-def filterGradoSeccion(estudiantes):
-        estid = []
-        if estudiantes:
-            for n in estudiantes:
-                Grados_list = [
-                    
-                    ('1ero'),
-                    ('2do'),
-                    ('3ro'),
-                    ('4to'),
-                    ('5to'),
-                    ('6to'),
-                ]
-
-                Grado = n.grado - 1
-                select_grado = Grados_list[Grado]
-
-
-                Secciones_list = [
-                    
-                    ('A'),
-                    ('B'),
-                    ('C'),
-                    ('D'),
-                    ('E'),
-                    ('F'),
-                    ('G'),
-                    ('H'),
-                ]
-
-                Seccion = n.seccion - 1
-                select_sec = Secciones_list[Seccion]
-                estid.append([n.id,select_grado,select_sec ])
-                estid_ordenado = sorted(estid)
-
-
-            select_grado = estid_ordenado
-            select_sec = estid_ordenado
-            return estid_ordenado
-        else:
-            result = None
-        return result
-
-
-def filterMateriasEsp(PD_ME):
-        pdid = []
-        if PD_ME:
-            for n in PD_ME:
-                Materias_list = [
-                    
-                    ('Lenguaje'),
-                    ('Comunicación y Cultura'),
-                    ('Ciencias Naturales y Sociedad'),
-                    ('Ciencias Sociales'),
-                    ('Ciudadanía e Identidad'),
-                    ('Educación Física, deporte y Recreación'),
-                    ('Matemática'),
-                ] 
-
-                Materia = n.materia - 1
-                select_materia = Materias_list[Materia]
-
-
-                Especialidades_list = [
-                    
-                    ('Desarrollo Endogeno'),
-                    ('Educación Física'),
-                    ('Música'),
-                    ('Teatro'),
-                    ('Danza'),
-                    ('Manualidades'),
-                    ('Aula Integrada'),
-                    ('Producción'),
-                    ('CRA (Centro de Recursos para el Aprendizaje)'),
-                ] 
-
-                Esp = n.especialidades - 1
-                select_esp = Especialidades_list[Esp]
-                pdid.append([n.id,select_materia,select_esp ])
-                pdid_ordenado = sorted(pdid)
-
-            return pdid_ordenado
-        else:
-            result = None
-        return result
-
-
 
 @login_required
 def Consulta_Es(request):
@@ -417,9 +284,8 @@ def Consulta_PD(request):
                 PD=PD_profile.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, cedula__icontains=cedula, materia__icontains=materia, especialidades__icontains=especialidades)               
                 
                 #-----Filter de Campos Especiales ----------
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -433,9 +299,8 @@ def Consulta_PD(request):
                 PD=PD_profile.objects.all() 
 
                 #-----Filter de Campos Especiales ----------       
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -457,9 +322,8 @@ def C_nombres_pd(request):
                 PD=PD_profile.objects.filter(nombres__icontains=nombres)               
                 
                 #-----Filter de Campos Especiales ----------       
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -471,9 +335,8 @@ def C_nombres_pd(request):
             else:                       
                 PD=PD_profile.objects.all()               
                 #-----Filter de Campos Especiales ----------       
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -495,9 +358,8 @@ def C_apellidos_pd(request):
                 PD=PD_profile.objects.filter(apellidos__icontains=apellidos)                
                 
                 #-----Filter de Campos Especiales ----------       
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -509,9 +371,8 @@ def C_apellidos_pd(request):
             else:                        
                 PD=PD_profile.objects.all()                
                 #-----Filter de Campos Especiales ----------       
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -533,9 +394,8 @@ def C_cedula_pd(request):
                 PD=PD_profile.objects.filter(cedula__icontains=cedula)                
                 
                 #-----Filter de Campos Especiales ----------       
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -547,9 +407,8 @@ def C_cedula_pd(request):
             else:                        
                 PD=PD_profile.objects.all()                
                 #-----Filter de Campos Especiales ----------       
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -572,9 +431,8 @@ def C_materia_pd(request):
                 PD=PD_profile.objects.filter(materia__icontains=materia)                
                 
                 #-----Filter de Campos Especiales ----------       
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -586,9 +444,8 @@ def C_materia_pd(request):
             else:                        
                 PD=PD_profile.objects.all()                
                 #-----Filter de Campos Especiales ----------       
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -612,9 +469,8 @@ def C_especialidades_pd(request):
                 PD=PD_profile.objects.filter(especialidades__icontains=especialidades)                            
                 
                 #-----Filter de Campos Especiales ----------       
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -626,9 +482,8 @@ def C_especialidades_pd(request):
             else:                        
                 PD=PD_profile.objects.all()                
                 #-----Filter de Campos Especiales ----------       
-                filterValues = filterMateriasEsp(PD)
-                if filterValues:
-                    filterValues = filterValues
+                if PD:
+                    filterValues = PD
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -798,37 +653,9 @@ def Ver_Es(request, id):
     
     if request.method == 'GET':
         Ver = Estudiantes.objects.get(id = id)
-        Grados_list = [
-            
-            ('1ero'),
-            ('2do'),
-            ('3ro'),
-            ('4to'),
-            ('5to'),
-            ('6to'),
-        ]
-
-        Grado = Ver.grado - 1
-        select_grado = Grados_list[Grado]
-
-
-        Secciones_list = [
-            
-            ('A'),
-            ('B'),
-            ('C'),
-            ('D'),
-            ('E'),
-            ('F'),
-            ('G'),
-            ('H'),
-        ]
-
-        Seccion = Ver.seccion - 1
-        select_sec = Secciones_list[Seccion]
 
         contx={
-            'Ver':Ver, 'Grado':select_grado, 'Seccion':select_sec
+            'Ver':Ver,
         }
 
     return render(request, "consultas/ESTUDIANTES/Ver_Estudiantes.html", contx)

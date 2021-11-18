@@ -1,8 +1,8 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
 {% load mathfilters %}
-{% load concat_Grado %}
-{% load concat_Seccion %}
+{% load concat_Materia %}
+{% load concat_Especialidades %}
 {% block content %}
 
 <section class="title">
@@ -42,31 +42,10 @@
                                 <div class="DataSecond fontSecond">
                                     <span>Cédula: {{PD.cedula}}</span>
                                     <span>Materia: 
-                                        {%if request.method == 'GET' %}
-                                            {% with Materia=Filtro id=forloop.revcounter %} 
-                                                {{ Materia|concat_Grado:id }} 
-                                            {% endwith %}
-                                        {% endif %}
-                                        {%if request.method == 'POST' %}
-                                            {% with Materia=Filtro id2=forloop.revcounter %} 
-                                                {{ Materia|concat_Grado:id2 }} 
-                                            {% endwith %}
-                                        {% endif %}
-
+                                        {{ PD.materia|concat_Materia }} 
                                     </span>
                                     <span>Especialidad: 
-
-                                        {%if request.method == 'GET' %}
-                                            {% with Esp=Filtro id=forloop.revcounter %} 
-                                                {{ Esp|concat_Seccion:id }} 
-                                            {% endwith %}
-                                        {% endif %}
-                                        {%if request.method == 'POST' %}
-                                            {% with Esp=Filtro id2=forloop.revcounter %} 
-                                                {{ Esp|concat_Seccion:id2 }} 
-                                            {% endwith %}
-                                        {% endif %}
-
+                                        {{ PD.especialidades|concat_Especialidades }} 
                                     </span>
                                 </div>
                             </article>

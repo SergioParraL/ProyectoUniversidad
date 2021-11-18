@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'Consultas.templatetags.concat_Grado2',
     'Consultas.templatetags.concat_Seccion',
     'Consultas.templatetags.concat_Seccion2',
+    'Consultas.templatetags.concat_Materia',
+    'Consultas.templatetags.concat_Especialidades',
     'gestionDocumentos.templatetags.concat_Momento',
     'Institucion.templatetags.profileUsers_Data',
 ]

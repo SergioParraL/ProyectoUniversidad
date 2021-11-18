@@ -1,6 +1,7 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
-
+{% load concat_Materia %}
+{% load concat_Especialidades %}
 {% block content %}
 
 <section class="title">
@@ -48,7 +49,13 @@
                         <div class="plAct">
                             <label for="cargo">Materia</label>
                             <div>
-                                {{ Ver.materia }}
+                                {{ Ver.materia|concat_Materia }}
+                            </div>
+                        </div>
+                        <div class="plAct">
+                            <label for="cargo">Especialidades</label>
+                            <div>
+                                {{ Ver.especialidades|concat_Especialidades }}
                             </div>
                         </div>
                     </section>
@@ -79,7 +86,7 @@
                         <div class="plAct">
                             <label for="email">Correo Electronico</label>
                             <div>
-                                {{ Ver.email }}
+                                {{ Ver.usuario.email }}
                             </div>
                         </div>
                     </section>
