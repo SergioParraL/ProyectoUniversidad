@@ -159,9 +159,8 @@ def Consulta_Es(request):
         grado = request.POST.get("buscar_grado")
         seccion = request.POST.get("buscar_seccion")
         estudiantes=Estudiantes.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, grado__icontains=grado, seccion__icontains=seccion)
-        filterValues = filterGradoSeccion(Estudiantes.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, grado__icontains=grado, seccion__icontains=seccion))
-        if filterValues:
-            filterValues = filterValues
+        if estudiantes:
+            filterValues = estudiantes
         else:
             filterValues = 'noMatch'
         ctx= { 
@@ -172,9 +171,8 @@ def Consulta_Es(request):
     
     else:       
         estudiantes=Estudiantes.objects.all()
-        filterValues = filterGradoSeccion(Estudiantes.objects.all())
-        if filterValues:
-            filterValues = filterValues
+        if estudiantes:
+            filterValues = estudiantes
         else:
             filterValues = 'noMatch'
         ctx= { 
@@ -189,9 +187,8 @@ def C_nombres(request):
     if request.method == 'POST':
         nombres = request.POST.get("buscar_nombres") 
         estudiantes=Estudiantes.objects.filter(nombres__icontains=nombres)
-        filterValues = filterGradoSeccion(Estudiantes.objects.filter(nombres__icontains=nombres))
-        if filterValues:
-            filterValues = filterValues
+        if estudiantes:
+            filterValues = estudiantes
         else:
             filterValues = 'noMatch'
         ctx= { 
@@ -202,17 +199,14 @@ def C_nombres(request):
     
     else:        
         estudiantes=Estudiantes.objects.all()
-        filterValues = filterGradoSeccion(Estudiantes.objects.all())
-        if filterValues:
-            filterValues = filterValues
+        if estudiantes:
+            filterValues = estudiantes
         else:
             filterValues = 'noMatch'
         ctx= { 
 
             'estudiantes':estudiantes, 'Filtro':filterValues, 
         }
-
-        filterValues=filterValues.clear
         return render(request, "consultas/ESTUDIANTES/C_nombres.html", ctx)
 
 
@@ -222,9 +216,8 @@ def C_apellidos(request):
     if request.method == 'POST':   
         apellidos = request.POST.get("buscar_apellidos")
         estudiantes=Estudiantes.objects.filter(apellidos__icontains=apellidos)
-        filterValues = filterGradoSeccion(Estudiantes.objects.filter(apellidos__icontains=apellidos))
-        if filterValues:
-            filterValues = filterValues
+        if estudiantes:
+            filterValues = estudiantes
         else:
             filterValues = 'noMatch'
         ctx= { 
@@ -235,9 +228,8 @@ def C_apellidos(request):
 
     else:         
         estudiantes=Estudiantes.objects.all()
-        filterValues = filterGradoSeccion(Estudiantes.objects.all())
-        if filterValues:
-            filterValues = filterValues
+        if estudiantes:
+            filterValues = estudiantes
         else:
             filterValues = 'noMatch'
         ctx= { 
@@ -252,9 +244,8 @@ def C_grados(request):
     if request.method == 'POST':
         grado = request.POST.get("buscar_grado")
         estudiantes=Estudiantes.objects.filter(grado__icontains=grado)
-        filterValues = filterGradoSeccion(Estudiantes.objects.filter(grado__icontains=grado))
-        if filterValues:
-            filterValues = filterValues
+        if estudiantes:
+            filterValues = estudiantes
         else:
             filterValues = 'noMatch'
         ctx= { 
@@ -265,9 +256,8 @@ def C_grados(request):
     
     else:       
         estudiantes=Estudiantes.objects.all()
-        filterValues = filterGradoSeccion(Estudiantes.objects.all())
-        if filterValues:
-            filterValues = filterValues
+        if estudiantes:
+            filterValues = estudiantes
         else:
             filterValues = 'noMatch'
         ctx= { 
@@ -283,9 +273,8 @@ def C_secciones(request):
     if request.method == 'POST':
         seccion = request.POST.get("buscar_seccion")
         estudiantes=Estudiantes.objects.filter(seccion__icontains=seccion)
-        filterValues = filterGradoSeccion(Estudiantes.objects.filter(seccion__icontains=seccion))
-        if filterValues:
-            filterValues = filterValues
+        if estudiantes:
+            filterValues = estudiantes
         else:
             filterValues = 'noMatch'
         ctx= { 
@@ -296,9 +285,8 @@ def C_secciones(request):
     
     else:        
         estudiantes=Estudiantes.objects.all()
-        filterValues = filterGradoSeccion(Estudiantes.objects.all())
-        if filterValues:
-            filterValues = filterValues
+        if estudiantes:
+            filterValues = estudiantes
         else:
             filterValues = 'noMatch'
         ctx= { 
