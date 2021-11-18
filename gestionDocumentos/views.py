@@ -13,98 +13,6 @@ from django.contrib.auth.decorators import login_required
 #Messages----------------
 from django.contrib import messages
 
-#---- Funciones Globales -------
-#
-
-def filterGradoSeccion(notas):
-        notasid = []
-        if notas:
-            for n in notas:
-                Grados_list = [
-                    
-                    ('1ero'),
-                    ('2do'),
-                    ('3ro'),
-                    ('4to'),
-                    ('5to'),
-                    ('6to'),
-                ]
-
-                Grado = n.Grado - 1
-                select_grado = Grados_list[Grado]
-
-
-                Secciones_list = [
-                    
-                    ('A'),
-                    ('B'),
-                    ('C'),
-                    ('D'),
-                    ('E'),
-                    ('F'),
-                    ('G'),
-                    ('H'),
-                ]
-
-                Seccion = n.Seccion - 1
-                select_sec = Secciones_list[Seccion]
-
-                Momentos_list = [
-                    
-                    ('I'),
-                    ('II'),
-                    ('III'),
-                ]  
-
-                Momento = n.Momento - 1
-                select_Momento = Momentos_list[Momento]
-                notasid.append([n.id,select_grado,select_sec,select_Momento ])
-                notasid_ordenado = sorted(notasid)
-                
-            return notasid_ordenado
-        else:
-            result = None
-        return result
-
-
-def filterTipoFormat_Docs(docs):
-        docsid = []
-        if docs:
-            for n in docs:
-                Docs_tipo = [
-                    
-                    ('Boletin'),
-                    ('Constancia'),
-                    ('Planilla'),
-                    ('Convocatoria'),
-                    ('Otro'),
-                ]
-                Tipo = n.Tipo - 1
-                select_Tipo = Docs_tipo[Tipo]
-
-
-                Docs_format = [
-                    
-                    ('Word'),
-                    ('Excel'),
-                    ('PowerPoint'),
-                    ('PDF'),
-                    ('LibreOffice'),
-                    ('Otro'),
-                ]
-
-                Format = n.Formato - 1
-                select_Format = Docs_format[Format]
-                docsid.append([n.id,select_Tipo,select_Format ])
-                docsid_ordenado = sorted(docsid)
-
-            return docsid_ordenado
-        else:
-            result = None
-        return result
-
-
-
 
 #---Esta Vista Permite Registrar los Documentos
 
@@ -135,7 +43,6 @@ def Register_Docs(request):
                 }    
                 if form.is_valid():
                     form.save()
-                    #fasf=sdfasdf
                     return redirect('../../Gestion/Docs/?valido')
 
             messages.success(request, f'Usuario Autorizado: {request.user.username}')
@@ -165,9 +72,8 @@ def ConsultaD(request):
                 
                 #-----Filter de Campos Especiales ----------
                 
-                filterValues = filterTipoFormat_Docs(documento)
-                if filterValues:
-                    filterValues = filterValues
+                if documento:
+                    filterValues = documento
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -182,9 +88,8 @@ def ConsultaD(request):
                 
                 #-----Filter de Campos Especiales ----------
                 
-                filterValues = filterTipoFormat_Docs(documento)
-                if filterValues:
-                    filterValues = filterValues
+                if documento:
+                    filterValues = documento
                 else:
                     filterValues = 'noMatch'
                 ctx= { 
@@ -250,9 +155,8 @@ def ConsultaN(request):
         
         #-----Filter de Campos Especiales ----------
         
-        filterValues = filterGradoSeccion(notas)
-        if filterValues:
-            filterValues = filterValues
+        if notas:
+            filterValues = notas
         else:
             filterValues = 'noMatch'
         ctx= { 
@@ -268,10 +172,8 @@ def ConsultaN(request):
 
         #-----Filter de Campos Especiales ----------
         
-        filterValues = filterGradoSeccion(notas)
-        #fgd=gds
-        if filterValues:
-            filterValues = filterValues
+        if notas:
+            filterValues = notas
         else:
             filterValues = 'noMatch'
         ctx= { 

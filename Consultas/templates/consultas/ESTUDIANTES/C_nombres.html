@@ -54,20 +54,22 @@
 								<article class="fontSecond">
 									<div class="options">
 										<span>
-											<a href="{% url 'Actualizar_Es' estudiantes.id %}">
-												<div class="imgOptions update" title="Actualizar"></div>
-											</a>
-										</span>
-										<span>
 											<a href="{% url 'Ver_Es' estudiantes.id %}">
 												<div class="imgOptions look" title="Ver"></div>
 											</a>
 										</span>
-										<span>
-											<a href="{% url 'Eliminar_Es' estudiantes.id %}">
-												<div class="imgOptions delete" title="Eliminar"></div>
-											</a>
-										</span>
+										{% if request.user.is_PA == True %}
+											<span>
+												<a href="{% url 'Actualizar_Es' estudiantes.id %}">
+													<div class="imgOptions update" title="Actualizar"></div>
+												</a>
+											</span>
+											<span>
+												<a href="{% url 'Eliminar_Es' estudiantes.id %}">
+													<div class="imgOptions delete" title="Eliminar"></div>
+												</a>
+											</span>
+										{% endif %}
 									</div>
 									<div>
 										<div>Nacimiento:</div>

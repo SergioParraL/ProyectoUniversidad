@@ -1,8 +1,8 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
 {% load mathfilters %}
-{% load concat_Grado %}
-{% load concat_Seccion %}
+{% load concat_Grado2 %}
+{% load concat_Seccion2 %}
 {% load concat_Momento %}
 {% block content %}
 
@@ -57,19 +57,14 @@
                                 </div>
                                 <div class="DataSecond">
                                     <span>Grado:
-                                        {% with Grado=Filtro id=forloop.revcounter %} 
-                                            {{ Grado|concat_Grado:id }} 
-                                        {% endwith %}
+                                        {{ notas.Grado|concat_Grado2 }} 
                                     </span>
+
                                     <span>Sección: 
-                                        {% with Seccion=Filtro id2=forloop.revcounter %} 
-                                            {{ Seccion|concat_Seccion:id2 }} 
-                                        {% endwith %}
+                                        {{ notas.Seccion|concat_Seccion2 }} 
                                     </span>
                                     <span>Momento: 
-                                        {% with Momento=Filtro id=forloop.revcounter %} 
-                                            {{ Momento|concat_Momento:id }} 
-                                        {% endwith %}
+                                        {{ notas.Momento|concat_Momento }}
                                     </span>
                                 </div>
                             </article>

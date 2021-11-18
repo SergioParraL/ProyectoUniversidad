@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'Consultas.templatetags.concat_Materia',
     'Consultas.templatetags.concat_Especialidades',
     'gestionDocumentos.templatetags.concat_Momento',
+    'gestionDocumentos.templatetags.concat_Tipo',
+    'gestionDocumentos.templatetags.concat_Formato',
     'Institucion.templatetags.profileUsers_Data',
 ]
 
