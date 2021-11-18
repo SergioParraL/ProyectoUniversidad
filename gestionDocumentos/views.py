@@ -110,15 +110,24 @@ def filterTipoFormat_Docs(docs):
 
 @login_required
 def Register_Docs(request):
-
+    paUser= request.user
     if request.user.is_PA == True:
         if request.user.is_active == True:
             if request.method == 'GET':
-                form = Docs()
-                contx={
-                    'form':form
-                }
+                queryProfile= PA_profile.objects.filter(usuario_id=paUser.id)
+                if queryProfile:
+                    paProfile = PA_profile.objects.get(usuario_id=paUser.id)
+                    form = Docs()
+                    contx={
+                        'form':form, 'paProfile':paProfile
+                    }
+                else:
+                    result = 'noMatch'
 
+                    contx={
+                        'result': result
+                    }
+                    
             else:
                 form = Docs(request.POST, request.FILES)
                 contx = {
@@ -126,6 +135,7 @@ def Register_Docs(request):
                 }    
                 if form.is_valid():
                     form.save()
+                    #fasf=sdfasdf
                     return redirect('../../Gestion/Docs/?valido')
 
             messages.success(request, f'Usuario Autorizado: {request.user.username}')
@@ -142,8 +152,16 @@ def ConsultaD(request):
     if request.user.is_PA == True:
         if request.user.is_active == True:
             if request.method == 'POST':
-                documento = request.POST.get("buscar_nombre")
-                documento=DocsDB.objects.filter(Nombre_Documento__icontains=documento)
+                nombre = request.POST.get("buscar_nombre")
+                tipo = request.POST.get("buscar_tipo")
+                formato = request.POST.get("buscar_formato")
+                pa_Docs = request.POST.get("buscar_PA_Docs")
+                if pa_Docs:
+                    pa_Docs = pa_Docs
+                    documento=DocsDB.objects.filter(Nombre_Documento__icontains=nombre, Tipo__icontains=tipo, Formato__icontains=formato, PA_Docs_id=pa_Docs)
+                else:
+                    pa_Docs=''
+                    documento=DocsDB.objects.filter(Nombre_Documento__icontains=nombre, Tipo__icontains=tipo, Formato__icontains=formato)
                 
                 #-----Filter de Campos Especiales ----------
                 
@@ -271,18 +289,38 @@ def Actualizar_Docs(request, id):
     if request.user.is_PA == True:
         if request.user.is_active == True:
             doc = DocsDB.objects.get(id = id)
-            if request.method == 'GET':
-                form = Docs(instance= doc)
-                contx={
-                    'form':form,'form2':doc
-                }
+            queryProfile= PA_profile.objects.filter(usuario_id=request.user.id)
+            if queryProfile:
+                paProfile = PA_profile.objects.get(usuario_id=request.user.id)
+                if paProfile.id == doc.PA_Docs_id: 
+                    #sad=sdfsd    
+                    if request.method == 'GET':
+                        form = Docs(instance= doc)
+                        contx={
+                            'form':form,'paProfile':paProfile, 'form2':doc
+                        }
 
-            else:   
-                form = Docs(request.POST, request.FILES, instance=doc)
-                if form.is_valid():
-                    form.save()
-                    messages.success(request, f'Documento {doc.Nombre_Documento} Actualizado Correctamente')
-                    return redirect("ConsultaD")
+                        #sf=sd
+                    else:
+                        
+                        form = Docs(request.POST, request.FILES, instance=doc)
+                        if form.is_valid():
+                            form.save()
+                            messages.success(request, f'Documento {doc.Nombre_Documento} Actualizado Correctamente')
+                            return redirect("ConsultaD")
+
+                else:
+                    result = 'noMatch'
+
+                    contx={
+                        'result': result
+                    }
+            else:
+                result = 'noMatchPA'
+
+                contx={
+                    'result': result
+                }
 
             return render(request, "gestiones/Actualizar_Docs.html", contx)
 

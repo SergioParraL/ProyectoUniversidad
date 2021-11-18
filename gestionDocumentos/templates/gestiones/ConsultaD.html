@@ -1,6 +1,9 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
-
+{% load mathfilters %}
+{% load concat_Grado %}
+{% load concat_Seccion %}
+{% load concat_Momento %}
 {% block content %}
 
 <section class="title">
@@ -20,43 +23,70 @@
         <section class="_princ_ sectionPrincDocuments">
             <section>
                 <form class="form" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-                    <input  type="text" name="buscar_nombre" value="" placeholder="Filtrar">
+                    <input  type="text" name="buscar_nombre" value="" placeholder="Nombre del Doc.">
+                    <input  type="text" name="buscar_tipo" value="" placeholder="Tipo de Doc.">
+                    <input  type="text" name="buscar_formato" value="" placeholder="Formato del Doc">
+                    <input  type="text" name="buscar_PA_Docs" value="" placeholder="Personal Administrativo encargado">
                     <input  type="submit" value="Consultar" name="Buscar">
                 </form>
                 <section class="data">
+                {%if Filtro == 'noMatch'%}
+                    <p>NO HAY RESULTADOS</p>
+                {% endif %}
+
+                {%if Filtro != 'noMatch'%}
                     {% for documento in documento %}
-                    <section class="prueba ContainerData">
-                        <article class="fontSecond">
-                            <div class="DataSecond">
-                                <span>
-                                    Nombre del Documento:
-                                </span>
-                                
-                            </div>
-                            <div class="name">
-                                <span>
-                                    {{documento.Nombre_Documento}}
-                                </span>
-                            </div>
-                        </article>
-                        <article class="fontSecond">
-                            {% if request.user.is_PA == True %}
-                            <div class="options">
-                                <span>
-                                    <a href="{% url 'Actualizar_Docs' documento.id %}">
-                                        <div class="imgOptions update" title="Actualizar"></div>
-                                    </a>
-                                </span>
-                                <span>
-                                    <a href="{% url 'Eliminar_Docs' documento.id %}">
-                                        <div class="imgOptions delete" title="Eliminar"></div>
-                                    </a>  
-                                </span>
-                            </div>
-                            {% endif %}          
-                        </article>
-                    </section>
+                        <section class="prueba ContainerData">
+                            <article class="fontSecond">
+                                <div class="DataSecond">
+                                    <span>
+                                        Nombre del Documento:
+                                    </span>
+                                    
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        {{documento.Nombre_Documento}}
+                                    </span>
+                                    <span>Subido por:
+                                        {{documento.PA_Docs}}
+                                    </span>
+                                </div>
+                                    <span>ID(comprobar):
+                                        {{documento.id}}
+                                    </span>
+                                <div class="DataSecond">
+                                    <span>Tipo:
+                                        {% with Tipo=Filtro id=forloop.revcounter %} 
+                                            {{ Tipo|concat_Grado:id }} 
+                                        {% endwith %}
+                                    </span>
+                                    <span>Formato: 
+                                        {% with Formato=Filtro id2=forloop.revcounter %} 
+                                            {{ Formato|concat_Seccion:id2 }} 
+                                        {% endwith %}
+                                    </span>
+                                </div>
+                            </article>
+                            <article class="fontSecond">
+                                {% if request.user.is_PA == True %}
+                                <div class="options">
+                                    <span>
+                                        <a href="{% url 'Actualizar_Docs' documento.id %}">
+                                            <div class="imgOptions update" title="Actualizar"></div>
+                                        </a>
+                                    </span>
+                                    <span>
+                                        <a href="{% url 'Eliminar_Docs' documento.id %}">
+                                            <div class="imgOptions delete" title="Eliminar"></div>
+                                        </a>  
+                                    </span>
+                                </div>
+                                {% endif %}          
+                            </article>
+                        </section>
                     {% endfor %}
+                {% endif %} 
                 </section>
             </section>
             <section class="containerAside">

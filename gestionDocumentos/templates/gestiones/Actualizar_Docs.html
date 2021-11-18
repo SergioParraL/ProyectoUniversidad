@@ -12,34 +12,56 @@
     {% endif %}
 <section class="container">
     <section class="row_1">
-        <section class="_princ_ sectionPrincDocuments">
-            <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-                <section>
-                    <div id="" class="wrapper  ">
-                        <label>Nombre Documento</label>     
-                        {{ form.Nombre_Documento }}
-                    </div>
-                    <div id="" class="wrapper">
-                        <label>Documento</label>     
-                        {{ form.Documento }}
-                    </div>
-                    <div id="" class="wrapper ">
-                        <label>Tipo</label>     
-                        {{ form.Tipo }}
-                    </div>
-                    <div id="" class="wrapper ">
-                        <label>Formato</label>     
-                        {{ form.Formato }}
-                    </div>
+        {%if result == 'noMatch'%}
+        <div class="conform">
+            <p>RECUERDA, SOLO PUEDES ACTUALIZAR LAS PLANILLAS DE NOTAS QUE TU SUBISTES</p>
+            <P>Dale click <a href="{% url 'ConsultaD' %}"><bottun>aquí</bottun><a> para volver a intentarlo</P>
+        </div>
+        {% endif %}
+        
+        {%if result == 'noMatchPA'%}
+        <div class="conform">
+            <p>RECUERDA, QUE DEBES ACTUALIZAR TUS DATOS ANTES DE ACTUALIZAR UNA PLANILLA DE NOTAS</p>
+            <P>Dale click <a href="{% url 'Actualizar_PA' request.user.id %}"><bottun>aquí</bottun><a> para Actualizar tus Datos de Perfil</P>
+        </div>
+        {% endif %}
+
+        {% if result != 'noMatch' %}
+            {% if result != 'noMatchPD' %}         
+                <section class="_princ_ sectionPrincDocuments">     
+                    <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+                        <section>
+                            <label for="PA_Docs" style="visibility:hidden">Usuario</label>
+                            <select name="PA_Docs" required id="id_PA_Docs" style="visibility:hidden">
+                              <option value="{{paProfile.id}}"></option>
+                            </select>
+                            <div id="" class="wrapper  ">
+                                <label>Nombre Documento</label>     
+                                {{ form.Nombre_Documento }}
+                            </div>
+                            <div id="" class="wrapper ">
+                                <label>Tipo</label>     
+                                {{ form.Tipo }}
+                            </div>
+                            <div id="" class="wrapper ">
+                                <label>Formato</label>     
+                                {{ form.Formato }}
+                            </div>
+                            <div class="wrapper">
+                                <label for="{{ form.Documento.id_for_label }}">Documento: </label>
+                                <input id="{{ form.Documento.id_for_label }}" type="file" name="{{ form.Documento.name }}" value="{{ form2.Documento.url}}">
+                            </div>
+                        </section>
+                        <section class="containerAside">
+                            <aside class="wrapper">
+                                <button class="button_button button_Docs" type="submit">Actualizar Registro</button>
+                                <a class="button_button button_Docs" href="{% url 'ConsultaD' %}">Consultar Documentos</a>
+                            </aside>
+                        </section>
+                    </form>
                 </section>
-                <section class="containerAside">
-                    <aside class="wrapper">
-                        <button class="button_button button_Docs" type="submit">Actualizar Registro</button>
-                        <a class="button_button button_Docs" href="{% url 'ConsultaD' %}">Consultar Documentos</a>
-                    </aside>
-                </section>
-            </form>
-        </section>
+            {% endif %}
+        {% endif %}
     </section>
 </section>
 
