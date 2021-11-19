@@ -47,13 +47,10 @@
                                         <span>Nombre:
                                             {{notas.Nombre_Notas}}
                                         </span>
-                                        <span>Subido por:
+                                        <span>/ Subido por:
                                             {{notas.PD_Notes}}
                                         </span>
                                     </div>
-                                    <span>ID(comprobar):
-                                        {{notas.id}}
-                                    </span>
                                 </div>
                                 <div class="DataSecond">
                                     <span>Grado:
@@ -72,16 +69,18 @@
                                 <!-- {% if request.user.is_PD == True %} -->
                                     <article class="options">
                                         {% if request.user.is_PD == True %}
-                                            <span>
-                                                <a href="{% url 'Actualizar_Notas' notas.id %}" >
-                                                    <div class="imgOptions update" title="Actualizar"></div>
-                                                </a>
-                                            </span>
-                                            <span>
-                                                <a href="{% url 'Eliminar_Notas' notas.id %}">
-                                                <div class="imgOptions delete" title="eliminar"></div>
-                                                </a>
-                                            </span>
+                                            {% if request.user.id == notas.PD_Notes.usuario_id %}
+                                                <span>
+                                                    <a href="{% url 'Actualizar_Notas' notas.id %}" >
+                                                        <div class="imgOptions update" title="Actualizar"></div>
+                                                    </a>
+                                                </span>
+                                                <span>
+                                                    <a href="{% url 'Eliminar_Notas' notas.id %}">
+                                                    <div class="imgOptions delete" title="eliminar"></div>
+                                                    </a>
+                                                </span>
+                                            {% endif %}
                                         {% endif %}
                                     </article>
                                 <!-- {% endif %} -->

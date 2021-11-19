@@ -55,8 +55,6 @@ urlpatterns = [
     #---Estos Permiten Eliminar la informacion 
     
     path('Eliminar_Es/<int:id>/', views.Eliminar_Es, name="Eliminar_Es"),   
-    path('Eliminar_PA/<int:id>/', views.Eliminar_PA, name="Eliminar_PA"), 
-    path('Eliminar_PD/<int:id>/', views.Eliminar_PD, name="Eliminar_PD"), 
     
     
     #---Estos Permiten Ver la informacion de los Estudiantes

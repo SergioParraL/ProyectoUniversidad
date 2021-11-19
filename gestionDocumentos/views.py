@@ -281,9 +281,28 @@ def Eliminar_Docs(request, id):
     if request.user.is_PA == True:
         if request.user.is_active == True:
             doc = DocsDB.objects.get(id = id)
-            doc.delete()
-            messages.success(request, f'Documento {doc.Nombre_Documento} Eliminado Correctamente')
-            return redirect("ConsultaD")
+            queryProfile= PA_profile.objects.filter(usuario_id=request.user.id)
+            if queryProfile:
+                paProfile = PA_profile.objects.get(usuario_id=request.user.id)
+                if paProfile.id == doc.PA_Docs_id:
+                    doc.delete()
+                    messages.success(request, f'Documento {doc.Nombre_Documento} Eliminado Correctamente')
+                    return redirect("ConsultaD")
+
+                else:
+                    result = 'noMatch'
+
+                    contx={
+                        'result': result
+                    }
+            else:
+                result = 'noMatchPA'
+
+                contx={
+                    'result': result
+                }
+
+            return render(request, "gestiones/Actualizar_Docs.html", contx)
 
     messages.error(request, f'El Usuario {request.user.username} No tiene Permiso para Eliminar Documentos')
     return redirect('Home')
@@ -295,9 +314,30 @@ def Eliminar_Notas(request, id):
     if request.user.is_PD == True:
         if request.user.is_active == True:
             nota = NotasDB.objects.get(id = id)
-            nota.delete()
-            messages.success(request, f'Planilla de Notas Nro: {nota} Eliminada Correctamente') 
-            return redirect("ConsultaN")
+            queryProfile= PD_profile.objects.filter(usuario_id=request.user.id)
+            if queryProfile:
+                pdProfile = PD_profile.objects.get(usuario_id=request.user.id)
+                if pdProfile.id == nota.PD_Notes_id: 
+                    nota.delete()
+                    messages.success(request, f'Planilla de Notas Nro: {nota} Eliminada Correctamente') 
+                    return redirect("ConsultaN")
+
+
+                else:
+                    result = 'noMatch'
+
+                    contx={
+                        'result': result
+                    }
+            else:
+                result = 'noMatchPD'
+
+                contx={
+                    'result': result
+                }
+            return render(request, "gestiones/Actualizar_Notas.html", contx)
+
+
 
     messages.error(request, f'El Usuario {request.user.username} No tiene Permiso para Eliminar Notas')
     return redirect('Home')

@@ -48,13 +48,10 @@
                                     <span>
                                         {{documento.Nombre_Documento}}
                                     </span>
-                                    <span>Subido por:
+                                    <span>/ Subido por:
                                         {{documento.PA_Docs}}
                                     </span>
                                 </div>
-                                    <span>ID(comprobar):
-                                        {{documento.id}}
-                                    </span>
                                 <div class="DataSecond">
                                     <span>Tipo:
                                         {{ documento.Tipo|concat_Tipo }} 
@@ -66,18 +63,20 @@
                             </article>
                             <article class="fontSecond">
                                 {% if request.user.is_PA == True %}
-                                <div class="options">
-                                    <span>
-                                        <a href="{% url 'Actualizar_Docs' documento.id %}">
-                                            <div class="imgOptions update" title="Actualizar"></div>
-                                        </a>
-                                    </span>
-                                    <span>
-                                        <a href="{% url 'Eliminar_Docs' documento.id %}">
-                                            <div class="imgOptions delete" title="Eliminar"></div>
-                                        </a>  
-                                    </span>
-                                </div>
+                                    {% if request.user.id == documento.PA_Docs.usuario_id %}
+                                        <div class="options">
+                                            <span>
+                                                <a href="{% url 'Actualizar_Docs' documento.id %}">
+                                                    <div class="imgOptions update" title="Actualizar"></div>
+                                                </a>
+                                            </span>
+                                            <span>
+                                                <a href="{% url 'Eliminar_Docs' documento.id %}">
+                                                    <div class="imgOptions delete" title="Eliminar"></div>
+                                                </a>  
+                                            </span>
+                                        </div>
+                                    {% endif %} 
                                 {% endif %}          
                             </article>
                         </section>

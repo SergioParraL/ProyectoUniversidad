@@ -617,35 +617,6 @@ def Eliminar_Es(request, id):
     messages.error(request, f'El Usuario {request.user.username} No tiene Permiso para Eliminar Datos de los Estudiantes')
     return redirect('Home')
 
-#---Esta Vista Permite la ELIMINAR el Registro del Personal Administrtivo // En observacion para eliminar
-
-@login_required
-def Eliminar_PA(request, id):
-    
-    if request.user.is_PA == True:
-        if request.user.is_active == True:
-            pa = PersonalAdm.objects.get(id = id)
-            pa.delete()
-            return redirect("Consulta_PA")
-
-    messages.error(request, f'El Usuario {request.user.username} No es un Usuario PA ("Personal Administrativo")')
-    return redirect('Home')
-
-#---Esta Vista Permite la ELIMINAR el Registro del Personal Docente // En observacion para eliminar
-
-@login_required
-def Eliminar_PD(request, id):
-    
-    if request.user.is_PD == True:
-        if request.user.is_active == True:
-            pd = PersonalDocente.objects.get(id = id)
-            pd.delete()
-            return redirect("Consulta_PD")
-
-    messages.error(request, f'El Usuario {request.user.username} No es un Usuario PD ("Personal Docente")')
-    return redirect('Home')
-
-
 #---Esta Vista Permite la VER el Registro de los Estudiantes   
 
 @login_required
@@ -664,15 +635,16 @@ def Ver_Es(request, id):
 
 @login_required
 def Ver_PA(request, id):
-    
     if request.user.is_PA == True:
         if request.user.is_active == True:
-            if request.method == 'GET':
-                Ver = PA_profile.objects.get(id = id)
-                contx={
-                    'Ver':Ver
-                }
-            return render(request, "consultas/PA/Ver_PA.html", contx)
+            if request.user.is_PA == True:
+                if request.user.is_active == True:
+                    if request.method == 'GET':
+                        Ver = PA_profile.objects.get(id = id)
+                        contx={
+                            'Ver':Ver
+                        }
+                    return render(request, "consultas/PA/Ver_PA.html", contx)
 
     messages.error(request, f'El Usuario {request.user.username} No es un Usuario PA ("Personal Administrativo")')
     return redirect('Home')
