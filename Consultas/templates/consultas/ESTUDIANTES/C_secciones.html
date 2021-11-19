@@ -1,8 +1,8 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
 {% load mathfilters %}
-{% load concat_Grado %}
-{% load concat_Seccion %}
+{% load concat_Grado2 %}
+{% load concat_Seccion2 %}
 {% block content %}
 
 <section class="title">
@@ -39,56 +39,40 @@
                                   </span>
                               </div>
                               <div class="DataSecond fontSecond">
-                                  <span>Cédula: {{estudiantes.cedula}}</span>
-                                  <span>Grado:
-                                    {%if request.method == 'GET' %}
-                                        {% with Grado=Filtro id=forloop.revcounter %} 
-                                            {{ Grado|concat_Grado:id }} 
-                                        {% endwith %}
-                                    {% endif %}
-                                    {%if request.method == 'POST' %}
-                                        {% with Grado=Filtro id2=forloop.revcounter %} 
-                                            {{ Grado|concat_Grado:id2 }} 
-                                        {% endwith %}
-                                    {% endif %}
+                                <span>Cédula: {{estudiantes.cedula}}</span>
+                                <span>Grado:
+                                    {{ estudiantes.grado|concat_Grado2 }} 
                                 </span>
 
                                 <span>Sección: 
-                                    {%if request.method == 'GET' %}
-                                        {% with Seccion=Filtro id=forloop.revcounter %} 
-                                            {{ Seccion|concat_Seccion:id }} 
-                                        {% endwith %}
-                                    {% endif %}
-                                    {%if request.method == 'POST' %}
-                                        {% with Seccion=Filtro id2=forloop.revcounter %} 
-                                            {{ Seccion|concat_Seccion:id2 }} 
-                                        {% endwith %}
-                                    {% endif %}
+                                    {{ estudiantes.seccion|concat_Seccion2 }} 
                                 </span>
                               </div>
                           </article>
                           <article class="fontSecond">
-                              <div class="options">
-                                  <span>
-                                      <a href="{% url 'Actualizar_Es' estudiantes.id %}">
-                                          <div class="imgOptions update" title="Actualizar"></div>
-                                      </a>
-                                  </span>
-                                  <span>
-                                      <a href="{% url 'Ver_Es' estudiantes.id %}">
-                                          <div class="imgOptions look" title="Ver"></div>
-                                      </a>
-                                  </span>
-                                  <span>
-                                      <a href="{% url 'Eliminar_Es' estudiantes.id %}">
-                                          <div class="imgOptions delete" title="Eliminar"></div>
-                                      </a>
-                                  </span>
-                              </div>
-                              <div>
-                                  <div>Nacimiento:</div>
-                                  <span>{{estudiantes.fecha_nac}}</span>
-                              </div>
+                            <div class="options">
+                                <span>
+                                    <a href="{% url 'Ver_Es' estudiantes.id %}">
+                                        <div class="imgOptions look" title="Ver"></div>
+                                    </a>
+                                </span>
+                                {% if request.user.is_PA == True %}
+                                    <span>
+                                        <a href="{% url 'Actualizar_Es' estudiantes.id %}">
+                                            <div class="imgOptions update" title="Actualizar"></div>
+                                        </a>
+                                    </span>
+                                    <span>
+                                        <a href="{% url 'Eliminar_Es' estudiantes.id %}">
+                                            <div class="imgOptions delete" title="Eliminar"></div>
+                                        </a>
+                                    </span>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <div>Nacimiento:</div>
+                                <span>{{estudiantes.fecha_nac}}</span>
+                            </div>
                           </article>
                   </section>
                 {% endfor %}

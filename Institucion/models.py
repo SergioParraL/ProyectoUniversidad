@@ -80,9 +80,11 @@ class PA_profile(models.Model):
     updated = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = 'Personal Administrativo2'
-        verbose_name_plural = 'Personal Administrativos2'
+        verbose_name = 'Perfil del Administrativo'
+        verbose_name_plural = 'Perfiles del Administrativo'
 
+    def __str__(self):
+        return self.nombres
 
 class PD_profile(models.Model):
     usuario = models.OneToOneField(SystemUser, on_delete=models.CASCADE)
@@ -107,8 +109,9 @@ class PD_profile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
     
-
-
     class Meta:
-        verbose_name = 'Personal Docente2'
-        verbose_name_plural = 'Personal Docentes2'
+        verbose_name = 'Perfil del Personal Docente'
+        verbose_name_plural = 'Perfiles del Personal Docente'
+    
+    def __str__(self):
+        return self.nombres

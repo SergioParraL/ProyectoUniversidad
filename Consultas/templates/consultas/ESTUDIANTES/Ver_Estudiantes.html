@@ -1,6 +1,7 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
-
+{% load concat_Grado2 %}
+{% load concat_Seccion2 %}
 {% block content %}
 
 <section class="title">
@@ -73,13 +74,13 @@
                             <div class="plAct">
                                 <label for="grado">Grado</label>
                                 <div>
-                                    {{ Grado }}
+                                    {{ Ver.grado|concat_Grado2 }} 
                                 </div>
                             </div>
                             <div class="plAct">
                                 <label for="seccion">Seccion</label>
                                 <div>
-                                    {{ Seccion }}
+                                    {{ Ver.seccion|concat_Seccion2 }} 
                                 </div>
                             </div>
                             <div class="plAct">

@@ -1,4 +1,5 @@
 from django.db import models
+from Institucion.models import PD_profile, PA_profile
 
 
 # Create your models here.
@@ -46,7 +47,12 @@ Secciones_list = [
     (8, 'H'),
 ]
  
+Momentos_list = [
     
+    (1, 'I'),
+    (2, 'II'),
+    (3, 'III'),
+]   
 
 class DocsDB(models.Model):
     
@@ -63,6 +69,7 @@ class DocsDB(models.Model):
         choices=Docs_format,
         default=1
     )
+    PA_Docs=models.ForeignKey(PA_profile, on_delete=models.CASCADE)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
 
@@ -71,11 +78,11 @@ class DocsDB(models.Model):
         verbose_name_plural='Documentos Administrativos'
         
     def __str__(self):
-        return self.Nombre_Documento
+        return f'El usuario "{self.PA_Docs}" Subio el Documento {self.Nombre_Documento} de Tipo: {self.Tipo}/ Formato: {self.Formato}.'
     
     
 class NotasDB(models.Model):
-    
+    Nombre_Notas=models.CharField(max_length=30)
     Grado=models.IntegerField(
         null=False, blank=False,
         choices=Grados_list,
@@ -86,7 +93,12 @@ class NotasDB(models.Model):
         choices=Secciones_list,
         default=1
     )
-    #Momento=models.CharField(max_length=3)
+    Momento=models.IntegerField(
+        null=False, blank=False,
+        choices=Momentos_list,
+        default=1
+    )
+    PD_Notes=models.ForeignKey(PD_profile, on_delete=models.CASCADE)
     Documento=models.FileField(upload_to='uploads/Notas/%Y/%m/%d/', null=True)  
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
@@ -96,6 +108,6 @@ class NotasDB(models.Model):
         verbose_name_plural='Notas'
         
     def __str__(self):
-        return self.Grado
+        return f'El usuario "{self.PD_Notes}" Subio la Planilla de Nota que pertenece al Grado: {self.Grado}/ Seccion: {self.Seccion}/ Momento: {self.Momento}.'
     
 

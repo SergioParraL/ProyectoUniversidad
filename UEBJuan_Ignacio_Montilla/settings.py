@@ -44,7 +44,15 @@ INSTALLED_APPS = [
     'gestionDocumentos',
     'mathfilters',
     'Consultas.templatetags.concat_Grado',
+    'Consultas.templatetags.concat_Grado2',
     'Consultas.templatetags.concat_Seccion',
+    'Consultas.templatetags.concat_Seccion2',
+    'Consultas.templatetags.concat_Materia',
+    'Consultas.templatetags.concat_Especialidades',
+    'gestionDocumentos.templatetags.concat_Momento',
+    'gestionDocumentos.templatetags.concat_Tipo',
+    'gestionDocumentos.templatetags.concat_Formato',
+    'Institucion.templatetags.profileUsers_Data',
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,9 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
-
+{% load mathfilters %}
+{% load concat_Grado2 %}
+{% load concat_Seccion2 %}
+{% load concat_Momento %}
 {% block content %}
 
 
@@ -23,46 +26,68 @@
         <section class="_princ_ sectionPrincDocuments">
             <section>
                 <form class="form" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+                    <input  type="text" name="buscar_nombre_notas" value="" placeholder="Nombre de la Planilla">
                     <input type="text" name="buscar_grado" value="" placeholder="Grado">
                     <input type="text" name="buscar_seccion" value="" placeholder="Sección">
+                    <input  type="text" name="buscar_momento" value="" placeholder="Momento">
                     <input  type="submit" value="Consultar" name="Buscar">
                 </form>
                 <section class="data">
+
+                {%if Filtro == 'noMatch'%}
+                    <p>NO HAY RESULTADOS</p>
+                {% endif %}
+
+                {%if Filtro != 'noMatch'%}
                     {% for notas in notas %}
                         <section class="prueba ContainerData">
                             <article class="fontSecond">
                                 <div class="DataSecond">
-                                    <span>Nombre:
-                                        {{notas.Documento}}
-                                    </span>
+                                    <div class="name">
+                                        <span>Nombre:
+                                            {{notas.Nombre_Notas}}
+                                        </span>
+                                        <span>/ Subido por:
+                                            {{notas.PD_Notes}}
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="DataSecond">
                                     <span>Grado:
-                                        {{notas.Grado}}
+                                        {{ notas.Grado|concat_Grado2 }} 
                                     </span>
-                                    <span>Sección:        
-                                        {{notas.Seccion}}    
-                                    </span> 
+
+                                    <span>Sección: 
+                                        {{ notas.Seccion|concat_Seccion2 }} 
+                                    </span>
+                                    <span>Momento: 
+                                        {{ notas.Momento|concat_Momento }}
+                                    </span>
                                 </div>
                             </article>
                             <article class="fontSecond">
                                 <!-- {% if request.user.is_PD == True %} -->
                                     <article class="options">
-                                        <span>
-                                            <a href="{% url 'Actualizar_Notas' notas.id %}" >
-                                                <div class="imgOptions update" title="Actualizar"></div>
-                                            </a>
-                                        </span>
-                                        <span>
-                                            <a href="{% url 'Eliminar_Notas' notas.id %}">
-                                            <div class="imgOptions delete" title="eliminar"></div>
-                                            </a>
-                                        </span>
+                                        {% if request.user.is_PD == True %}
+                                            {% if request.user.id == notas.PD_Notes.usuario_id %}
+                                                <span>
+                                                    <a href="{% url 'Actualizar_Notas' notas.id %}" >
+                                                        <div class="imgOptions update" title="Actualizar"></div>
+                                                    </a>
+                                                </span>
+                                                <span>
+                                                    <a href="{% url 'Eliminar_Notas' notas.id %}">
+                                                    <div class="imgOptions delete" title="eliminar"></div>
+                                                    </a>
+                                                </span>
+                                            {% endif %}
+                                        {% endif %}
                                     </article>
                                 <!-- {% endif %} -->
                             </article>
                         </section>
                     {% endfor %}
+                {% endif %}
                 </section>
             </section>
             <section class="containerAside">
