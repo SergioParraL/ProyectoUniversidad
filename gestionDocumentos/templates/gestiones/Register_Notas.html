@@ -11,12 +11,6 @@
     {% endfor %}
 {% endif %}
 
-{%if result == 'noMatch'%}
-<p>POR FAVOR ACTUALIZA TUS DATOS DE PERFIL PRIMERO, ANTES DE INICIAR CUALQUIER REGISTRO</p>
-<P>Dale click <a href="{% url 'Actualizar_PD' request.user.id %}"><bottun>aquí</bottun><a> para actualizar</P>
-{% endif %}
-
-
 {%  if  "valido" in request.GET %}
     <p class="Reg_correcto">Planilla de Notas Subida Correctamente</p>
     <a href="{% url 'ConsultaN' %}">
@@ -24,12 +18,17 @@
     </a>
 {% endif %}
 
-<section class="title">
-    <h1>Sube una Nueva Plantilla de Notas</h1>
-</section>
+{%if result == 'noMatch'%}
+    <div class="conform">
+        <p>POR FAVOR ACTUALIZA TUS DATOS DE PERFIL PRIMERO, ANTES DE INICIAR CUALQUIER REGISTRO</p>
+        <P>Dale click <a href="{% url 'Actualizar_PD' request.user.id %}"><bottun>aquí</bottun><a> para actualizar</P>
+    </div>
+{% endif %}
 
-<section class="container">
-    {%if result != 'noMatch'%}
+
+
+{%if result != 'noMatch'%}
+    <section class="container">
         <section class="row_1">
             <section class="_princ_ sectionPrincDocuments">
                 <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
@@ -68,22 +67,7 @@
                 
             </section>
         </section>
-    {% endif %}
-</section>
-
-    
-    
-    
-</div>
-<div class="text_gest">
-  <p>
-    Dale click  para Consultar las Planillas de Notas Registrados 
-    <br>
-    <br>
-    <a id="nino" href="{% url 'ConsultaN' %}">Aquí</a>
-  </p>
-</div>
-</article>
-
+    </section>
+{% endif %}
 {% endblock content %}
 

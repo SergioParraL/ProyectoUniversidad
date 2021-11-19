@@ -12,23 +12,26 @@
   {% endfor %}
 {% endif %}
 
-{%if result == 'noMatch'%}
-<p>POR FAVOR ACTUALIZA TUS DATOS DE PERFIL PRIMERO, ANTES DE INICIAR CUALQUIER REGISTRO</p>
-<P>Dale click <a href="{% url 'Actualizar_PD' request.user.id %}"><bottun>aquí</bottun><a> para actualizar</P>
-{% endif %}
 
 
 {%  if  "valido" in request.GET %}
 <p class="Reg_correcto">Documento Subido Correctamente</p>
 <a href="{% url 'ConsultaD' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
 {% endif %}
+
+{%if result == 'noMatch'%}
+    <div class="conform">
+        <p>POR FAVOR ACTUALIZA TUS DATOS DE PERFIL PRIMERO, ANTES DE INICIAR CUALQUIER REGISTRO</p>
+        <P>Dale click <a href="{% url 'Actualizar_PA' request.user.id %}"><bottun>aquí</bottun><a> para actualizar</P>
+    </div>
+{% endif %}
+
+
+{%if result != 'noMatch'%}
 <section class="title">    
     <h1>Sube un Nuevo Documento</h1>
 </section>
-<article>
-
-<section class="container">
-    {%if result != 'noMatch'%}
+    <section class="container">
         <section class="row_1">
             <section class="_princ_ sectionPrincDocuments">
                 <form method="post" action="" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
@@ -64,7 +67,7 @@
                 </form>
             </section>
         </section>
-    {% endif %}
-</section>
+    </section>
+{% endif %}
 
 {% endblock content %}
