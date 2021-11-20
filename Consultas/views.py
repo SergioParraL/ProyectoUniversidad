@@ -25,6 +25,17 @@ def Consulta_Es(request):
         apellidos = request.POST.get("buscar_apellidos")
         grado = request.POST.get("buscar_grado")
         seccion = request.POST.get("buscar_seccion")
+
+        #-----VALIDACION de Filtros de Campos Especiales ----------
+
+        if seccion == "0":
+            seccion = ''
+        else:
+            seccion = seccion
+        if grado == "0":
+            grado = ''
+        else:
+            grado = grado
         estudiantes=Estudiantes.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, grado__icontains=grado, seccion__icontains=seccion)
         if estudiantes:
             filterValues = estudiantes
@@ -110,6 +121,13 @@ def C_grados(request):
     
     if request.method == 'POST':
         grado = request.POST.get("buscar_grado")
+
+        #-----VALIDACION de Filtros de Campos Especiales ----------
+
+        if grado == "0":
+            grado = ''
+        else:
+            grado = grado
         estudiantes=Estudiantes.objects.filter(grado__icontains=grado)
         if estudiantes:
             filterValues = estudiantes
@@ -139,6 +157,13 @@ def C_secciones(request):
     
     if request.method == 'POST':
         seccion = request.POST.get("buscar_seccion")
+
+        #-----VALIDACION de Filtros de Campos Especiales ----------
+
+        if seccion == "0":
+            seccion = ''
+        else:
+            seccion = seccion
         estudiantes=Estudiantes.objects.filter(seccion__icontains=seccion)
         if estudiantes:
             filterValues = estudiantes
@@ -280,7 +305,19 @@ def Consulta_PD(request):
                 apellidos = request.POST.get("buscar_apellidos")
                 cedula = request.POST.get("buscar_cedula")
                 materia = request.POST.get("buscar_materia")   
-                especialidades = request.POST.get("buscar_especialidades")      
+                especialidades = request.POST.get("buscar_especialidades")
+
+                #-----VALIDACION de Filtros de Campos Especiales ----------
+
+                if materia == "0":
+                    materia = ''
+                else:
+                    materia = materia
+                if especialidades == "0":
+                    especialidades = ''
+                else:
+                    especialidades = especialidades
+                
                 PD=PD_profile.objects.filter(nombres__icontains=nombres, apellidos__icontains=apellidos, cedula__icontains=cedula, materia__icontains=materia, especialidades__icontains=especialidades)               
                 
                 #-----Filter de Campos Especiales ----------
@@ -427,7 +464,14 @@ def C_materia_pd(request):
     if request.user.is_PA == True:
         if request.user.is_active == True:    
             if request.method == 'POST':                            
-                materia = request.POST.get("buscar_materia")        
+                materia = request.POST.get("buscar_materia")   
+
+                #-----VALIDACION de Filtros de Campos Especiales ----------
+                                 
+                if materia == "0":
+                    materia = ''
+                else:
+                    materia = materia    
                 PD=PD_profile.objects.filter(materia__icontains=materia)                
                 
                 #-----Filter de Campos Especiales ----------       
@@ -465,7 +509,14 @@ def C_especialidades_pd(request):
     if request.user.is_PA == True:
         if request.user.is_active == True:    
             if request.method == 'POST':       
-                especialidades = request.POST.get("buscar_especialidades")        
+                especialidades = request.POST.get("buscar_especialidades")
+
+                #-----VALIDACION de Filtros de Campos Especiales ----------
+
+                if especialidades == "0":
+                    especialidades = ''
+                else:
+                    especialidades = especialidades     
                 PD=PD_profile.objects.filter(especialidades__icontains=especialidades)                            
                 
                 #-----Filter de Campos Especiales ----------       

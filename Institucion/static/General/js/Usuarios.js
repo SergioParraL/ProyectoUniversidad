@@ -4,6 +4,12 @@
 
 
 
+/*<section class="button_form wrapper ">
+	<div id="butSig" class="btnG button_1">Siguiente</div>
+	<button class='SigButton hidden' type="submit" value="Registrar">Registrar</button>
+</section>*/
+
+
 function buttonRegEst() {
 	let registro = document.querySelector('.SigButton')
 	let buttonSig = document.querySelector('#butSig')

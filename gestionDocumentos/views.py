@@ -58,18 +58,30 @@ def ConsultaD(request):
 
     if request.user.is_PA == True:
         if request.user.is_active == True:
+            paProfile=PA_profile.objects.all()
             if request.method == 'POST':
                 nombre = request.POST.get("buscar_nombre")
                 tipo = request.POST.get("buscar_tipo")
                 formato = request.POST.get("buscar_formato")
                 pa_Docs = request.POST.get("buscar_PA_Docs")
-                if pa_Docs:
+
+        #-----VALIDACION de Filtros de Campos Especiales ----------
+        
+                if tipo == "0":
+                    tipo = ''
+                else:
+                    tipo = tipo
+                if formato == "0":
+                    formato = ''
+                else:
+                    formato = formato
+                
+                if pa_Docs != "0":
                     pa_Docs = pa_Docs
                     documento=DocsDB.objects.filter(Nombre_Documento__icontains=nombre, Tipo__icontains=tipo, Formato__icontains=formato, PA_Docs_id=pa_Docs)
                 else:
-                    pa_Docs=''
-                    documento=DocsDB.objects.filter(Nombre_Documento__icontains=nombre, Tipo__icontains=tipo, Formato__icontains=formato)
-                
+                    documento=DocsDB.objects.filter(Nombre_Documento__icontains=nombre, Tipo__icontains=tipo, Formato__icontains=formato)   
+
                 #-----Filter de Campos Especiales ----------
                 
                 if documento:
@@ -78,7 +90,7 @@ def ConsultaD(request):
                     filterValues = 'noMatch'
                 ctx= { 
 
-                    'documento':documento, 'Filtro':filterValues, 
+                    'documento':documento, 'Filtro':filterValues, 'paProfile':paProfile
                 }
                 
                 return render(request, "gestiones/ConsultaD.html", ctx)
@@ -94,7 +106,7 @@ def ConsultaD(request):
                     filterValues = 'noMatch'
                 ctx= { 
 
-                    'documento':documento, 'Filtro':filterValues, 
+                    'documento':documento, 'Filtro':filterValues, 'paProfile':paProfile
                 }
             return render(request, "gestiones/ConsultaD.html", ctx)
 
@@ -146,12 +158,35 @@ def Register_Notas(request):
 @login_required
 def ConsultaN(request):
 
+    pdProfile=PD_profile.objects.all()
     if request.method == 'POST':
         nombre_notas = request.POST.get("buscar_nombre_notas")
         grado = request.POST.get("buscar_grado")
         seccion = request.POST.get("buscar_seccion")
         momento = request.POST.get("buscar_momento")
+        pd_Notes = request.POST.get("buscar_PD_Notes")
+
+        #-----VALIDACION de Filtros de Campos Especiales ----------
+
+        if seccion == "0":
+            seccion = ''
+        else:
+            seccion = seccion
+        if grado == "0":
+            grado = ''
+        else:
+            grado = grado
+        if momento == "0":
+            momento = ''
+        else:
+            momento = momento
         notas=NotasDB.objects.filter(Grado__icontains=grado, Seccion__icontains=seccion, Momento__icontains=momento, Nombre_Notas__icontains=nombre_notas)
+
+        if pd_Notes != "0":
+            pa_Docs = pd_Notes
+            notas=NotasDB.objects.filter(Grado__icontains=grado, Seccion__icontains=seccion, Momento__icontains=momento, Nombre_Notas__icontains=nombre_notas, PD_Notes_id=pd_Notes)
+        else:
+            notas=NotasDB.objects.filter(Grado__icontains=grado, Seccion__icontains=seccion, Momento__icontains=momento, Nombre_Notas__icontains=nombre_notas)  
         
         #-----Filter de Campos Especiales ----------
         
@@ -161,7 +196,7 @@ def ConsultaN(request):
             filterValues = 'noMatch'
         ctx= { 
 
-            'notas':notas, 'Filtro':filterValues, 
+            'notas':notas, 'Filtro':filterValues, 'pdProfile':pdProfile,
         }
         
         return render(request, "gestiones/ConsultaN.html", ctx)
@@ -178,7 +213,7 @@ def ConsultaN(request):
             filterValues = 'noMatch'
         ctx= { 
 
-            'notas':notas, 'Filtro':filterValues, 
+            'notas':notas, 'Filtro':filterValues, 'pdProfile':pdProfile,
         }
 
     return render(request, "gestiones/ConsultaN.html", ctx)

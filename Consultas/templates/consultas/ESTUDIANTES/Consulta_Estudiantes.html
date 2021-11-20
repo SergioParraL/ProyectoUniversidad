@@ -14,8 +14,31 @@
             <form class="form" action="" method="post" >{% csrf_token %}
                 <input  type="text" name="buscar_nombres" value="" placeholder="Nombre">
                 <input  type="text" name="buscar_apellidos" value="" placeholder="Apellido">
-                <input type="text" name="buscar_grado" value="" placeholder="Grado">
-                <input  type="text" name="buscar_seccion" value="" placeholder="Sección">
+                <!--<input type="text" name="buscar_grado" value="" placeholder="Grado">-->
+                <label for="buscar_grado" id="buscar_grado"><p style="padding-top: 10px;">Grado: </p></label>
+                <select name="buscar_grado" id="buscar_grado" style="width: 10%; height: 20%; margin-top: 5.5px; ">
+                    <option value="0">Ninguno</option>
+                    <option value="1">1ero</option>
+                    <option value="2">2do</option>
+                    <option value="3">3ero</option>
+                    <option value="4">4to</option>
+                    <option value="5">5to</option>
+                    <option value="6">6to</option>
+                </select>  
+                <!--<input  type="text" name="buscar_seccion" value="" placeholder="Sección">-->
+                <label for="buscar_seccion" id="buscar_seccion" ><p style="padding-top: 10px;">Seccion: </p></label> 
+                <select name="buscar_seccion" id="buscar_seccion" style="width: 10%; height: 20%; margin-top: 5.5px;">
+                    <option value="0">Ninguno</option>
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                    <option value="3">C</option>
+                    <option value="4">D</option>
+                    <option value="5">E</option>
+                    <option value="6">F</option>
+                    <option value="7">G</option>
+                    <option value="8">H</option>
+                </select>
+        
                 <input  type="submit" value="Consultar">
             </form>
             <div class="data">
@@ -93,79 +116,3 @@
     </aside>
 </section>
 {% endblock content %}
-            
-
-<!-- {% if "Buscar" in request.POST%}
-
-            <h1>Resultados de la Busqueda</h1>
-
-            <table>
-                <thead>
-                    <tr>
-                      <th>Nombres</th>
-                      <th>Apellidos</th>
-                      <th>Grado</th>
-                      <th>Seccion</th>
-                      <th style="border-right: none;">Opciones</th>
-                    </tr>
-                </thead>   
-
-                <tbody>
-
-                    {% for estudiantes in estudiantes %}
-
-                        <tr>
-                            <td>{{estudiantes.nombres}}</td>
-                            <td>{{estudiantes.apellidos}}</td>
-                            <td>{{estudiantes.grado}}</td>
-                            <td>{{estudiantes.seccion}}</td>
-                            <td><a href="{% url 'Actualizar_Es' estudiantes.id %}"><buttun>Actualizar</buttun></a><a href="{% url 'Eliminar_Es' estudiantes.id %}"><buttun>Eliminar</buttun></a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>  
-            </table>
-        {% endif %} -->
-
-
-            <!-- <div class="table">
-                <table class="table">
-
-                    <thead>
-
-                        <tr>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Grado</th>
-                            <th>Seccion</th>
-                            <th style="border-right: none;">Opciones</th>
-                        </tr>
-
-                    </thead>   
-
-                    <tbody class="tbody">
-
-                        {% for estudiantes in estudiantes %}
-
-                            <tr class="lol_2">
-                            Parar llamar a la foto usar: {{estudiantes.foto}}
-
-                              <td class="lol">{{estudiantes.nombres}}</td>
-                              <td class="lol">{{estudiantes.apellidos}}</td>
-                              <td class="lol">{{estudiantes.grado}}</td>
-                              <td class="lol">{{estudiantes.seccion}}</td>
-                              <td class="lol olo">
-                                <a href="{% url 'Actualizar_Es' estudiantes.id %}">
-                                    <div class="icon_act">A</div>
-                                </a>
-                                <a href="{% url 'Eliminar_Es' estudiantes.id %}">
-                                    <div class="icon_elim">E</div>
-                                </a>
-                                    <a href="{% url 'Ver_Es' estudiantes.id %}">
-                                    <div class="icon_elim">V</div>
-                                </a>
-                              </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>  
-                </table>
-            </div> -->
