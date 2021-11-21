@@ -13,7 +13,19 @@
     <section class="_princ_ conform">
       <article>
           <form class="form" action="" method="post" >{% csrf_token %}
-                <input type="text" name="buscar_seccion" value="" placeholder="Sección">
+                <!--<input  type="text" name="buscar_seccion" value="" placeholder="Sección">-->
+                <label for="buscar_seccion" id="buscar_seccion" ><p style="padding-top: 10px;">Seccion: </p></label> 
+                <select name="buscar_seccion" id="buscar_seccion" style="width: 10%; height: 20%; margin-top: 5.5px;">
+                    <option value="0">Ninguno</option>
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                    <option value="3">C</option>
+                    <option value="4">D</option>
+                    <option value="5">E</option>
+                    <option value="6">F</option>
+                    <option value="7">G</option>
+                    <option value="8">H</option>
+                </select>
                 <input type="submit" value="Consultar">
           </form>
         </article>
@@ -78,37 +90,7 @@
                 {% endfor %}
             </article>
         {% endif %}
-    <!--    {% if "Buscar" in request.POST%}
 
-          <h1>Resultados de la Busqueda</h1>
-
-          <table>
-              <thead>
-                  <tr>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Grado</th>
-                    <th>Seccion</th>
-                    <th style="border-right: none;">Opciones</th>
-                  </tr>
-              </thead>   
-
-              <tbody>
-
-                  {% for estudiantes in estudiantes %}
-
-                      <tr>
-                          <td>{{estudiantes.nombres}}</td>
-                          <td>{{estudiantes.apellidos}}</td>
-                          <td>{{estudiantes.grado}}</td>
-                          <td>{{estudiantes.seccion}}</td>
-                          <td><a href="{% url 'Actualizar_Es' estudiantes.id %}"><bottun>Actualizar</bottun></a><a href="{% url 'Eliminar_Es' estudiantes.id %}"><bottun>Eliminar</bottun></a></td>
-                      </tr>
-                  {% endfor %}
-              </tbody>  
-          </table>
-      {% endif %} -->
-   
     </section>
   </section>
   <aside class="row_2">

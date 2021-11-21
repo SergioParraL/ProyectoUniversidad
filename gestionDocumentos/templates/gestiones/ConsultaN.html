@@ -27,9 +27,46 @@
             <section>
                 <form class="form" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
                     <input  type="text" name="buscar_nombre_notas" value="" placeholder="Nombre de la Planilla">
-                    <input type="text" name="buscar_grado" value="" placeholder="Grado">
-                    <input type="text" name="buscar_seccion" value="" placeholder="Sección">
-                    <input  type="text" name="buscar_momento" value="" placeholder="Momento">
+                    <!--<input type="text" name="buscar_grado" value="" placeholder="Grado">-->
+                    <label for="buscar_grado" id="buscar_grado"><p style="padding-top: 10px;">Grado: </p></label>
+                    <select name="buscar_grado" id="buscar_grado" style="width: 10%; height: 20%; margin-top: 5.5px; ">
+                        <option value="0">Ninguno</option>
+                        <option value="1">1ero</option>
+                        <option value="2">2do</option>
+                        <option value="3">3ero</option>
+                        <option value="4">4to</option>
+                        <option value="5">5to</option>
+                        <option value="6">6to</option>
+                    </select>  
+                    <!--<input  type="text" name="buscar_seccion" value="" placeholder="Sección">-->
+                    <label for="buscar_seccion" id="buscar_seccion" ><p style="padding-top: 10px;">Seccion: </p></label> 
+                    <select name="buscar_seccion" id="buscar_seccion" style="width: 10%; height: 20%; margin-top: 5.5px;">
+                        <option value="0">Ninguno</option>
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                        <option value="3">C</option>
+                        <option value="4">D</option>
+                        <option value="5">E</option>
+                        <option value="6">F</option>
+                        <option value="7">G</option>
+                        <option value="8">H</option>
+                    </select>
+                    <!--<input  type="text" name="buscar_momento" value="" placeholder="Momento">-->
+                    <label for="buscar_momento" id="buscar_momento" ><p style="padding-top: 10px;">Momento: </p></label> 
+                    <select name="buscar_momento" id="buscar_momento" style="width: 10%; height: 20%; margin-top: 5.5px;">
+                        <option value="0">Ninguno</option>
+                        <option value="1">I</option>
+                        <option value="2">II</option>
+                        <option value="3">III</option>
+                    </select>
+                    <!--<input  type="text" name="buscar_PA_Docs" value="" placeholder="Personal Administrativo encargado">-->
+                    <label for="buscar_PD_Notes" id="buscar_PD_Notes"><p style="padding-top: 10px;">Docente encargado: </p></label>
+                    <select name="buscar_PD_Notes" id="buscar_PD_Notes" style="width: 10%; height: 20%; margin-top: 5.5px; ">
+                        <option value="0">Ninguno</option>
+                        {% for pdProfile in pdProfile %}
+                            <option value="{{pdProfile.id}}">{{pdProfile.nombres}}</option>
+                        {% endfor %}
+                    </select>
                     <input  type="submit" value="Consultar" name="Buscar">
                 </form>
                 <section class="data">

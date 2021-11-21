@@ -13,7 +13,18 @@
         <section class="_princ_ conform">
             <article>
                 <form class="form" action="" method="post">{% csrf_token %}
-                    <input class="form" type="text" name="buscar_materia" value="" placeholder="Materia">
+                    <!--<input  type="text" name="buscar_materia" value="" placeholder="Materia">-->
+                    <label for="buscar_materia" id="buscar_materia"><p style="padding-top: 10px;">Materia: </p></label>
+                    <select name="buscar_materia" id="buscar_materia" style="width: 10%; height: 20%; margin-top: 5.5px; ">
+                        <option value="0">Ninguno</option>
+                        <option value="1">Lenguaje</option>
+                        <option value="2">Comunicación y Cultura</option>
+                        <option value="3">Ciencias Naturales y Sociedad</option>
+                        <option value="4">Ciencias Sociales</option>
+                        <option value="5">Ciudadanía e Identidad</option>
+                        <option value="6">Educación Física, deporte y Recreación</option>
+                        <option value="7">Matemática</option>
+                    </select>
                     <input  type="submit" value="Consultar">
                 </form>
             </article>
@@ -73,94 +84,7 @@
                         {% endfor %}
                 </article>
             {% endif %}  
-          <!--   {% if "Buscar" in request.POST%}
-
-                <h2 class="title">Resultados de la Busqueda</h2>
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Cedula</th>
-                            <th>Materia</th>
-                            <th>Opciones</th>
-                        </tr>
-
-                    </thead>   
-
-                    <tbody>
-
-                        {% for PD in PD %}
-
-                            <tr>
-                                <td>{{PD.nombres}}</td>
-                                <td>{{PD.apellidos}}</td>
-                                <td>{{PD.cedula}}</td>
-                                <td>{{PD.materia}}</td>
-                                <td><a href="{% url 'Actualizar_PD' PD.id %}"><bottun>Actualizar</bottun></a><a href="{% url 'Eliminar_PD' PD.id %}"><bottun>Eliminar</bottun></a></td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>  
-                </table>
-            {% endif %} -->
         </section>
-        <!-- <div class="wrapper">
-            <h2 class="title">Listado del Personal Docente</h2>
-            <div class="table">
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Cedula</th>
-                            <th>Materia</th>
-                            <th style="border-right: none;">Opciones</th>
-                        </tr>
-
-                    </thead>  
-                    <tbody class="tbody">
-
-                        {% for PD in PD %}
-
-                            <tr class="lol_2">
-                                <td class="lol">{{PD.nombres}}</td>
-                                <td class="lol">{{PD.apellidos}}</td>
-                                <td class="lol">{{PD.cedula}}</td>
-                                <td class="lol">{{PD.materia}}</td>
-                                <td class="lol olo">
-                                    <a href="{% url 'Actualizar_PD' PD.id %}">
-                                        <div class="icon_act">A</div>
-                                    </a>
-                                    <a href="{% url 'Eliminar_PD' PD.id %}">
-                                        <div class="icon_elim">E</div>
-                                    </a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>  
-                </table>
-            </div>
-        <aside class="aside">
-
-          <blockquote>
-
-            <h3>Filtros de Busqueda</h3>
-
-            <ol class="filter">
-                <li><a href="{% url 'C_nombres_pd' %}" >Por Nombre</a></li>
-                <li><a href="{% url 'C_apellidos_pd' %}" >Por Apellido</a></li>
-                <li><a href="{% url 'C_cedula_pd' %}" >Por Cedula</a></li>
-                <li><a href="{% url 'C_materia_pd' %}" >Por Materia que imparte</a></li>
-            </ol>
-
-          </blockquote>
-        </aside>
-        </div> -->
     </section>
     <aside class="aside row_2">
         <h3 class="title">Filtros de Búsqueda</h3>

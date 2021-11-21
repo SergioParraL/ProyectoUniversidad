@@ -24,9 +24,37 @@
             <section>
                 <form class="form" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
                     <input  type="text" name="buscar_nombre" value="" placeholder="Nombre del Doc.">
-                    <input  type="text" name="buscar_tipo" value="" placeholder="Tipo de Doc.">
-                    <input  type="text" name="buscar_formato" value="" placeholder="Formato del Doc">
-                    <input  type="text" name="buscar_PA_Docs" value="" placeholder="Personal Administrativo encargado">
+                    <!--<input  type="text" name="buscar_tipo" value="" placeholder="Tipo de Doc.">-->
+                    <label for="buscar_tipo" id="buscar_tipo"><p style="padding-top: 10px;">Tipo de Doc: </p></label>
+                    <select name="buscar_tipo" id="buscar_tipo" style="width: 10%; height: 20%; margin-top: 5.5px; ">
+                        <option value="0">Ninguno</option>
+                        <option value="1">Boletin</option>
+                        <option value="2">Constancia</option>
+                        <option value="3">Planilla</option>
+                        <option value="4">Convocatoria</option>
+                        <option value="5">Otro</option>
+                    </select>
+
+                    <!--<input  type="text" name="buscar_formato" value="" placeholder="Formato del Doc">-->
+                    <label for="buscar_formato" id="buscar_formato"><p style="padding-top: 10px;">Formato del Doc: </p></label>
+                    <select name="buscar_formato" id="buscar_formato" style="width: 10%; height: 20%; margin-top: 5.5px; ">
+                        <option value="0">Ninguno</option>
+                        <option value="1">Word</option>
+                        <option value="2">Excel</option>
+                        <option value="3">PowerPoint</option>
+                        <option value="4">PDF</option>
+                        <option value="5">LibreOffice</option>
+                        <option value="5">Otro</option>
+                    </select>
+
+                    <!--<input  type="text" name="buscar_PA_Docs" value="" placeholder="Personal Administrativo encargado">-->
+                    <label for="buscar_PA_Docs" id="buscar_PA_Docs"><p style="padding-top: 10px;">Personal Administrativo encargado: </p></label>
+                    <select name="buscar_PA_Docs" id="buscar_PA_Docs" style="width: 10%; height: 20%; margin-top: 5.5px; ">
+                        <option value="0">Ninguno</option>
+                        {% for paProfile in paProfile %}
+                            <option value="{{paProfile.id}}">{{paProfile.nombres}}</option>
+                        {% endfor %}
+                    </select>
                     <input  type="submit" value="Consultar" name="Buscar">
                 </form>
                 <section class="data">
