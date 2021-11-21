@@ -214,12 +214,18 @@
         
         cardMenu.addEventListener('click', tCardData)
         menu.addEventListener('click',tMenu)
+        
+        if (document.querySelector('#butSig')){
+            let butSig = document.querySelector('#butSig')
+            butSig.addEventListener('click',buttonRegEst)
 
-        let butSig = document.querySelector('#butSig')
-        let verUser = document.querySelector('#Ant_Sig')
+        }
+        
+        if (document.querySelector('#Ant_Sig')){
+            let verUser = document.querySelector('#Ant_Sig')
+            verUser.addEventListener('click',buttonVerEstuRepr)
 
-        verUser.addEventListener('click',buttonVerEstuRepr)
-        butSig.addEventListener('click',buttonRegEst)
+        }
     </script>
 </body>
 </html>
