@@ -2,7 +2,7 @@
 	transition: all;
 	transition-duration: 1s;
 	position: fixed;
-	top: -32%;
+	top: -26.2vh;
 	right: 2%;
 	z-index: 1;
 }

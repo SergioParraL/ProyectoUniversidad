@@ -15,10 +15,10 @@
 
 <section class="container">
     <section class="_princ_ conform">
-        <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+        <form class="formulario printStyleNone" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
 
             <section class="Wleft">
-                <section class="row">
+                <section class="row printStyleNone">
                     <section class="cont">
                         <section class="cont_02">
                             <div class="photo">
@@ -127,7 +127,7 @@
                 <h1>Informacion del Representante</h1>
     
                 </section>
-                <section class="row">
+                <section class="row printStyles">
                     <section class="cont">
                         <section class="cont_02">
                             <div class="photo">
@@ -197,7 +197,7 @@
             </section>
             <section class="row">
                 <div class="specialButtom">
-                    <input class="print b" type="button" value="Imprimir">
+                    <input class="print b" type="button" value="Imprimir" onclick="javascript:window.print()">
                 </div>
                 <div class="specialButtom">
                     <div id="Ant_Sig" class=" b btnG button_1">Ver: Representante</div>

@@ -1,0 +1,46 @@
+.printStyles .cont:last-child{
+    /* background: blue; */
+
+}
+
+/* .col_1, .card,.printStyles .cont:first-child,.formulario > .row, .specialButtom{  */
+.col_1, .card, .printStyleNone .cont:first-child,.printStyleNone .cont_02:first-child, .printStyleNone > .row, .specialButtom{
+
+    display: none;
+}
+.conform{
+    box-shadow: none;
+}
+
+.plAct div{
+    /* background: red; */
+    border-bottom: 1px solid black;
+}
+
+.plAct label{
+    text-align: left;
+
+}
+
+.plAct label::after{
+    content: ':';
+}
+
+.Wleft .row{
+    display: block;
+}
+.conform{
+    display: flex;
+    
+}
+
+.formulario{
+    width: 100%;
+    /* display: flex; */
+    border: 3px solid black    ;
+    padding-block-start: 3vh;
+}
+
+.container_2{
+    justify-content: center;
+}

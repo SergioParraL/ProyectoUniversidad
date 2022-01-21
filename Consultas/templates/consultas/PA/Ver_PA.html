@@ -4,7 +4,7 @@
 {% block content %}
 
 <section class="title">
-    <h1>Planilla Informativa del Personal Administrativo {{ Ver.nombres }} / ID: {{ Ver.usuario_id }}</h1>
+    <h1>Planilla Informativa del Personal Administrativo: {{ Ver.nombres }} / ID: {{ Ver.usuario_id }}</h1>
 </section>
     {%  if  "valido" in request.GET %}
         <h3>Personal Administrativo Registrado Correctamente, por favor dale click en continuar</h3>
@@ -13,7 +13,7 @@
 <section class="container">
     <section class="_princ_ conform">
         <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-            <section class="row">
+            <section class="row printStyleNone">
                 <section class="cont_02">
                     <div class="photo">
                         <!-- <label for="foto">Foto</label> -->
@@ -84,13 +84,13 @@
                 </section>
             </section>
             <div class="specialButtom">
-                <input id="Ant_Sig" class="print" type="button" value="Imprimir">
+                <input id="Ant_Sig" class="print" type="button" value="Imprimir" onclick="javascript:window.print()">
             </div>
         </form>
     </section>
 </section>
 
-<article>
+<!-- <article>
 <hr>
 
 <div class="conform">
@@ -144,6 +144,6 @@
         </div>
     </form>
 </div>
-</article>
+</article> -->
 
 {% endblock content %}

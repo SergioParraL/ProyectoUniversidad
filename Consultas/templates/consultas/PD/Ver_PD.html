@@ -5,13 +5,13 @@
 {% block content %}
 
 <section class="title">
-    <h1>Planilla Informativa del Personal Docente {{ Ver.nombres }} / ID: {{ Ver.usuario_id }}</h1>
+    <h1>Planilla Informativa del Personal Docente: {{ Ver.nombres }} / ID: {{ Ver.usuario_id }}</h1>
 </section>
 
 <section class="container">
     <section class="_princ_ conform">
         <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-            <section class="row">
+            <section class="row printStyleNone">
                 <section class="cont">
                     <section class="cont_02">
                         <div class="photo">
@@ -92,8 +92,8 @@
                     </section>
                 </section>
             </section>
-                <div class="specialButtom">
-                    <input id="Ant_Sig" class="print" type="button" value="Imprimir">
+                <div class="specialButtom printStyleNone">
+                    <input id="Ant_Sig" class="print" type="button" value="Imprimir" onclick="javascript:window.print()">
                 </div>
             </article>
         </form>

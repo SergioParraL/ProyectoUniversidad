@@ -16,15 +16,17 @@
         <link href="{% static 'General/css/consultaUsuarioBase.css' %}" rel="stylesheet">
         <link href="{% static 'General/css/Document&Notas.css' %}" rel="stylesheet">
         <link href="{% static 'General/css/TarjetaUsuarioActivo.css' %}" rel="stylesheet">
+        <link href="{% static 'General/css/print.css' %}" rel="stylesheet" media='print'>
 
         <script type="text/javascript" src="{% static 'General/js/barra.js' %}"></script>
-        <script type="text/javascript" src="{% static 'General/js/Usuarios.js' %}">
+        <script type="text/javascript" src="{% static 'General/js/Usuarios.js' %}"></script>
+        <script type="text/javascript" src="{% static 'General/js/print.js' %}"></script>
     </script>
 
 <body>
 
     <!-- Menu de Usuario Activo -->
-    <section id="card" class="card">
+    <section id="card" class="card printStyleNone">
         
         <section class="cardUserAct">
             <form>
@@ -83,7 +85,7 @@
 
     <!-- MENU DE NAVEGACIÓN -->
     <div class="container_2">
-        <div id="col_1" class="col_1">
+        <div id="col_1" class="col_1 printStyleNone">
             <nav id="wrapperNav">
                 <ul class="nav" id="menu_prin">
                     <li class="prin btn-desp">
@@ -110,10 +112,10 @@
                     <li class="prin" id='homeProvitional'>
                         <div class="divNav ContentNav">Registro</div> 
                         <div class='divNav IconNav '>
-                                <div class="iconMenuFondo addIcon"></div>
+                            <div class="iconMenuFondo addIcon"></div>
                             <!-- <img src="../../static/General/img/Nav/add-circle-outline.svg" alt=""> -->
                         </div>
-
+                        
                         <ul class="sub">
                             {% if request.user.is_PA == True%}  
                                 <li class="inic">

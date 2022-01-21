@@ -36,7 +36,7 @@ function tCardData () {
 	let second = d.querySelector('.cardButtonDesp')
 
 	if (mActive == true) {
-		card.style.top = '-32%'
+		card.style.top = '-26.2vh'
 		first.classList.remove('cardShadow')
 		second.classList.remove('cardShadow')
 		icon.classList.remove(act)
