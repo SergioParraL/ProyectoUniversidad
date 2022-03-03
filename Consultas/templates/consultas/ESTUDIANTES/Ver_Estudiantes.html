@@ -15,11 +15,11 @@
 
 <section class="container">
     <section class="_princ_ conform">
-        <form class="formulario printStyleNone" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+        <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
 
             <section class="Wleft">
-                <section class="row printStyleNone">
-                    <section class="cont">
+                <section class="row">
+                    <section class="cont printStyleNone">
                         <section class="cont_02">
                             <div class="photo">
                                 <label for="foto">Foto</label>
@@ -123,12 +123,10 @@
             </section>
             <section class="Wright hidden">
                 <section class="title">
-
-                <h1>Informacion del Representante</h1>
-    
+                    <h1>Informacion del Representante</h1>
                 </section>
-                <section class="row printStyles">
-                    <section class="cont">
+                <section class="row ">
+                    <section class="cont printStyleNone">
                         <section class="cont_02">
                             <div class="photo">
                                 <img src="{{ Ver.Rep.foto.url }}">

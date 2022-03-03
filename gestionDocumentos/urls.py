@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from django.conf import settings
+
+
+#static/Media
+from django.conf.urls.static import static
+
 
 urlpatterns = [
  
@@ -37,5 +43,5 @@ urlpatterns = [
     path('Eliminar_Docs/<int:id>/', views.Eliminar_Docs, name="Eliminar_Docs"),
     
     path('Eliminar_Notas/<int:id>/', views.Eliminar_Notas, name="Eliminar_Notas"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

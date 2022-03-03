@@ -1,2 +1,7 @@
 #ignora todas las carpetas pycache del proyecto
 __pycache__
+
+# ignora la carpeta media y su contenido
+media
+
+.DS_Store

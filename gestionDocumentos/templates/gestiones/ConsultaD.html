@@ -103,6 +103,11 @@
                                                     <div class="imgOptions delete" title="Eliminar"></div>
                                                 </a>  
                                             </span>
+                                            <span>
+                                                <a href="{{documento.Documento.url|urlencode}}" download="{{documento.Nombre_Documento}}">
+                                                    <div class="imgOptions download" title="descargar"></div>
+                                                </a>
+                                            </span>
                                         </div>
                                     {% endif %} 
                                 {% endif %}          

@@ -9,8 +9,14 @@
 
     <section class="conform">
         {%  if  "valido" in request.GET %}
-            <h3>Personal Docente Registrado Correctamente, por favor dale click en continuar</h3>
-            <a href="{% url 'Home' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+            <div class="notification">
+                <div>
+                    <h3>Personal Docente Registrado Correctamente, por favor dale click en continuar</h3>
+                </div>
+                <div>
+                    <a href="{% url 'Home' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+                </div>
+            </div>
         {% endif %}
 
         <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
