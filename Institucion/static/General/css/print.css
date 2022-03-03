@@ -13,7 +13,6 @@
 }
 
 .plAct div{
-    /* background: red; */
     border-bottom: 1px solid black;
 }
 
@@ -26,8 +25,9 @@
     content: ':';
 }
 
-.Wleft .row{
+.Wleft .row, .Wright .row{
     display: block;
+    /* margin-top: .5vh; */
 }
 .conform{
     display: flex;
@@ -38,7 +38,8 @@
     width: 100%;
     /* display: flex; */
     border: 3px solid black    ;
-    padding-block-start: 3vh;
+    padding-block-start: 1vh;
+    
 }
 
 .container_2{

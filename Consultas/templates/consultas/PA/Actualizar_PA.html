@@ -9,8 +9,14 @@
 
 <!-- button_PA -->
 {%  if  "valido" in request.GET %}
-<h3>Datos Actualizados Correctamente, por favor dale click en continuar</h3>
-<a href="{% url 'Home' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+<div class="notification">
+	<div>
+		<h3>Datos Actualizados Correctamente, por favor dale click en continuar</h3>
+	</div>
+	<div>
+		<a href="{% url 'Home' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+	</div>
+</div>
 {% endif %}
 
 <section class="container">
@@ -86,63 +92,4 @@
 		    </form>
 		</section>
 </section>
-
-
-
-    
-
-<!-- {%  if  "valido" in request.GET %}
-        <h3>Personal Administrativo Registrado Correctamente, por favor dale click en continuar</h3>
-        <a href="{% url 'Home' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
-    {% endif %}
-
-    <form class="formulario" action="" method="post" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-        <table>
-          <div class="form">
-                <label for="nombre">Nombre</label>
-                {{ form.nombres }}
-            </div>
-            <div class="form">
-                <label for="apellido">Apellido</label>
-                {{ form.apellidos }}
-            </div>
-            <div class="form">
-                <label for="cedula">Cedula</label>
-                {{ form.cedula }}
-            </div class="form">
-            <div class="foto">
-                <label for="foto">Foto</label>
-                {{ form.foto }}
-            </div>
-            <div class="form">
-                <label for="cargo">Cargo</label>
-                {{ form.cargo }}
-            </div>
-            <div class="form">
-                <label for="edad">Edad</label>
-                {{ form.edad }}
-            </div>
-            <div class="form">
-                <label for="direccion">Direccion</label>
-                {{ form.direccion }}
-            </div> 
-            <div class="form">
-                <label for="teln_casa">Telefono Casa</label>
-                {{ form.teln_Casa }}
-            </div>
-            <div class="form">
-                <label for="teln_movil">Telefono Movil</label>
-                {{ form.teln_movil }}
-            </div>
-            <div class="form">
-                <label for="email">Correo Electronico</label>
-                {{ form.email }}
-            </div>
-        </table>
-        <button class="button_PA" type="submit" value="">
-            Registrarse
-        </button>
-</form> -->
-</article>
-
 {% endblock content %}

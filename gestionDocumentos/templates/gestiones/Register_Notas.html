@@ -5,25 +5,32 @@
 
 {% if messages %}
     {% for message in messages %}
-        <div class="notification {{message.tags}}">
+        <div class=" h {{message.tags}}">
             {{ message }}
         </div>
     {% endfor %}
 {% endif %}
 
 {%  if  "valido" in request.GET %}
-    <p class="Reg_correcto">Planilla de Notas Subida Correctamente</p>
-    <a href="{% url 'ConsultaN' %}">
-        <button class="button_PA" type="button" value="">CONTINUAR</button>
-    </a>
+    <div class=" notification h">
+        <div>
+            <p class="Reg_correcto">Planilla de Notas Subida Correctamente</p>
+
+        </div>
+        <div>
+            <a href="{% url 'ConsultaN' %}">
+                <button class="button_PA" type="button" value="">CONTINUAR</button>
+            </a>
+        </div>
+    </div>
 {% endif %}
 
-{%if result == 'noMatch'%}
+<!-- {%if result == 'noMatch'%} -->
     <div class="conform">
         <p>POR FAVOR ACTUALIZA TUS DATOS DE PERFIL PRIMERO, ANTES DE INICIAR CUALQUIER REGISTRO</p>
         <P>Dale click <a href="{% url 'Actualizar_PD' request.user.id %}"><bottun>aquí</bottun><a> para actualizar</P>
     </div>
-{% endif %}
+<!-- {% endif %} -->
 
 
 

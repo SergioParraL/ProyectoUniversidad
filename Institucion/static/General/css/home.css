@@ -69,4 +69,43 @@
 			border-radius: .8em;
 		}
 
-	
+
+		.notification{
+			height: 15vh;
+			margin: auto;
+			width: 50%;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			flex-direction: column;
+			position: absolute;
+			top: 10vh;
+			left: 0;
+			right: 0;
+			text-align: center;
+			/* border: 1px solid blue; */
+			/* background-color: white; */
+			border-radius: 1em 0 1em 0;
+			color:white;
+			padding: .5em;
+			background: rgb(2,0,36);
+			background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
+		}
+		.notification div p, .notification div a button{
+			color: white;
+		}
+
+		.notification div a button {
+			background: rgba(249, 115, 144, 1.0);
+			width: 8em;
+			padding: .3em;
+			border: none;
+			border-radius: .5em;
+		}
+		
+		.notification:hover, .notification div a button:hover{
+			box-shadow: 6px 13px 45px 6px black;
+			transition: all;
+			transition-duration: 500ms;
+			
+		}

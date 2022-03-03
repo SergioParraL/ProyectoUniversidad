@@ -48,4 +48,14 @@ function tCardData () {
 	}
 }
 
-
+function notification(){
+	let col_2 = document.querySelector('.col_2').children[0].children[0]
+	if(col_2.classList[0] == 'notification'){
+			console.log(col_2)
+			col_2.classList.add('hidden')
+		}
+	}
+	
+	function timer(){
+	let t = window.setTimeout(notification,5000)
+}

@@ -15,8 +15,10 @@
 
 
 {%  if  "valido" in request.GET %}
-<p class="Reg_correcto">Documento Subido Correctamente</p>
-<a href="{% url 'ConsultaD' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+<div class="notification">
+    <p class="Reg_correcto">Documento Subido Correctamente</p>
+    <a href="{% url 'ConsultaD' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+</div>
 {% endif %}
 
 {%if result == 'noMatch'%}

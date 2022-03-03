@@ -20,7 +20,7 @@
 
         <script type="text/javascript" src="{% static 'General/js/barra.js' %}"></script>
         <script type="text/javascript" src="{% static 'General/js/Usuarios.js' %}"></script>
-        <script type="text/javascript" src="{% static 'General/js/print.js' %}"></script>
+        <!-- <script type="text/javascript" src="{% static 'General/js/print.js' %}"></script> -->
     </script>
 
 <body>
@@ -207,7 +207,10 @@
     <script>
         let route = window.location
         let NodeSelec = document.getElementsByClassName('IconNav')
-
+        // let p = document.querySelector('.notification')
+        window.onload = function(){
+            timer()
+        }
         if (route == 'http://127.0.0.1:8000/Home/'){
             document.getElementById('Init').style.display='none'
         }
@@ -228,6 +231,11 @@
             verUser.addEventListener('click',buttonVerEstuRepr)
 
         }
+
+        let date = document.querySelector('#id_fecha_nac')
+        let yOld = document.querySelector('#id_edad')
+
+        date.addEventListener('blur', opeWithDate )
     </script>
 </body>
 </html>

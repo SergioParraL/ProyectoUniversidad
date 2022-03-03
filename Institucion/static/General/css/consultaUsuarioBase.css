@@ -98,6 +98,7 @@ a span{
 	display: flex;
 	justify-content: space-evenly;
 	padding-bottom: .5em;
+	gap: .5em;
 }
 div.imgOptions{
 	width: 2em;
@@ -127,7 +128,9 @@ div.look{
 div.delete{
 	background-image: url('../img/icons/trash-outline.svg');
 }
-
+div.download{
+	background-image: url('../img/icons/cloud-download-outline.svg');
+}
 
 aside ul > li a{
 	width: 80%;
