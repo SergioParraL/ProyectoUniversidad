@@ -12,9 +12,15 @@
 {% if messages %}
   {% for message in messages %}
       <div class="notification {{message.tags}}">
-          {{ message }}
-      </div>
+        <div>
+            <h3>{{ message }}</h3>
+        </div>
 
+        <div>
+            <a href="{% url 'ConsultaD' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+        </div>
+
+    </div>
   {% endfor %}
 {% endif %}
 

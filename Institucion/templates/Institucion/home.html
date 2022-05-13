@@ -2,15 +2,6 @@
 {% load static %}
 {% block content %}
 
-{% if messages %}
-    {% for message in messages %}
-        <div class="notification {{message.tags}}">
-            {{ message }}
-        </div>
-
-    {% endfor %}
-
-{% endif %}
 
 <div id="container">
 	<img src="../../static/General/img/undraw_book_lover_mkck.png">

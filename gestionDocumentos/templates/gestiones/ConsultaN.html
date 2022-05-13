@@ -15,9 +15,15 @@
 {% if messages %}
   {% for message in messages %}
       <div class="notification {{message.tags}}">
-          {{ message }}
-      </div>
+        <div>
+            <h3>{{ message }}</h3>
+        </div>
 
+        <div>
+            <a href="{% url 'ConsultaN' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+        </div>
+
+    </div>
   {% endfor %}
 {% endif %}
 
@@ -118,7 +124,7 @@
                                                     </a>
                                                 </span>
                                                 <span>
-                                                    <a href="#" download="Notas">
+                                                    <a href="{{notas.Documento.url|urlencode}}" download="{{notas.Nombre_Notas}}">
                                                         <div class="imgOptions download" title="descargar"></div>
                                                     </a>
                                                 </span>

@@ -3,13 +3,6 @@
 
 {% block content %}
 
-{% if messages %}
-    {% for message in messages %}
-        <div class=" h {{message.tags}}">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
 
 {%  if  "valido" in request.GET %}
     <div class=" notification h">

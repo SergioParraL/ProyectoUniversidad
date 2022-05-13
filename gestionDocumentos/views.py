@@ -45,7 +45,7 @@ def Register_Docs(request):
                     form.save()
                     return redirect('../../Gestion/Docs/?valido')
 
-            messages.success(request, f'Usuario Autorizado: {request.user.username}')
+            #messages.success(request, f'Usuario Autorizado: {request.user.username}')
             return render(request, 'gestiones/Register_Docs.html', contx)
 
     messages.error(request, f'El Usuario {request.user.username} No tiene Permiso para Subir Documentos')
@@ -147,7 +147,7 @@ def Register_Notas(request):
                     form.save()
                     return redirect('../../Gestion/Notas/?valido')
 
-            messages.success(request, f'Usuario Autorizado: {request.user.username}')
+            #messages.success(request, f'Usuario Autorizado: {request.user.username}')
             return render(request, 'gestiones/Register_Notas.html', contx)
 
     messages.error(request, f'El Usuario {request.user.username} No tiene Permiso para Subir Notas')
@@ -183,7 +183,7 @@ def ConsultaN(request):
         notas=NotasDB.objects.filter(Grado__icontains=grado, Seccion__icontains=seccion, Momento__icontains=momento, Nombre_Notas__icontains=nombre_notas)
 
         if pd_Notes != "0":
-            pa_Docs = pd_Notes
+            pd_Notes = pd_Notes
             notas=NotasDB.objects.filter(Grado__icontains=grado, Seccion__icontains=seccion, Momento__icontains=momento, Nombre_Notas__icontains=nombre_notas, PD_Notes_id=pd_Notes)
         else:
             notas=NotasDB.objects.filter(Grado__icontains=grado, Seccion__icontains=seccion, Momento__icontains=momento, Nombre_Notas__icontains=nombre_notas)  
