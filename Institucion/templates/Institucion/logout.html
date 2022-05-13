@@ -1,22 +1,32 @@
-
-<!DOCTYPE html>
-<html>
+{% load static %}
 <head>
-	{% load static %}
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Deslogueado</title>
 	<link rel="stylesheet" href="{% static 'General/css/logout.css' %}">
+
+	<!-- Estilo de Notificaciones Divs-->
+	<link href="{% static 'General/css/home.css' %}" rel="stylesheet">
+	<link href="{% static 'General/css/base.css' %}" rel="stylesheet">
+	<link href="{% static 'General/css/consultaUsuarioBase.css' %}" rel="stylesheet">
+	<!--Fin-->
+	<style>
+		body{
+			background-image: url(../../static/General/img/undraw_Graduation_ktn0.png);
+
+		}
+	</style>
 </head>
-<body>
-	<div id="container">
-		<img src="../../static/General/img/undraw_Graduation_ktn0.png">
-		<h1>TE HAS DES-LOGUEADO</h1>
+<body>	
+	<div class="notification">
+		<div>
+			<h1>TE HAS DES-LOGUEADO</h1>
+        </div>
+        <div>
+			<a href="{% url 'login' %}" ><button class="button_PA" type="button">CONTINUAR</button></a>
+		</div>
 	</div>
 
-	<div id="button_log">
-		<a class="button_log" href="{% url 'login' %}" ><button type="button">CONTINUAR</button></a>
-	</div>
 </body>
 </html>
 

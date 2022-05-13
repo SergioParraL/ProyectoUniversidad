@@ -8,15 +8,31 @@
     <script type="text/javascript" src="static/General/js/login1.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
 
+	<!-- Estilo de Notificaciones Divs-->
+	<link href="{% static 'General/css/home.css' %}" rel="stylesheet">
+	<!--Fin-->
+
 </head>
+	
+<!--Estructura de Notificaciones Divs-->
 
 {% if messages %}
     {% for message in messages %}
-        <div class="notification {{message.tags}}">
-            {{ message }}
+        <div class="notification">
+			<div>
+				<h3>{{ message }}</h3>
+			</div>
+
+			<div>
+				<a href="{% url 'login' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+			</div>
+
         </div>
+
     {% endfor %}
 {% endif %}
+<!--Fin-->
+
 <div id='load' class="loader"></div>
 <article id='PD' class="wrapper">
 	<article class="row_1">

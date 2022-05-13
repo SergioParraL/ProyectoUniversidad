@@ -3,21 +3,15 @@
 
 {% block content %}
 
-{% if messages %}
-  {% for message in messages %}
-      <div class="notification {{message.tags}}">
-          {{ message }}
-      </div>
-
-  {% endfor %}
-{% endif %}
-
-
 
 {%  if  "valido" in request.GET %}
 <div class="notification">
-    <p class="Reg_correcto">Documento Subido Correctamente</p>
-    <a href="{% url 'ConsultaD' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+    <div>
+        <h3>Documento Subido Correctamente</h3>
+    </div>
+    <div>
+        <a href="{% url 'ConsultaD' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
+    </div>
 </div>
 {% endif %}
 
