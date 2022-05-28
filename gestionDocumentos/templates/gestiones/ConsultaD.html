@@ -97,8 +97,8 @@
                             </article>
                             <article class="fontSecond">
                                 {% if request.user.is_PA == True %}
-                                    {% if request.user.id == documento.PA_Docs.usuario_id %}
-                                        <div class="options">
+                                    <div class="options">
+                                        {% if request.user.id == documento.PA_Docs.usuario_id %}
                                             <span>
                                                 <a href="{% url 'Actualizar_Docs' documento.id %}">
                                                     <div class="imgOptions update" title="Actualizar"></div>
@@ -109,13 +109,13 @@
                                                     <div class="imgOptions delete" title="Eliminar"></div>
                                                 </a>  
                                             </span>
+                                        {% endif %} 
                                             <span>
                                                 <a href="{{documento.Documento.url|urlencode}}" download="{{documento.Nombre_Documento}}">
                                                     <div class="imgOptions download" title="descargar"></div>
                                                 </a>
                                             </span>
-                                        </div>
-                                    {% endif %} 
+                                    </div>
                                 {% endif %}          
                             </article>
                         </section>
