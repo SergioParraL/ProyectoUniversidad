@@ -109,7 +109,7 @@
                                 </div>
                             </article>
                             <article class="fontSecond">
-                                <!-- {% if request.user.is_PD == True %} -->
+                                <!--  -->
                                     <article class="options">
                                         {% if request.user.is_PD == True %}
                                             {% if request.user.id == notas.PD_Notes.usuario_id %}
@@ -123,16 +123,18 @@
                                                     <div class="imgOptions delete" title="eliminar"></div>
                                                     </a>
                                                 </span>
-                                                <span>
-                                                    <a href="{{notas.Documento.url|urlencode}}" download="{{notas.Nombre_Notas}}">
-                                                        <div class="imgOptions download" title="descargar"></div>
-                                                    </a>
-                                                </span>
                                             {% endif %}
                                         {% endif %}
-                                    </article>
-                                <!-- {% endif %} -->
-                            </article>
+                                        <div class="options">
+                                            <span>
+                                                <a href="{{notas.Documento.url|urlencode}}" download="{{notas.Nombre_Notas}}">
+                                                    <div class="imgOptions download" title="descargar"></div>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </article>                                   
+                                <!--  -->
+                               </article>
                         </section>
                     {% endfor %}
                 {% endif %}
