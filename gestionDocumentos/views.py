@@ -289,7 +289,7 @@ def Actualizar_Notas(request, id):
                         form = Notas(request.POST, request.FILES, instance=nota)
                         if form.is_valid():
                             form.save()
-                            messages.success(request, f'Planilla de Notas del Grado {nota.Grado} de la Sección {nota.Seccion} fue Actualizado Correctamente')
+                            messages.success(request, f'La Planilla de Notas fue Actualizada Correctamente')
                             return redirect("ConsultaN")
                 else:
                     result = 'noMatch'

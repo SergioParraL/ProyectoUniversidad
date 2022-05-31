@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'gestionDocumentos.templatetags.concat_Tipo',
     'gestionDocumentos.templatetags.concat_Formato',
     'Institucion.templatetags.profileUsers_Data',
+    'Consultas.templatetags.concat_Foto',
+    'Consultas.templatetags.cedula_Rep',
 ]
 
 MIDDLEWARE = [

@@ -687,15 +687,13 @@ def Ver_Es(request, id):
 @login_required
 def Ver_PA(request, id):
     if request.user.is_PA == True:
-        if request.user.is_active == True:
-            if request.user.is_PA == True:
-                if request.user.is_active == True:
-                    if request.method == 'GET':
-                        Ver = PA_profile.objects.get(id = id)
-                        contx={
-                            'Ver':Ver
-                        }
-                    return render(request, "consultas/PA/Ver_PA.html", contx)
+        if request.user.is_PA == True:
+            if request.method == 'GET':
+                Ver = PA_profile.objects.get(id = id)
+                contx={
+                    'Ver':Ver
+                }
+            return render(request, "consultas/PA/Ver_PA.html", contx)
 
     messages.error(request, f'El Usuario {request.user.username} No es un Usuario PA ("Personal Administrativo")')
     return redirect('Home')

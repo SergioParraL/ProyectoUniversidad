@@ -1,6 +1,6 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
-
+{% load concat_Foto %}
 {% block content %}
 
 <article class="title">
@@ -23,7 +23,7 @@
                     {% for PA in PA %}        
                 <section class="prueba">
                         <article class="photo">
-                            <img src="{{ PA.foto.url }}">
+                            <img src="{{ PA.foto|concat_Foto }}">
                         </article>
                         <article>
                             <div class="name">

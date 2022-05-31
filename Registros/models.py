@@ -53,7 +53,7 @@ class PersonalAdm(models.Model):
     nombres=models.CharField(max_length=30)
     apellidos=models.CharField(max_length=30)
     cedula=models.CharField(unique=True,max_length=12)
-    foto=models.ImageField(upload_to='PerAD/%Y/%m/%d/', null=True)  
+    foto=models.ImageField(upload_to='PerAD/%Y/%m/%d/', null=True, blank=True)  
     cargo=models.CharField(max_length=15)
     edad=models.IntegerField()
     direccion=models.TextField(max_length=100)
@@ -72,7 +72,7 @@ class PersonalDocente(models.Model):
     nombres=models.CharField(max_length=30)
     apellidos=models.CharField(max_length=30)
     cedula=models.CharField(unique=True,max_length=12)
-    foto=models.ImageField(upload_to='PerDO/%Y/%m/%d/', null=True)
+    foto=models.ImageField(upload_to='PerDO/%Y/%m/%d/', null=True, blank=True)
     materia=models.IntegerField(
         null=False, blank=False,
         choices=Materias_list,
@@ -103,7 +103,7 @@ class Representantes(models.Model):
     nombres=models.CharField(max_length=30)
     apellidos=models.CharField(max_length=30)
     cedula=models.CharField(unique=True,max_length=12)
-    foto=models.ImageField(upload_to='REP/%Y/%m/%d/', null=True)
+    foto=models.ImageField(upload_to='REP/%Y/%m/%d/', null=True, blank=True)
     edad=models.IntegerField()
     direccion=models.TextField(max_length=100)
     teln_Casa=models.CharField(max_length=11)
@@ -123,8 +123,8 @@ class Representantes(models.Model):
 class Estudiantes(models.Model):
     nombres=models.CharField(max_length=30)
     apellidos=models.CharField(max_length=30)
-    cedula=models.CharField(unique=True,max_length=12)
-    foto=models.ImageField(upload_to='EST/%Y/%m/%d/', null=True)
+    cedula=models.CharField(unique=True,max_length=22)
+    foto=models.ImageField(upload_to='EST/%Y/%m/%d/', null=True, blank=True)
     edad=models.IntegerField()
     altura=models.FloatField(max_length=5)
     peso=models.FloatField(max_length=5)

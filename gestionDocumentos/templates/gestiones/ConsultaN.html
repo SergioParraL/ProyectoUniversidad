@@ -123,15 +123,23 @@
                                                     <div class="imgOptions delete" title="eliminar"></div>
                                                     </a>
                                                 </span>
+
+                                                <span>
+                                                    <a href="{{notas.Documento.url|urlencode}}" download="{{notas.Nombre_Notas}}">
+                                                        <div class="imgOptions download" title="descargar"></div>
+                                                    </a>
+                                                </span>
                                             {% endif %}
                                         {% endif %}
-                                        <div class="options">
-                                            <span>
-                                                <a href="{{notas.Documento.url|urlencode}}" download="{{notas.Nombre_Notas}}">
-                                                    <div class="imgOptions download" title="descargar"></div>
-                                                </a>
-                                            </span>
-                                        </div>
+                                        {% if request.user.is_PA == True %}
+                                            <div class="options">
+                                                <span>
+                                                    <a href="{{notas.Documento.url|urlencode}}" download="{{notas.Nombre_Notas}}">
+                                                        <div class="imgOptions download" title="descargar"></div>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        {% endif %}
                                     </article>                                   
                                 <!--  -->
                                </article>
