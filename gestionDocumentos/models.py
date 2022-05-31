@@ -82,7 +82,7 @@ class DocsDB(models.Model):
     
     
 class NotasDB(models.Model):
-    Nombre_Notas=models.CharField(max_length=30)
+    Nombre_Notas=models.CharField(max_length=250)
     Grado=models.IntegerField(
         null=False, blank=False,
         choices=Grados_list,

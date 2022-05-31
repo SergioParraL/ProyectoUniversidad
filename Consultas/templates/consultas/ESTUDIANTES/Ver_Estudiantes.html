@@ -2,6 +2,7 @@
 {% load static %}
 {% load concat_Grado2 %}
 {% load concat_Seccion2 %}
+{% load concat_Foto %}
 {% block content %}
 
 <section class="title">
@@ -23,7 +24,7 @@
                         <section class="cont_02">
                             <div class="photo">
                                 <label for="foto">Foto</label>
-                                <img src="{{ Ver.foto.url }}">
+                                <img src="{{ Ver.foto|concat_Foto }}">
                             </div>
                         </section>
                     </section>
@@ -129,7 +130,7 @@
                     <section class="cont printStyleNone">
                         <section class="cont_02">
                             <div class="photo">
-                                <img src="{{ Ver.Rep.foto.url }}">
+                                <img src="{{ Ver.Rep.foto|concat_Foto }}">
                             </div>
                         </section>
                     </section>

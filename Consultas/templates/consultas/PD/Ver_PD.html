@@ -2,6 +2,7 @@
 {% load static %}
 {% load concat_Materia %}
 {% load concat_Especialidades %}
+{% load concat_Foto %}
 {% block content %}
 
 <section class="title">
@@ -15,8 +16,7 @@
                 <section class="cont">
                     <section class="cont_02">
                         <div class="photo">
-                            <!-- <label for="foto">Foto</label> -->
-                            <img src="{{ Ver.foto.url }}">
+                            <img src="{{ Ver.foto|concat_Foto }}">
                         </div>
                     </section>
                 </section>
@@ -99,9 +99,5 @@
         </form>
     </section>
 </section>
-    {%  if  "valido" in request.GET %}
-        <h3>Personal Administrativo Registrado Correctamente, por favor dale click en continuar</h3>
-        <a href="{% url 'Home' %}"><button class="button_PA" type="button" value="">CONTINUAR</button></a>
-    {% endif %}
 
 {% endblock content %}

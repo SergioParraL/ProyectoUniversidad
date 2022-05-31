@@ -13,14 +13,25 @@ def profileUsers_Data(User, condicion):
         if PA_profile.objects.filter(usuario_id=User.id):
             dataPA = PA_profile.objects.get(usuario_id=User.id)
 
-            fieldsPA=[
-                dataPA.nombres,
-                dataPA.apellidos,
-                dataPA.cedula,
-                dataPA.cargo,
-                dataPA.foto.url
-            ]
-            result=fieldsPA[int(condicion)]
+            if dataPA.foto:
+                fieldsPA=[
+                    dataPA.nombres,
+                    dataPA.apellidos,
+                    dataPA.cedula,
+                    dataPA.cargo,
+                    dataPA.foto.url
+                ]
+                result=fieldsPA[int(condicion)]
+
+            else:
+                fieldsPA=[
+                    dataPA.nombres,
+                    dataPA.apellidos,
+                    dataPA.cedula,
+                    dataPA.cargo,
+                    "../../static/General/img/Perfil_Default.jpg"
+                ]
+                result=fieldsPA[int(condicion)]
         else:
             fieldsPA=[
                 'No actualizado',
@@ -36,14 +47,26 @@ def profileUsers_Data(User, condicion):
     else:
         if PD_profile.objects.filter(usuario_id=User.id):
             dataPD = PD_profile.objects.get(usuario_id=User.id)
-            fieldsPD=[
-                dataPD.nombres,
-                dataPD.apellidos,
-                dataPD.cedula,
-                'Docente',
-                dataPD.foto.url
-            ]
-            result=fieldsPD[int(condicion)]
+
+            if dataPD.foto:
+                fieldsPD=[
+                    dataPD.nombres,
+                    dataPD.apellidos,
+                    dataPD.cedula,
+                    'Docente',
+                    dataPD.foto.url
+                ]
+                result=fieldsPD[int(condicion)]
+
+            else:
+                fieldsPD=[
+                    dataPD.nombres,
+                    dataPD.apellidos,
+                    dataPD.cedula,
+                    'Docente',
+                    "../../static/General/img/Perfil_Default.jpg"
+                ]
+                result=fieldsPD[int(condicion)]
         else:
 
             fieldsPD=[

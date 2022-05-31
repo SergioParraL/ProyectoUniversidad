@@ -1,6 +1,6 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
-
+{% load concat_Foto %}
 {% block content %}
 
 <section class="title">
@@ -27,7 +27,7 @@
 						<article>
 							<div class="photo">
 								<label for="foto">Foto Actual:</label>
-								<img src="{{ pa.foto.url }}">
+                                <img src="{{pa.foto|concat_Foto }}">
 							</div>
 							<div>
 								<label for="{{ form.foto.id_for_label }}">Modificar Foto: </label><input id="{{ form.foto.id_for_label }}" type="file" name="{{ form.foto.name }}" accept="image/*" >

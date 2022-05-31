@@ -3,6 +3,7 @@
 {% load mathfilters %}
 {% load concat_Materia %}
 {% load concat_Especialidades %}
+{% load concat_Foto %}
 {% block content %}
 
 <section class="title">
@@ -30,7 +31,7 @@
                     {% for PD in PD %}        
                     <section class="prueba">
                             <article class="photo">
-                                <img src="{{ PD.foto.url }}">
+                                <img src="{{ PD.foto|concat_Foto }}">
                             </article>
                             <article>
                                 <div class="name">

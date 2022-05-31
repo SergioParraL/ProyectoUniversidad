@@ -1,6 +1,6 @@
 {% extends "Institucion/base.html" %}
 {% load static %}
-
+{% load concat_Materia %}
 {% block content %}
 
 <article>
@@ -37,7 +37,7 @@
             <option value="{{pdProfile.id}}"></option>
           </select>
           <label for="Nombre_Notas" style="visibility:hidden">Nombre</label>     
-          <input type="text" name="Nombre_Notas" maxlength="30" required id="id_Nombre_Notas" value="Planilla de Notas", style="visibility:hidden">
+          <input type="text" name="Nombre_Notas" maxlength="30" required id="id_Nombre_Notas" value="Planilla de Notas | {{ pdProfile.materia|concat_Materia }} ", style="visibility:hidden">
 
         <div class="wrapper">
           <label>Grado:</label>     
